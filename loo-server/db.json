@@ -1,12 +1,16 @@
 {
-    "animals": [
-      { "id": 15041995, 
-        "animal": "Rhino",
-         "name": "Bob",
-        "status": "http://www.loo.org/15041995/status" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
+    "snowleopards": [
+      { "id": 1504199595941238,
+        "extinction-level": "VeryHigh",
+         "Status": "Dead",
+          "area": "Tibet",
+          "habitat": "Tundra" 
+        },
+        { "id": 1504199595941239,
+          "extinction-level": "VeryHigh",
+          "Status": "Alive",
+          "area": "Russia",
+          "habitat": "Tundra" 
+        }
+    ]
   }

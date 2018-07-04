@@ -2,6 +2,10 @@
 
 First, make sure you have Ganache-cli running at port 9545
 
+```
+
+```
+
 Compile and Migrate Smart Contract:
 ```
 $ truffle compile
