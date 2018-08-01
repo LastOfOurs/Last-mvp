@@ -3,6 +3,7 @@ Make sure you have installed on your machine:
 - Ganache-cli
 - Truffle
 - IPFS
+- json-db
 
 ## Deploying LOO Contracts & Mint LOO token
 
