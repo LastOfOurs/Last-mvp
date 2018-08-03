@@ -1,4 +1,4 @@
-pragma solidity^0.4.23;
+pragma solidity^0.4.17;
 
 import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/ERC721Token.sol';
@@ -15,7 +15,5 @@ contract Loo is Ownable, ERC721Token {
       _mint(toAddress, tokenId);
        _setTokenURI(tokenId, uri);
   }
-
-  //function getToken
 
 }
