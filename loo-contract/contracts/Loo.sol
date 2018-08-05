@@ -4,8 +4,6 @@ import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/ERC721Token.sol';
 
 contract Loo is Ownable, ERC721Token {
-  string public constant _name = "LooToken";
-  string public constant _symbol = "LTK";
 
   function Loo(string _name, string _symbol) ERC721Token(_name, _symbol) public {
   

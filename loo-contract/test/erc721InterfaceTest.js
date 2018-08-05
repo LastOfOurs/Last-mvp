@@ -58,8 +58,6 @@ contract('Loo', async ()=> {
         await expectThrow(contract.transferFrom(user1, user2, 3))
     })
 
-    //"should only allow a user that is approved to transfer certain token"
-
     //"should not allow a duplicated token ID to be minted"
     it("should not allow duplicated token ID to be minted", async () => {
         let user1 = web3.eth.accounts[0];
@@ -73,7 +71,7 @@ contract('Loo', async ()=> {
     })
 
     //"it should get all the token balances of an account"
-    it("it should get all the token balances of an account", async () => {
+    it("should get all the token balances of an account", async () => {
         let user3 = web3.eth.accounts[2];
         let inst = await Loo.deployed();
         let contract = inst;
@@ -86,5 +84,20 @@ contract('Loo', async ()=> {
     })
     
     //should ouput token of owner by indexes
+    it("should output tokens of owner by indexes", async () => {
+        let user3 = web3.eth.accounts[2];
+        let inst = await Loo.deployed();
+        let contract = inst;
+        let tokenUri = "http://data.lastofours.io/3"
+        index0 = await contract.tokenOfOwnerByIndex(user3, 0)
+        index1 = await contract.tokenOfOwnerByIndex(user3, 1)
+        assert.equal(index0.toNumber(), 5)
+        assert.equal(index1.toNumber(), 6)
+    })
 
+    //test approve and safeTransferFrom
+
+    //test approveForAll and getApproveForAll
+
+    //test approveForAll and safeTransferFrom
 })
