@@ -1,10 +1,24 @@
 ### Running the Smart Contract
 
-First, make sure you have Ganache-cli running at port 9545
+First, make sure you have Docker Installed
+by running following Docker container command
 
 ```
-
+$ docker run -d -p 8545:8545 trufflesuite/ganache-cli:latest -h 0.0.0.0
 ```
+
+Run the following Docker command to pull in the image
+then eventually run the Container + SSH into it
+```
+$ docker built . -t last-truffle:latest
+$ docker run -it -v /<path>/<to>/<folder>/loo/loo-contract:/usr/src/app last-truffle:latest /bin/sh
+```
+
+To check if it works, test should all pass. Run Truffle Test inside the container
+```
+$ truffle test
+```
+
 
 Compile and Migrate Smart Contract:
 ```

@@ -16,11 +16,12 @@ require('babel-register')({
 });
 require('babel-polyfill');
 
+
 module.exports = {
   networks: {
     development: {
-      host: "127.0.0.1",
-      port: 9545,
+      host: 'host.docker.internal',
+      port: 8545,
       gas: 5000000,
       gasPrice: 65000000000,
       network_id: "*" // Match any network id
