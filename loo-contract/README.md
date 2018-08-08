@@ -6,6 +6,11 @@ by running following Docker container command
 ```
 $ docker run -d -p 8545:8545 trufflesuite/ganache-cli:latest -h 0.0.0.0
 ```
+Have all the packages and dependencies installed, by running
+
+```
+$ npm install
+```
 
 Run the following Docker command to pull in the image
 then eventually run the Container + SSH into it
