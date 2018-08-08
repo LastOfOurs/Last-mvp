@@ -10,13 +10,11 @@ stages:
  
 build:
  stage: build
- tags: [last-docker]
  script:
    - truffle compile
  
 test:
  stage: test
- tags: [last-docker]
  script:
    - testrpc -p 8545 &     
    - truffle test
