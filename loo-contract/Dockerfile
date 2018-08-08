@@ -7,5 +7,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 # Install Truffle Globally
 RUN npm install -g truffle@4.1.13
+# Install Ganache for use in CI
+RUN npm install -g ganache-cli@6.1.6
 
 

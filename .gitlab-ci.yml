@@ -1,7 +1,6 @@
 image: pongch/truffle:latest    
  
 before_script:
- - npm install -g ethereumjs-testrpc
  - cd loo-contract
  - npm install
  
@@ -17,6 +16,6 @@ build:
 test:
  stage: test
  script:
-   - testrpc -p 8545 &     
+   - ganache-cli -p 8545 &     
    - truffle test
  
