@@ -1,0 +1,22 @@
+image: pongch/truffle:latest    
+ 
+before_script:
+ - npm install -g ethereumjs-testrpc
+ 
+stages:
+ - build
+ - test
+ 
+build:
+ stage: build
+ tags: [last-docker]
+ script:
+   - truffle compile
+ 
+test:
+ stage: test
+ tags: [last-docker]
+ script:
+   - testrpc -p 8545 &     
+   - truffle test
+ 
