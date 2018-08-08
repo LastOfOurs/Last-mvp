@@ -2,6 +2,7 @@ image: pongch/truffle:latest
  
 before_script:
  - npm install -g ethereumjs-testrpc
+ - cd loo-contract
  
 stages:
  - build
