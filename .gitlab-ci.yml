@@ -16,5 +16,5 @@ build:
 test:
  stage: test
  script:     
-   - truffle test
+   - ganache-cli -p 8545 & truffle test
  
