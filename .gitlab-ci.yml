@@ -1,4 +1,4 @@
-image: pongch/truffle:latest    
+image: pongch/truffle:ci  
  
 before_script:
  - cd loo-contract
