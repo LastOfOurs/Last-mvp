@@ -2,7 +2,14 @@ var Loo = artifacts.require('./Loo.sol')
 var assert = require('assert')
 var expectThrow = require('./helper.js');
 
-contract('Loo', async ()=> {
+beforeEach(async function () {
+    
+    //generate new Loo Contract for every test
+    this.contract = await Loo.new("Last","LTK");
+
+});
+
+describe('fallback function', async ()=> {
     //should not accept ETH
     it("should not accept ETH", async () => {
         let inst = await Loo.deployed();
@@ -21,7 +28,6 @@ contract('Loo', async ()=> {
         )
     })
 
-    //should not accept ERC 721 Token
 })
 
 
