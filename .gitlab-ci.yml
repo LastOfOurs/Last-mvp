@@ -10,9 +10,8 @@ stages:
 build:
  stage: build
  script:
-  - testrpc -p 8545 & 
   - truffle compile
-  - truffle migrate --network development
+  - ganache-cli -p 8545 & truffle migrate --network development
  
 test:
  stage: test
