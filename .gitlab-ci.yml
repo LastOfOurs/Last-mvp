@@ -1,7 +1,6 @@
 image: pongch/truffle:latest    
  
 before_script:
- - npm install -g ethereumjs-testrpc
  - cd loo-contract
  - npm install
 stages:
@@ -11,11 +10,12 @@ stages:
 build:
  stage: build
  script:
-   - truffle compile
+  - testrpc -p 8545 & 
+  - truffle compile
+  - truffle migrate --network development
  
 test:
  stage: test
- script:
-   - testrpc -p 8545 &     
-   - truffle test
+ script:     
+   - npm run coverage
  
