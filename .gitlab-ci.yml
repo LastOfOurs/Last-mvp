@@ -16,5 +16,5 @@ build:
 test:
  stage: test
  script:     
-   - npm run coverage
+   - truffle test
  
