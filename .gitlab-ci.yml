@@ -4,17 +4,17 @@ before_script:
  - cd loo-contract
  - npm install
 stages:
- - build
- - test
+ - build_contract
+ - test_contract
  
-build:
- stage: build
+build_contract:
+ stage: build_contract
  script:
   - truffle compile
   - ganache-cli -p 8545 & truffle migrate --network development
  
-test:
- stage: test
+test_contract:
+ stage: test_contract
  script:     
-   - ganache-cli -p 8545 & truffle test
+   - npm run coverage
  

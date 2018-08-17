@@ -1,4 +1,4 @@
-### Running the Smart Contract
+### Setting Environments
 
 First, make sure you have Docker Installed
 by running following Docker container command
@@ -15,15 +15,18 @@ $ npm install
 Run the following Docker command to pull in the image
 then eventually run the Container + SSH into it
 ```
-$ docker built . -t last-truffle:latest
-$ docker run -it -v /<path>/<to>/<folder>/loo/loo-contract:/usr/src/app last-truffle:latest /bin/sh
+$ docker build . -t last-truffle:latest
+$ docker run -it -v ${PWD}:/usr/src/app last-truffle:latest /bin/sh
 ```
+
+### Running Tests
 
 To check if it works, test should all pass. Run Truffle Test inside the container
 ```
 $ truffle test
 ```
 
+### Compile and Migrate
 
 Compile and Migrate Smart Contract:
 ```
@@ -31,7 +34,7 @@ $ truffle compile
 $ truffle migrate 
 ```
 
-Log into Console, Mint new Tokens and Get TokenMetadata:
+Log into Console, Play around with Minting new Tokens and Trying to Get TokenMetadata:
 ```
 $ truffle console
 > Loo.deployed().then((inst)=>{loocontract = inst})
