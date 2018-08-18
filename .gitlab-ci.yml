@@ -1,7 +1,7 @@
 image: pongch/truffle:ci  
  
 before_script:
- - cd loo-contract
+ - cd LAST-contract
  - npm install
 stages:
  - build_contract
