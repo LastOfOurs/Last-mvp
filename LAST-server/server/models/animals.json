@@ -1,0 +1,43 @@
+{
+  "name": "Animals",
+  "plural": "animals",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "AnimalID": {
+      "type": "number",
+      "required": true
+    },
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Meta": {
+      "type": [
+        "object"
+      ],
+      "required": true
+    },
+    "Category": {
+      "type": "string",
+      "required": true
+    },
+    "Habitat": {
+      "type": [
+        "string"
+      ],
+      "required": true
+    },
+    "Image": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
