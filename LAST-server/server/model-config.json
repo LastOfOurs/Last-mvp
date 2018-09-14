@@ -14,29 +14,29 @@
     ]
   },
   "User": {
-    "dataSource": "lastDB"
+    "dataSource": "last-db"
   },
   "AccessToken": {
-    "dataSource": "lastDB",
+    "dataSource": "last-db",
     "public": false
   },
   "ACL": {
-    "dataSource": "lastDB",
+    "dataSource": "last-db",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "lastDB",
+    "dataSource": "last-db",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "lastDB",
+    "dataSource": "last-db",
     "public": false
   },
   "Animals": {
-    "dataSource": "lastDB",
+    "dataSource": "last-db",
     "public": true
   }
 }

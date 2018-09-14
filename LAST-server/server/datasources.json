@@ -1,11 +1,11 @@
 {
-  "lastDB": {
-    "host": "localhost",
+  "last-db": {
+    "host": "last-db",
     "port": 27017,
-    "database": "lastDB",
-    "username": "username",
-    "password": "password",
-    "name": "lastDB",
+    "database": "last-db",
+    "username": "my_user",
+    "password": "last_db4312",
+    "name": "last-db",
     "connector": "mongodb"
   }
 }
