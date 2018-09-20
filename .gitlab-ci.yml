@@ -29,5 +29,4 @@ build_server:
     - docker info
     - docker-compose --version
     - cd LAST-server
-    - npm install
     - docker-compose up
