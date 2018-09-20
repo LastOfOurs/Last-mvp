@@ -1,4 +1,4 @@
- stages:
+stages:
  - build_contract
  - test_contract
  - build_server
