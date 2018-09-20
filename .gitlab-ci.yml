@@ -1,20 +1,28 @@
-image: pongch/truffle:ci  
- 
-before_script:
- - cd LAST-contract
- - npm install
 stages:
  - build_contract
  - test_contract
+ - build_server
  
 build_contract:
+ image: pongch/truffle:ci  
  stage: build_contract
  script:
+  - cd LAST-contract
+  - npm install
   - truffle compile
   - ganache-cli -p 8545 & truffle migrate --network development
  
 test_contract:
+ image: pongch/truffle:ci  
  stage: test_contract
- script:     
+ script:    
+   - cd LAST-contract
+   - npm install 
    - npm run coverage
- 
+
+build_server:
+  image: node:alpine
+  stage: build_server
+  script:
+    - cd LAST-server
+    - npm install
