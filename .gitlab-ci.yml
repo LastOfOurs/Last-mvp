@@ -22,6 +22,8 @@ test_contract:
 
 build_server:
   image: tmaier/docker-compose:latest
+  services:
+    - docker:dind
   stage: build_server
   script:
     - docker info
