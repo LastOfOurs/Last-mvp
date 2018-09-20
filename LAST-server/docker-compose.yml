@@ -5,9 +5,7 @@ services:
     restart: always
     depends_on: 
       - last-db
-    build: .
-    volumes:
-      - ./:/usr/src/app
+    image: pongch/last-server:latest
     ports:
       - "3000:3000"
     links:
