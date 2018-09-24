@@ -38,5 +38,13 @@
   "Animals": {
     "dataSource": "last-db",
     "public": true
+  },
+  "unminted-animal": {
+    "dataSource": "last-db",
+    "public": true
+  },
+  "UnmintedAnimal": {
+    "dataSource": "last-db",
+    "public": true
   }
 }
