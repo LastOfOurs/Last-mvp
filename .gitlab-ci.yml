@@ -21,12 +21,8 @@ test_contract:
    - npm run coverage
 
 build_server:
-  image: tmaier/docker-compose:latest
-  services:
-    - docker:dind
+  image: node:alpine
   stage: build_server
   script:
-    - docker info
-    - docker-compose --version
     - cd LAST-server
-    - docker-compose up
+    - npm install

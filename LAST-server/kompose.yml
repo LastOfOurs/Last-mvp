@@ -5,11 +5,11 @@ services:
     restart: always
     depends_on: 
       - last-db
-    image: pongch/last-server:latest
+    image: pongch/last-server:kube
     command: npm start
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules     
+    #volumes:
+     # - .:/usr/src/app
+     # - /usr/src/app/node_modules     
     ports:
       - "3000:3000"
     links:

@@ -2,13 +2,14 @@
   "name": "Animals",
   "plural": "animals",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "AnimalID": {
+    "id": {
       "type": "number",
+      "id": true,
       "required": true
     },
     "Name": {
