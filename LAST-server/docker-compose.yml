@@ -30,6 +30,11 @@ services:
       - MONGODB_APPLICATION_PASS=last_db4312
     ports:
       - "27017:27017"
+  last-ganache:
+    image: trufflesuite/ganache-cli
+    ports: 
+      - 8545:8545
+    command: "--seed hello last --defaultBalanceEther 100000000"
   last-ipfs:
     container_name: last-ipfs
     restart: always
