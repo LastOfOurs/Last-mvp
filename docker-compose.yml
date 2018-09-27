@@ -1,20 +1,51 @@
 version: "2"
 services:
-  last-server:
-    container_name: last-server
+  last_proxy:
+    build: ./LAST-proxy
+    ports:
+      - '8090:8090'
+    links:
+      - last_server_1
+      - last_server_2
+      - last_server_3
+    restart: always
+  last_server_1:
+    container_name: last_server_1
     restart: always
     depends_on: 
-      - last-db
+      - last_db
     image: pongch/last-server:latest
     command: npm start
     volumes:
       - ./LAST-server:/usr/src/app
       - /usr/src/app/node_modules     
-    ports:
-      - "3000:3000"
     links:
-      - last-db
-  last-db:
+      - last_db
+  last_server_2:
+    container_name: last_server_2
+    restart: always
+    depends_on: 
+      - last_db
+    image: pongch/last-server:latest
+    command: npm start
+    volumes:
+      - ./LAST-server:/usr/src/app
+      - /usr/src/app/node_modules     
+    links:
+      - last_db
+  last_server_3:
+    container_name: last_server_3
+    restart: always
+    depends_on: 
+      - last_db
+    image: pongch/last-server:latest
+    command: npm start
+    volumes:
+      - ./LAST-server:/usr/src/app
+      - /usr/src/app/node_modules     
+    links:
+      - last_db
+  last_db:
     container_name: last-db
     volumes:
       - ./LAST-server/db:/bitnami
@@ -30,17 +61,13 @@ services:
       - MONGODB_APPLICATION_PASS=last_db4312
     ports:
       - "27017:27017"
-  last-ganache:
+  last_ganache:
+    container_name: last_ganache
     image: trufflesuite/ganache-cli
     ports: 
       - 8545:8545
     command: "--seed hello last --defaultBalanceEther 100000000"
-  last-ganache:
-    image: trufflesuite/ganache-cli
-    ports: 
-      - 8545:8545
-    command: "--seed hello last --defaultBalanceEther 100000000"
-  last-ipfs:
+  last_ipfs:
     container_name: last-ipfs
     restart: always
     expose:
