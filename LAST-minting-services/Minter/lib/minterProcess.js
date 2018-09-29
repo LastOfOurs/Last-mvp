@@ -6,33 +6,43 @@ const axios = require('axios')
 //const fsPromises = fs.promises;
 
 const config = require('../../../config.js')
-const web3 = new Web3(provider)
 const provider = config.web3Provider
+const web3 = new Web3(provider)
 const accessToken = config.serverAccessToken
 const LastJSON = require("../../../LAST-contract/build/contracts/LAST.json")
 const contractAddress = LastJSON
-const LastToken = contract({LastJSON})
+const Last = contract({LastJSON})
+const LastEndpoint = config.lastAnimalsEndpoint
 
-LastToken.setProvider(provider)
+Last.setProvider(provider)
 
 //minting token function with ID and IPFShash
-async function startMintProcess(recipient, id, ipfsHash) {
+async function startMintProcess(recipient, animal_id) {
   try {
-    //GET animal data
-    //animalData = await 
-    //UPDAT animal data to minted = true
+    //http://localhost:8090/api/animals/0?access_token=R5EmrwmX8mmklghDqc3DP7GEHStGNqJBMjRE20qbvJm2Zyg6MN6b0fEbAirUXLeL
+    //UPDATE animal data to minted = true
+    let animal = await axios.patch(`${LastEndpoint}/${animal_id}?access_token=${accessToken}`,
+      {"minted": true}
+    )
+
+    let animalData = animal.data
 
     //write JSON file to LAST-IPFS
+    fs.writeFile(`../../LAST-IPFS/export/LAST_ANIMAL_${animal_id}.json`, JSON.stringify(animalData.ipfsData), function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+    })
 
     //IPFS adds JSON file
+    // ipfsHash = ..
 
     //finally mint token
-    let last = await LastToken.deployed()
-    let mintingToken = await last.mint(recipient, id, ipfsHash, {from: web3.eth.accounts[0]})
+    /* let LastContract = await Last.deployed()
+    let mintingToken = await LastContract.mint(recipient, id, ipfsHash, {from: web3.eth.accounts[0]}) */
 
   } catch (err) {
+    //on error- should send message to req
     console.log(err)
-
   }
   
 }
@@ -40,7 +50,7 @@ async function startMintProcess(recipient, id, ipfsHash) {
 //get message from parent
 process.on('message', (message) => {
   console.log('minter received:', message)
-  startMintProcess(message.recipient, message.id, message.ipfsHash)
+  let minted = startMintProcess(message.recipient, message.animal_id)
   process.send("minting process started for animal ID: " + message.animal_id)
 });
 
