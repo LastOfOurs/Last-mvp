@@ -1,4 +1,3 @@
-
 const ipfsAPI = require('ipfs-api')
 const Web3 = require('web3')
 const contract = require("truffle-contract");
@@ -34,7 +33,7 @@ if (typeof LastToken.currentProvider.sendAsync !== "function") {
 //minting token function with ID and IPFShash
 async function startMintProcess(recipient, animal_id) {
   try {
-    //http://localhost:8090/api/animals/0?access_token=R5EmrwmX8mmklghDqc3DP7GEHStGNqJBMjRE20qbvJm2Zyg6MN6b0fEbAirUXLeL
+
     //UPDATE animal data to minted = true
     let animal = await axios.patch(`${LastEndpoint}/${animal_id}?access_token=${accessToken}`,
       {"minted": true}
@@ -57,7 +56,7 @@ async function startMintProcess(recipient, animal_id) {
       
     let ipfsAdded = await ipfs.add(files)   
     
-    //finally mint token
+    //finally mint token in smart contract
     let animal_id_no = Number(animal_id)
 
     const LastTokenContract = LastToken.at(contractAddr)
