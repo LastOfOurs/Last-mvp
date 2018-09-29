@@ -1,18 +1,21 @@
 const contract = require("truffle-contract");
 const ipfsAPI = require('ipfs-api')
 const Web3 = require('web3')
-const fs = require('fs');
+const fs = require('nano-fs');
 const axios = require('axios')
 //const fsPromises = fs.promises;
 
 const config = require('../../../config.js')
 const provider = config.web3Provider
+const ipfsNodeHost = config.ipfsNodeHost
+const ipfsNodePort = config.ipfsNodePort
 const web3 = new Web3(provider)
 const accessToken = config.serverAccessToken
 const LastJSON = require("../../../LAST-contract/build/contracts/LAST.json")
 const contractAddress = LastJSON
 const Last = contract({LastJSON})
 const LastEndpoint = config.lastAnimalsEndpoint
+const ipfs = ipfsAPI(`${ipfsNodeHost}`, `${ipfsNodePort}`, {protocol: 'http'})
 
 Last.setProvider(provider)
 
@@ -28,14 +31,26 @@ async function startMintProcess(recipient, animal_id) {
     let animalData = animal.data
 
     //write JSON file to LAST-IPFS
-    fs.writeFile(`../../LAST-IPFS/export/LAST_ANIMAL_${animal_id}.json`, JSON.stringify(animalData.ipfsData), function (err) {
-      if (err) throw err;
-      console.log('Saved!');
-    })
+    let writeIpfsFile = await fs.writeFile(`../../LAST-IPFS/export/LAST_ANIMAL_${animal_id}.json`, JSON.stringify(animalData.ipfsData))
 
     //IPFS adds JSON file
-    // ipfsHash = ..
+    let Ipfscontent = await fs.readFileSync(`../../LAST-IPFS/export/LAST_ANIMAL_${animal_id}.json`);
+    console.log(Ipfscontent)
+    Ipfscontent = new Buffer(Ipfscontent)
 
+    let files = {
+      path: `../../LAST-IPFS/export/LAST_ANIMAL_${animal_id}.json`,
+      content: Ipfscontent
+    }
+      
+    let ipfsHash = await ipfs.add(files, function (err, res){
+      if(err) throw err;
+      console.log(res[0].hash)
+      return res[0].hash
+    })
+    
+
+    
     //finally mint token
     /* let LastContract = await Last.deployed()
     let mintingToken = await LastContract.mint(recipient, id, ipfsHash, {from: web3.eth.accounts[0]}) */
