@@ -1,23 +1,35 @@
-const contract = require("truffle-contract");
+
 const ipfsAPI = require('ipfs-api')
 const Web3 = require('web3')
+const contract = require("truffle-contract");
 const fs = require('nano-fs');
 const axios = require('axios')
-//const fsPromises = fs.promises;
 
 const config = require('../../../config.js')
 const provider = config.web3Provider
 const ipfsNodeHost = config.ipfsNodeHost
 const ipfsNodePort = config.ipfsNodePort
-const web3 = new Web3(provider)
+const contractAddr = config.lastAddr
+const ownerAddr = config.lastOwnerAddr
 const accessToken = config.serverAccessToken
-const LastJSON = require("../../../LAST-contract/build/contracts/LAST.json")
-const contractAddress = LastJSON
-const Last = contract({LastJSON})
 const LastEndpoint = config.lastAnimalsEndpoint
 const ipfs = ipfsAPI(`${ipfsNodeHost}`, `${ipfsNodePort}`, {protocol: 'http'})
 
-Last.setProvider(provider)
+//Configure Truffle Contract
+const LastJson = fs.readFileSync("../../LAST-contract/build/contracts/LAST.json", 'utf8')
+const LastArtifacts = JSON.parse(LastJson)
+//const LastJSON = require("../../../LAST-contract/build/contracts/LAST.json")
+const LastToken = contract(LastArtifacts)
+const web3 = new Web3(new Web3.providers.HttpProvider(provider))
+LastToken.setProvider(web3.currentProvider)
+
+if (typeof LastToken.currentProvider.sendAsync !== "function") {
+  LastToken.currentProvider.sendAsync = function() {
+      return LastToken.currentProvider.send.apply(
+          LastToken.currentProvider, arguments
+      );
+  };
+}
 
 //minting token function with ID and IPFShash
 async function startMintProcess(recipient, animal_id) {
@@ -43,18 +55,16 @@ async function startMintProcess(recipient, animal_id) {
       content: Ipfscontent
     }
       
-    let ipfsHash = await ipfs.add(files, function (err, res){
-      if(err) throw err;
-      console.log(res[0].hash)
-      return res[0].hash
-    })
-    
-
+    let ipfsAdded = await ipfs.add(files)   
     
     //finally mint token
-    /* let LastContract = await Last.deployed()
-    let mintingToken = await LastContract.mint(recipient, id, ipfsHash, {from: web3.eth.accounts[0]}) */
+    let animal_id_no = Number(animal_id)
 
+    const LastTokenContract = LastToken.at(contractAddr)
+    //console.log(recipient + animal_id_no + ipfsAdded[0].hash)
+    let mintedToken = await LastTokenContract.mint(recipient, animal_id_no, ipfsAdded[0].hash, {from: ownerAddr, gas:3000000}) 
+    console.log(mintedToken)
+    //return mintToken
   } catch (err) {
     //on error- should send message to req
     console.log(err)
