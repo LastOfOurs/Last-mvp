@@ -4,7 +4,7 @@ const contract = require("truffle-contract");
 const fs = require('nano-fs');
 const axios = require('axios')
 
-const config = require('../../../config.js')
+const config = require('../config.js')
 const provider = config.web3Provider
 const ipfsNodeHost = config.ipfsNodeHost
 const ipfsNodePort = config.ipfsNodePort
@@ -12,12 +12,11 @@ const contractAddr = config.lastAddr
 const ownerAddr = config.lastOwnerAddr
 const accessToken = config.serverAccessToken
 const LastEndpoint = config.lastAnimalsEndpoint
-const ipfs = ipfsAPI(`${ipfsNodeHost}`, `${ipfsNodePort}`, {protocol: 'http'})
+const ipfs = ipfsAPI(ipfsNodeHost, ipfsNodePort, {protocol: 'http'})
 
 //Configure Truffle Contract
 const LastJson = fs.readFileSync("../../LAST-contract/build/contracts/LAST.json", 'utf8')
 const LastArtifacts = JSON.parse(LastJson)
-//const LastJSON = require("../../../LAST-contract/build/contracts/LAST.json")
 const LastToken = contract(LastArtifacts)
 const web3 = new Web3(new Web3.providers.HttpProvider(provider))
 LastToken.setProvider(web3.currentProvider)
@@ -66,7 +65,7 @@ async function startMintProcess(recipient, animal_id) {
     //return mintToken
   } catch (err) {
     //on error- should send message to req
-    console.log(err)
+    console.error(err)
   }
   
 }

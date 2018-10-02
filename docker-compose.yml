@@ -1,6 +1,7 @@
 version: "2"
 services:
   last_proxy:
+    container_name: last_proxy
     build: ./LAST-proxy
     ports:
       - '8090:8090'
@@ -45,6 +46,21 @@ services:
       - /usr/src/app/node_modules     
     links:
       - last_db
+  last_minter:
+    build:
+      context: ./LAST-minting-services/Minter
+    container_name: last-minter
+    working_dir: /LAST-minting-services/Minter
+    volumes:
+      - ./LAST-minting-services/Minter:/LAST-minting-services/Minter
+      - /LAST-minting-services/Minter/node_modules/
+      - ./LAST-IPFS/export:/LAST-IPFS/export
+      - ./LAST-contract/build/contracts:/LAST-contract/build/contracts
+    ports:
+      - "3001:3001"
+    command: bash -c "npm install && npm start"
+    links:
+      - last_proxy
   last_db:
     container_name: last-db
     volumes:
@@ -65,8 +81,8 @@ services:
     container_name: last_ganache
     image: trufflesuite/ganache-cli
     ports: 
-      - 8545:8545
-    command: "--seed hello last --defaultBalanceEther 100000000"
+      - 8546:8546
+    command: "--seed hello last --defaultBalanceEther 100000000 --port 8546"
   last_ipfs:
     container_name: last-ipfs
     restart: always
