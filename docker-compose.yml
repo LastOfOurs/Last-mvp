@@ -8,7 +8,6 @@ services:
     links:
       - last_server_1
       - last_server_2
-      - last_server_3
     restart: always
   last_server_1:
     container_name: last_server_1
@@ -34,18 +33,12 @@ services:
       - /usr/src/app/node_modules     
     links:
       - last_db
-  last_server_3:
-    container_name: last_server_3
-    restart: always
-    depends_on: 
-      - last_db
-    image: pongch/last-server:latest
-    command: npm start
+  last_truffle:
+    container_name: last_truffle
+    image: pongch/truffle:latest
     volumes:
-      - ./LAST-server:/usr/src/app
-      - /usr/src/app/node_modules     
-    links:
-      - last_db
+      - ./LAST-contract:/usr/src/app
+    tty: true
   last_minter:
     build:
       context: ./LAST-minting-services/Minter
@@ -59,8 +52,8 @@ services:
     ports:
       - "3001:3001"
     command: bash -c "npm install && npm start"
-    links:
-      - last_proxy
+    depends_on:
+      - last_ganache
   last_db:
     container_name: last-db
     volumes:
@@ -83,6 +76,10 @@ services:
     ports: 
       - 8546:8546
     command: "--seed hello last --defaultBalanceEther 100000000 --port 8546"
+    depends_on: 
+      - last_db
+      - last_proxy
+      - last_ipfs
   last_ipfs:
     container_name: last-ipfs
     restart: always
