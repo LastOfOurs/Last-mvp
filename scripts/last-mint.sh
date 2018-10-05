@@ -1,0 +1,18 @@
+#Mint 3 New Animals to the Smart Contract
+curl -X POST \
+  http://localhost:3001/api/v1/mint \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -d '{  "animal_id": "1", "recipient":"0x066ec5590625785b38b740311fc0273660ea3997"}'
+
+  curl -X POST \
+  http://localhost:3001/api/v1/mint \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -d '{  "animal_id": "2", "recipient":"0x066ec5590625785b38b740311fc0273660ea3997"}'
+
+  curl -X POST \
+  http://localhost:3001/api/v1/mint \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -d '{  "animal_id": "3", "recipient":"0x066ec5590625785b38b740311fc0273660ea3997"}'

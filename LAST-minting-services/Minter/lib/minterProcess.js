@@ -8,7 +8,6 @@ const config = require('../config.js')
 const provider = config.web3Provider
 const ipfsNodeHost = config.ipfsNodeHost
 const ipfsNodePort = config.ipfsNodePort
-const contractAddr = config.lastAddr
 const ownerAddr = config.lastOwnerAddr
 const accessToken = config.serverAccessToken
 const LastEndpoint = config.lastAnimalsEndpoint
@@ -34,7 +33,7 @@ async function startMintProcess(recipient, animal_id) {
   try {
 
     //UPDATE animal data to minted = true
-    let animal = await axios.patch(`${LastEndpoint}/${animal_id}?access_token=${accessToken}`,
+    let animal = await axios.patch(`${LastEndpoint}/${animal_id}`,
       {"minted": true}
     )
 
@@ -58,11 +57,11 @@ async function startMintProcess(recipient, animal_id) {
     //finally mint token in smart contract
     let animal_id_no = Number(animal_id)
 
-    const LastTokenContract = LastToken.at(contractAddr)
-    //console.log(recipient + animal_id_no + ipfsAdded[0].hash)
+    const LastTokenContract = await LastToken.deployed()
+    console.log(recipient + animal_id_no + ipfsAdded[0].hash)
     let mintedToken = await LastTokenContract.mint(recipient, animal_id_no, ipfsAdded[0].hash, {from: ownerAddr, gas:3000000}) 
     console.log(mintedToken)
-    //return mintToken
+    return mintedToken
   } catch (err) {
     //on error- should send message to req
     console.error(err)
