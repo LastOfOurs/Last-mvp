@@ -1,16 +1,15 @@
 // Expose a REST API for spawning new process
 // on POST: Fetch a certain animal based on its ID
-// TODO: this will be depracated in the future in favor of the Kafka messages
+// IMPORTANT: this will be depracated in the future in favor of Event Sourcing
 const process = require('child_process')
 const express = require('express')
 const app = express()
 
 const bodyParser = require('body-parser')
-app.use(bodyParser.json()) // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
+app.use(bodyParser.json()) 
+app.use(bodyParser.urlencoded({ extended: true })) 
 
 app.post('/api/v1/mint', function (req, res) {
-  // get animal_id req
   let inputAnimalId = req.body.animal_id
   let inputRecipient = req.body.recipient
   // fork minter process
