@@ -36,5 +36,11 @@ The Applications are built as independent services, however you want to run them
 
 After you are done developing and wants to delete the animal data, simply run ` bash scripts/last-clear.sh `, and `docker-compose down`
 
+## API
+Exposed API for client is as follows:
+1. http://localhost:8090/explorer/ - Swagger , Loopback Server API explorer
+2. http://localhost:8546/ - Ganache , Test Ethereum Blockchain RPC port
+3. http://localhost:5001/ - IPFS , API Gateway port to IPFS
+
 ## License
 GNU Lesser General Public License
