@@ -1,5 +1,6 @@
-var Migrations = artifacts.require("./Migrations.sol");
+var Migrations = artifacts.require('./Migrations.sol')
 
-module.exports = function(deployer) {
-  deployer.deploy(Migrations, { gas: 5000000});
-};
+module.exports = function (deployer) {
+  //TODO: remove hardcoded gas value
+  deployer.deploy(Migrations, { gas: 5000000 })
+}
