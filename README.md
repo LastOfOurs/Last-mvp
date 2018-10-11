@@ -23,13 +23,13 @@ The Project consists of multiple microservices
 
 
 ## Installation
-Make sure you have `docker` and `docker-compose` installed on your machine
+Make sure you have `node.js`, `npm`, `docker`, `docker-compose` installed on your machine
 
 ## Getting Started for Development Mode
 The Applications are built as independent services, however you want to run them together for Development:
 
 1. install all the dependencies by running `npm install` inside LAST-server, LAST-contract, LAST-minting-services directories
-2. Running `docker-compose up --build ` inside the root directory
+2. Running `docker-compose up --build --force-recreate` inside the root directory
 3. generate 3 sets of dummy animal data, run ` bash scripts/last-seed.sh `
 4. deploy LAST smart contract, run ` bash scripts/last-deploy.sh `
 5. mint 3 sets of animals data to ERC721 tokens, run ` bash scripts/last-mint.sh `
