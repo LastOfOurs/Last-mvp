@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 # Add 3 new Animals to Server
 
-echo generating 3 Animals ...
+printf "======= generating 3 Animals ...\n"
 
 curl -X POST \
   http://localhost:8090/api/animals \

@@ -1,4 +1,6 @@
+#!/bin/bash
 #Mint 3 New Animals to the Smart Contract
+printf "======= minting 3 Animal Tokens...\n"
 curl -X POST \
   http://localhost:3001/api/v1/mint \
   -H 'Cache-Control: no-cache' \
