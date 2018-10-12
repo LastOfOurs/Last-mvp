@@ -23,7 +23,7 @@ The Project consists of multiple microservices
 
 
 ## Installation
-Make sure you have `node.js`, `npm`, `docker`, `docker-compose` installed on your machine
+Make sure you have `node.js >= v8.11.3`, `npm >= 6.3.0`, `docker >= 18.03.1` , `docker-compose >= 1.21.1` installed on your machine
 
 ## Getting Started for Development Mode
 The Applications are built as independent services, however you want to run them together for Development:
