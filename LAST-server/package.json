@@ -15,6 +15,7 @@
     "cors": "^2.5.2",
     "helmet": "^3.10.0",
     "loopback": "^3.19.0",
+    "loopback-api-testing": "^0.3.3",
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.0.0",
     "loopback-connector-mongodb": "^3.6.0",
