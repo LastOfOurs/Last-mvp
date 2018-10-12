@@ -38,6 +38,13 @@ module.exports = {
       gas: 5000000,
       gasPrice: 65000000000,
       network_id: '*' // Match any network id
+    },
+    test: {
+      host: 'localhost',
+      port: 8546,
+      gas: 5000000,
+      gasPrice: 65000000000,
+      network_id: '*' // Match any network id
     }
   }
 }
