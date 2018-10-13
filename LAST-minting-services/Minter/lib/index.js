@@ -9,12 +9,18 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json()) 
 app.use(bodyParser.urlencoded({ extended: true })) 
 
+/**
+ * POST req for new animal
+ * 
+ * @param {string} animal_id - ID number of the last token
+ * @param {string} recipient - address of wallet to mint the token to
+ */
 app.post('/api/v1/mint', function (req, res) {
   let inputAnimalId = req.body.animal_id
   let inputRecipient = req.body.recipient
   // fork minter process
   let minterProcess = process.fork('./lib/minterProcess.js')
-  // send minter process an animal id
+  // send data to minter process
   minterProcess.send({
     animal_id: inputAnimalId,
     recipient: inputRecipient
