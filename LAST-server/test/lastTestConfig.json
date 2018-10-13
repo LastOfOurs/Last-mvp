@@ -1,0 +1,77 @@
+[
+  {
+    "method": "GET",
+    "model": "Animals",
+    "expect": 200
+  },
+  {
+    "method": "POST",
+    "model": "Animals",
+    "expect": 422
+  },
+  {
+    "method": "POST",
+    "model": "Animals",
+    "expect": 200,
+    "withData": {
+      "id": 0,
+      "name": "string",
+      "meta": [
+        {}
+      ],
+      "category": "string",
+      "habitat": [
+        "string"
+      ],
+      "image": "string",
+      "minted": false,
+      "ipfsData": {}
+    }
+  },
+  {
+    "method": "POST",
+    "model": "Animals",
+    "expect": 500,
+    "withData": {
+      "id": 0,
+      "name": "string",
+      "meta": [
+        {}
+      ],
+      "category": "string",
+      "habitat": [
+        "string"
+      ],
+      "image": "string",
+      "minted": false,
+      "ipfsData": {}
+    }
+  },
+  {
+    "method": "PATCH",
+    "model": "Animals/0",
+    "expect": 200,
+    "withData": {
+      "id": 0,
+      "name": "string",
+      "meta": [
+        {}
+      ],
+      "category": "string",
+      "habitat": [
+        "string"
+      ],
+      "image": "string",
+      "minted": true,
+      "ipfsData": {}
+    }
+  },
+  {
+    "method": "DELETE",
+    "model": "Animals/0",
+    "expect": 200,
+    "withData": {
+      "id": 0
+    }
+  }
+]
