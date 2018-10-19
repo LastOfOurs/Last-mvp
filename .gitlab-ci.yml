@@ -29,16 +29,8 @@ build_server:
 integration_build:
   image: tmaier/docker-compose:latest
   stage: integration_build
-
-  services:
-    - docker:dind
-
-  before_script:
+  script:
     - docker info
-    - docker-compose --version
-
-  build_image:
-    stage: build
-    script:
-      - docker-compose build
+    - docker-compose --version 
+    - docker-compose build
 
