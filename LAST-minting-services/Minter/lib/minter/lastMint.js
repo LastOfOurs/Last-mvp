@@ -32,9 +32,7 @@ if (typeof LastToken.currentProvider.sendAsync !== 'function') {
 async function lastMint(animalId, recipient, ipfsHash) {
   let animalIdNo = Number(animalId)
   const LastTokenContract = await LastToken.deployed()
-  //console.log(recipient + animalIdNo + ipfsAdded[0].hash)
   let mintedToken = await LastTokenContract.mint(recipient, animalIdNo, ipfsHash, { from: ownerAddr, gas: 3000000 })
-  //console.log(mintedToken)
   return mintedToken
 }
 

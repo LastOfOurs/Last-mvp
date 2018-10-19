@@ -14,18 +14,15 @@ const LastEndpoint = config.lastAnimalsEndpoint
  * @returns {object} Minted Token
  */
 async function startMintProcess (recipient, animalId) {
-  try {
-    // UPDATE animal data to minted = true
-    let animal = await axios.patch(`${LastEndpoint}/${animalId}`, { 'minted': true })
-    let animalData = animal.data
-    //add file to IPFS
-    let ipfsHash = await ipfsAdd(animalId, animalData)
-    // finally mint token in smart contract
-    let mintedToken = await lastMint(animalId, recipient, ipfsHash)
-    return mintedToken
-  } catch (err) {
-    throw err
-  }
+
+  // UPDATE animal data to minted = true
+  let animal = await axios.patch(`${LastEndpoint}/${animalId}`, { 'minted': true })
+  let animalData = animal.data
+  //add file to IPFS
+  let ipfsHash = await ipfsAdd(animalId, animalData)
+  // finally mint token in smart contract
+  let mintedToken = await lastMint(animalId, recipient, ipfsHash)
+  return mintedToken
 }
 
 /**

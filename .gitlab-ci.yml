@@ -26,3 +26,19 @@ build_server:
   script:
     - cd LAST-server
     - npm install
+integration_build:
+  image: tmaier/docker-compose:latest
+  stage: integration_build
+
+  services:
+    - docker:dind
+
+  before_script:
+    - docker info
+    - docker-compose --version
+
+  build image:
+    stage: build
+    script:
+      - docker-compose build
+
