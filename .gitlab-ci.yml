@@ -37,7 +37,7 @@ integration_build:
     - docker info
     - docker-compose --version
 
-  build image:
+  build_image:
     stage: build
     script:
       - docker-compose build
