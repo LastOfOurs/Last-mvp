@@ -2,6 +2,7 @@ stages:
  - build_contract
  - test_contract
  - build_server
+ - integration_build
  
 build_contract:
  image: pongch/truffle:ci  
