@@ -1,29 +1,10 @@
 version: "2"
 services:
-  last_proxy:
-    container_name: last_proxy
-    build: ./LAST-proxy
+  last_server:
+    container_name: last_server
+    restart: always
     ports:
-      - '8090:8090'
-    links:
-      - last_server_1
-      - last_server_2
-    restart: always
-  last_server_1:
-    container_name: last_server_1
-    restart: always
-    depends_on: 
-      - last_db
-    image: pongch/last-server:latest
-    command: npm start
-    volumes:
-      - ./LAST-server:/usr/src/app
-      - /usr/src/app/node_modules     
-    links:
-      - last_db
-  last_server_2:
-    container_name: last_server_2
-    restart: always
+      - '0.0.0.0:3000:3000'
     depends_on: 
       - last_db
     image: pongch/last-server:latest
@@ -40,8 +21,7 @@ services:
       - ./LAST-contract:/usr/src/app
     tty: true
   last_minter:
-    build:
-      context: ./LAST-minting-services/Minter
+    image: pongch/last-minter:latest
     container_name: last-minter
     working_dir: /LAST-minting-services/Minter
     volumes:
@@ -78,7 +58,6 @@ services:
     command: "--seed hello last --defaultBalanceEther 100000000 --port 8546"
     depends_on: 
       - last_db
-      - last_proxy
       - last_ipfs
   last_ipfs:
     container_name: last-ipfs
