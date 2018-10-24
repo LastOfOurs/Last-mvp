@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import WordBox from '../widgets/WordBox'
 import { colors, measures } from '../../common/styles';
-var Wallet = require('../../common/utils/wallet.js')
+var WalletUtils = require('../../common/utils/wallet.js')
 import PropTypes from 'prop-types'
 
 export default class CreateWalletScreen extends React.Component {
@@ -12,14 +12,20 @@ export default class CreateWalletScreen extends React.Component {
   }
 
   handleMnemonicReveal() {
-    const mnemonics = Wallet.generateMnemonics()
+    const mnemonics = WalletUtils.generateMnemonics()
     this.setState({ mnemonics })
   }
 
+  handleProceed() {
+    const { mnemonics } = this.state
+    // const { walletName, walletDescription } = this.props.navigation.state.params
+    this.props.navigation.navigate('ConfirmWalletCreation', { mnemonics })
+  }
+
   renderMnemonic = (mnemonic, index) => (
-      <View style={styles.mnemonic} key={index}>
-          <WordBox words={mnemonic} />
-      </View>
+    <View style={styles.mnemonic} key={index}>
+        <WordBox words={mnemonic} />
+    </View>
   )
 
   renderBody() {
@@ -101,6 +107,6 @@ const styles = StyleSheet.create({
   proceedButtonContainer: {
     width: '100%',
     justifyContent: 'flex-end',
-    height: 104,
+    padding: 5,
   }
 })

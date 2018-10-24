@@ -11,12 +11,14 @@ import WalletDetailsScreen from './components/screens/WalletDetailsScreen'
 import LastGameScreen from './components/screens/LastGameScreen'
 import SettingsScreen from './components/screens/SettingsScreen'
 import LoginScreen from './components/screens/LoginScreen'
+import ConfirmWalletCreationScreen from './components/screens/ConfirmWalletCreationScreen'
 
 const MainStack = createStackNavigator(
   {
     WalletInit: WalletInitScreen,
     WalletDetails: WalletDetailsScreen,
     CreateWallet: CreateWalletScreen,
+    ConfirmWalletCreation: ConfirmWalletCreationScreen,
     ImportWallet: ImportWalletScreen,
   },
   {
