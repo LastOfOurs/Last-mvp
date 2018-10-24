@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 export default class WalletInitScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Wallet',
+      headerTitle: 'Last of Ours',
     }
   }
 
