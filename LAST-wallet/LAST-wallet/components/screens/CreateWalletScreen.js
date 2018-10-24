@@ -1,6 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { Wallet as WalletUtils } from '../../common/utils/wallet'
+import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native'
+import WordBox from '../widgets/WordBox'
+import { colors, measures } from '../../common/styles';
+var Wallet = require('../../common/utils/wallet.js')
 import PropTypes from 'prop-types'
 
 export default class CreateWalletScreen extends React.Component {
@@ -10,31 +12,29 @@ export default class CreateWalletScreen extends React.Component {
   }
 
   handleMnemonicReveal() {
-    console.log('sup')
-    console.log(WalletUtils)
-    const mnemonics = WalletUtils.generateMnemonics()
+    const mnemonics = Wallet.generateMnemonics()
     this.setState({ mnemonics })
   }
 
   renderMnemonic = (mnemonic, index) => (
-        <View style={styles.mnemonic} key={index}>
-            <Text>{mnemonic}</Text>
-        </View>
-    );
+      <View style={styles.mnemonic} key={index}>
+          <WordBox words={mnemonic} />
+      </View>
+  )
 
   renderBody() {
-      const { mnemonics } = this.state;
-      if (!mnemonics) return (
-      <TouchableOpacity style={styles.revealButton}
+    const { mnemonics } = this.state;
+    if (!mnemonics) return (
+      <TouchableOpacity style={styles.button}
         onPress={() => this.handleMnemonicReveal()}>
         <Text>Reveal</Text>
       </TouchableOpacity>
-      )
-      return (
-          <View style={styles.mnemonicsContainer}>
-              {mnemonics.map(this.renderMnemonic)}
-          </View>
-      )
+    )
+    return (
+      <View style={styles.mnemonicsContainer}>
+          {this.state.mnemonics.map(this.renderMnemonic)}
+      </View>
+    )
   }
 
   render() {
@@ -45,7 +45,13 @@ export default class CreateWalletScreen extends React.Component {
           <Text style={styles.message}>Please save this carefully!</Text>
         </View>
         {this.renderBody()}
-        <View style={styles.mnemonicsContainer}>  
+        <View style={styles.proceedButtonContainer}>
+          {this.state.mnemonics && (
+            <TouchableOpacity style={styles.button}
+            onPress={() => this.handleProceed()}>
+            <Text>Proceed</Text>
+          </TouchableOpacity>
+          )}
         </View>
       </View>
     );
@@ -54,23 +60,26 @@ export default class CreateWalletScreen extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+    backgroundColor: colors.defaultBackground,
+    padding: measures.defaultPadding
   },
   titleContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 20,
   },
   title: {
     fontWeight: 'bold',
   },
   mnemonicsContainer: {
-    borderWidth: 1,
-    borderRadius: 20,
-    height: 60,
-    
+    flexDirection: 'row',
+    justifyContent: 'center',
+    maxWidth: '80%',
+    flexWrap: 'wrap',
   },
-  revealButton: {
+  button: {
     padding: 10,
     backgroundColor: '#E0E0E0',
     margin: 7,
@@ -80,8 +89,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   message: {
-    fontSize: 14,
+    color: colors.black,
+    fontSize: 16,
+    textAlign: 'center',
+    marginVertical: measures.defaultMargin,
+    marginHorizontal: 32
   },
+  mnemonic: {
+    margin: 4
+},
   proceedButtonContainer: {
     width: '100%',
     justifyContent: 'flex-end',
