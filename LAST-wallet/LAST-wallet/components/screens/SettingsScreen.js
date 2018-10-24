@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
+    headerTitle: 'Settings',
     tabBarIcon: ({ focused, tintColor }) => (
       <Ionicons
         name={`ios-options${focused ? "" : "-outline"}`}

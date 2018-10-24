@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
 import PropTypes from 'prop-types'
 
 export default class LoginScreen extends React.Component {
@@ -9,6 +9,7 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
+        <StatusBar barStyle='light-content'/>
         <View style={styles.titleContainer}>
           <Image style={styles.logo} source={require('../../assets/last-logo.png')}/>
           <Text style={styles.title}>Login Screen</Text>
@@ -18,7 +19,7 @@ export default class LoginScreen extends React.Component {
           </TouchableOpacity>
         </View>
       </View>
-    );
+    )
   }
 }
 

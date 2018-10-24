@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
 import {createStackNavigator, createSwitchNavigator, createBottomTabNavigator } from 'react-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -22,9 +22,9 @@ const MainStack = createStackNavigator(
   {
     initialRouteName: "WalletInit",
     navigationOptions: {
-      headerTintColor: "#a41034",
+      headerTintColor: "#59F8B6",
       headerStyle: {
-        backgroundColor: "#fff"
+        backgroundColor: "#10171F"
       }
     }
   }
@@ -48,7 +48,7 @@ const MainTabs = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: "#a41034"
+      activeTintColor: "#153C59"
     }
   }
 );
