@@ -15,6 +15,7 @@ import LoginScreen from './components/screens/LoginScreen'
 const MainStack = createStackNavigator(
   {
     WalletInit: WalletInitScreen,
+    WalletDetails: WalletDetailsScreen,
     CreateWallet: CreateWalletScreen,
     ImportWallet: ImportWalletScreen,
   },
@@ -27,7 +28,7 @@ const MainStack = createStackNavigator(
       }
     }
   }
-);
+)
 
 MainStack.navigationOptions = {
   tabBarIcon: ({ focused, tintColor }) => (
@@ -37,11 +38,11 @@ MainStack.navigationOptions = {
       color={tintColor}
     />
   )
-};
+}
 
 const MainTabs = createBottomTabNavigator(
   {
-    Wallet: WalletDetailsScreen,
+    Wallet: MainStack,
     LastGame: LastGameScreen,
     Settings: SettingsScreen,
   },
@@ -52,10 +53,15 @@ const MainTabs = createBottomTabNavigator(
   }
 );
 
-const AppNavigator = createSwitchNavigator({
+const AppNavigator = createSwitchNavigator(
+  {
   Login: LoginScreen,
   Main: MainTabs
-});
+  },
+  {
+    initialRouteName: "Login"
+  }
+)
 
 export default class App extends React.Component {
   render() {
@@ -71,11 +77,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
-  logo: {
-    width: 60,
-    height: 60,
-  }
-});
+})
