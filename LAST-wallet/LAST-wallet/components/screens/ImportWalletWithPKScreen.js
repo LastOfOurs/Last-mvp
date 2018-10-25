@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, Keyboard } from 'react-native'
 import InputWithIcon from '../widgets/InputWithIcon'
 import QRScanner from '../widgets/ExpoCamera'
 import { colors, measures } from '../../common/styles'
+var WalletUtils = require('../../common/utils/wallet.js')
 // import Camera from '../widgets/Camera'
 import PropTypes from 'prop-types'
 
@@ -18,16 +19,18 @@ export default class ImportWalletWithPKScreen extends React.Component {
 }
 
   async handleLoadWallet() {
-      if (!this.state.pk) return
+    console.log(this.state.pk)  
+    if (!this.state.pk) return
       Keyboard.dismiss()
       try {
           const wallet = WalletUtils.loadWalletFromPrivateKey(this.state.pk)
           // const { walletName, walletDescription } = this.props.navigation.state.params
-          await WalletsActions.addWallet(walletName, wallet, walletDescription)
-          this.props.navigation.navigate('WalletsOverview', { replaceRoute: true })
-          await WalletsActions.saveWallets()
+          // await WalletsActions.addWallet(walletName, wallet, walletDescription)
+          this.props.navigation.navigate('WalletDetails', { replaceRoute: true })
+          // await WalletsActions.saveWallets()
       } catch (e) {
-          GeneralActions.notify(e.message, 'long')
+          // GeneralActions.notify(e.message, 'long')
+          alert(e)
       }
   }
 
@@ -42,7 +45,7 @@ export default class ImportWalletWithPKScreen extends React.Component {
           <View style={styles.body}>
               <Text style={styles.title}>Import with Private Key</Text>
               <TextInput style={styles.input} 
-                ref='input'
+                autofocus={true}
                 placeholder='eg.: 0xdbF14da8949D157B57acb79f6EEE62412b210900'
                 value={this.state.pk}
                 onChangeText={this.handleTextChange}
@@ -54,10 +57,9 @@ export default class ImportWalletWithPKScreen extends React.Component {
           </TouchableOpacity>
           {this.state.qrScanning && <QRScanner
               ref='camera'
-              modal
               onBarCodeScanned={data => this.handleTextChange(data)} />}
           <TouchableOpacity style={styles.button}
-            onPress={() => this.handleLoadWallet}>
+            onPress={() => this.handleLoadWallet()}>
               <Text>Open Wallet</Text> 
           </TouchableOpacity>
         </View>
