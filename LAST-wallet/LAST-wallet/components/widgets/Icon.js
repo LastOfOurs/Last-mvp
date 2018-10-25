@@ -1,17 +1,17 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
-import EvilIcon from 'react-native-vector-icons/EvilIcons';
-import Feather from 'react-native-vector-icons/Feather';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Foundation from 'react-native-vector-icons/Foundation';
-import Ionicon from 'react-native-vector-icons/Ionicons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Octicon from 'react-native-vector-icons/Octicons';
-import Zocial from 'react-native-vector-icons/Zocial';
-import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
-import { colors, measures } from '../../common/styles';
+import React from 'react'
+import { Platform } from 'react-native'
+import Entypo from 'react-native-vector-icons/Entypo'
+import EvilIcon from 'react-native-vector-icons/EvilIcons'
+import Feather from 'react-native-vector-icons/Feather'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Foundation from 'react-native-vector-icons/Foundation'
+import Ionicon from 'react-native-vector-icons/Ionicons'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Octicon from 'react-native-vector-icons/Octicons'
+import Zocial from 'react-native-vector-icons/Zocial'
+import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons'
+import { colors, measures } from '../../common/styles'
 
 function getSize(size) {
     if ((size >>> 0) > 0) return size;
