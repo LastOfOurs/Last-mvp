@@ -5,18 +5,18 @@ import { colors } from '../../common/styles';
 
 export default class InputWithIcon extends React.Component {
 
-    state = { text: '' };
+    state = { text: '' }
 
     onChangeText(text) {
-        const { onChangeText } = this.props;
-        this.setState({ text });
-        if (onChangeText) onChangeText(text);
+        const { onChangeText } = this.props
+        this.setState({ text })
+        if (onChangeText) onChangeText(text)
     }
 
     onPressIcon() {
-        let { text } = this.state;
-        text = text.trim();
-        this.props.onPressIcon(text);
+        let { text } = this.state
+        text = text.trim()
+        this.props.onPressIcon(text)
     }
 
     render() {
@@ -40,7 +40,7 @@ export default class InputWithIcon extends React.Component {
                         color={colors.black} />
                 </TouchableOpacity>
             </View>
-        );
+        )
     }
 }
 
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: colors.black
     }
-});
+})

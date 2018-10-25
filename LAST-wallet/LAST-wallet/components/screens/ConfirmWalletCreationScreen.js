@@ -4,7 +4,7 @@ import { colors, measures } from '../../common/styles'
 import ConfirmMnemonicsBox from '../widgets/ConfirmMnemonicsBox'
 var WalletUtils = require('../../common/utils/wallet.js')
 // var GeneralActions = require('../../common/actions/general.js')
-// var WalletActions = require('../../common/actions/wallet.js')
+var WalletActions = require('../../common/actions/walletActions.js')
 
 export default class ConfirmWalletCreationScreen extends React.Component {
     static navigationOptions = { 
@@ -20,14 +20,17 @@ export default class ConfirmWalletCreationScreen extends React.Component {
     }
 
     async handleConfirm() {
-        if (!this.refs.confirm.isValidSequence()) return;
+        if (!this.refs.confirm.isValidSequence()) {
+            alert('Invalid sequence!')
+            return
+        }
         try {
             const { mnemonics } = this.state;
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
-            // await WalletActions.addWallet(walletName, wallet, walletDescription);
+            await WalletActions.addWallet(walletName, wallet, walletDescription)
             console.log('new wallet created! mnemonics are: '+ this.state.mnemonics)
-            this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
-            // await WalletActions.saveWallets();
+            this.props.navigation.navigate('WalletDetails', { replaceRoute: true });
+            await WalletActions.saveWallets()
         } catch (e) {
             // GeneralActions.notify(e.message, 'long');
             console.log(e)

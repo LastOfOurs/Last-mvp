@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, Keyboard } from 'react-native'
-import InputWithIcon from '../widgets/InputWithIcon'
+// import InputWithIcon from '../widgets/InputWithIcon'
 import QRScanner from '../widgets/ExpoCamera'
 import { colors, measures } from '../../common/styles'
 var WalletUtils = require('../../common/utils/wallet.js')
@@ -16,10 +16,12 @@ export default class ImportWalletWithPKScreen extends React.Component {
 
   handleTextChange = pk => {
     this.setState({ pk })
+    if (this.state.qrScanning) {
+      this.toggleQRScanning()
+    }
 }
 
-  async handleLoadWallet() {
-    console.log(this.state.pk)  
+  async handleLoadWallet() {  
     if (!this.state.pk) return
       Keyboard.dismiss()
       try {
@@ -36,7 +38,6 @@ export default class ImportWalletWithPKScreen extends React.Component {
 
     toggleQRScanning = () => {
       this.setState(prevState => ({ qrScanning: !prevState.qrScanning }))
-      console.log('qrScanning: ' + this.state.qrScanning)
     }
   
   render() {
