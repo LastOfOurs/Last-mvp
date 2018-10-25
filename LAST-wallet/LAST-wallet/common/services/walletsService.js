@@ -1,5 +1,5 @@
 import * as StorageService from './storageService'
-import { Wallet } from '../constants/walletConstants'
+import STORAGE_KEY from '../constants/walletConstants'
 
 export async function loadWalletPKs() {
     const pks = await StorageService.getItem(Wallet.STORAGE_KEY)
@@ -8,5 +8,5 @@ export async function loadWalletPKs() {
 
 export async function saveWalletPKs(wallets) {
     const map = wallets.map(({ description, name, privateKey }) => ({ description, name, privateKey }))
-    await StorageService.setItem(Wallet.STORAGE_KEY, JSON.stringify(map))
+    await StorageService.setItem(STORAGE_KEY, JSON.stringify(map))
 }
