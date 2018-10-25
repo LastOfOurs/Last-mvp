@@ -18,8 +18,8 @@ export default class CreateWalletScreen extends React.Component {
 
   handleProceed() {
     const { mnemonics } = this.state
-    // const { walletName, walletDescription } = this.props.navigation.state.params
-    this.props.navigation.navigate('ConfirmWalletCreation', { mnemonics })
+    const { walletName, walletDescription } = this.props.navigation.state.params
+    this.props.navigation.navigate('ConfirmWalletCreation', { mnemonics, walletName, walletDescription })
   }
 
   renderMnemonic = (mnemonic, index) => (
@@ -51,7 +51,7 @@ export default class CreateWalletScreen extends React.Component {
           <Text style={styles.message}>Please save this carefully!</Text>
         </View>
         {this.renderBody()}
-        <View style={styles.proceedButtonContainer}>
+        <View style={styles.buttonContainer}>
           {this.state.mnemonics && (
             <TouchableOpacity style={styles.button}
             onPress={() => this.handleProceed()}>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   mnemonic: {
     margin: 4
 },
-  proceedButtonContainer: {
+  buttonContainer: {
     width: '100%',
     justifyContent: 'flex-end',
     padding: 5,

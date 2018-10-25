@@ -15,8 +15,9 @@ export default class ConfirmWalletCreationScreen extends React.Component {
     }
 
     componentDidMount() {
-        const { mnemonics } = this.props.navigation.state.params;
-        this.setState({ mnemonics })
+        const { mnemonics, walletName, walletDescription } = this.props.navigation.state.params
+        this.setState({ mnemonics, walletName, walletDescription })
+        console.log('new wallet created! mnemonics are: '+ mnemonics)
     }
 
     async handleConfirm() {
@@ -25,8 +26,8 @@ export default class ConfirmWalletCreationScreen extends React.Component {
             return
         }
         try {
-            const { mnemonics } = this.state;
-            const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
+            const { mnemonics, walletName, walletDescription } = this.state;
+            const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics)
             await WalletActions.addWallet(walletName, wallet, walletDescription)
             console.log('new wallet created! mnemonics are: '+ this.state.mnemonics)
             this.props.navigation.navigate('WalletDetails', { replaceRoute: true });

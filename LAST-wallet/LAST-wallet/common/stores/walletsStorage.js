@@ -6,16 +6,17 @@ const INITIAL = {
     loading: false
 }
 
-export class WalletsStore {
+export class WalletsStorage {
 
     @observable list = INITIAL.list
     @observable loading = INITIAL.loading
 
+    
     @action isLoading(state) {
         this.loading = Boolean(state)
     }
 
-    @action addWallet(walletName, wallet, walletDescription = '') {
+    @action addWallet(walletName, wallet, walletDescription='') {
         if (!(wallet instanceof ethers.Wallet)) throw new Error('Invalid Wallet')
         wallet.name = walletName
         wallet.description = walletDescription
@@ -40,4 +41,4 @@ export class WalletsStore {
     }
 }
 
-export default new WalletsStore()
+export default new WalletsStorage()

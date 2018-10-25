@@ -1,21 +1,27 @@
-var WalletStorage = require('../../common/stores/walletStorage.js')
-var WalletsStorage = require('../../common/stores/walletsStorage.js')
-var WalletUtils = require('../../common/utils/wallet.js')
+var WalletStorage = require('../stores/walletStorage.js')
+var WalletsStorage = require('../stores/walletsStorage.js')
+var WalletUtils = require('../utils/wallet.js')
+var WalletsService = require('../services/walletsService.js')
 
-export async function addWallet(walletName, wallet, walletDescription = '') {
-    WalletsStore.isLoading(true);
-    WalletsStore.addWallet(walletName, wallet, walletDescription);
-    WalletsStore.isLoading(false);
+// import { walletsService as WalletsService } from '../services/walletsService'
+// import { apiService as ApiService } from '../services/apiService'
+// import { walletsStorage as WalletsStorage } from '../stores/walletsStorage'
+// import { walletStorage as WalletStorage } from '../stores/walletStorage'
+
+export async function addWallet(walletName, wallet, walletDescription='') {
+    WalletsStorage.isLoading(true);
+    WalletsStorage.addWallet(walletName, wallet, walletDescription);
+    WalletsStorage.isLoading(false);
 }
 
 export async function loadWallets() {
-    WalletsStorage.isLoading(true);
+    WalletsStorage.isLoading(true)
     const pks = await WalletsService.loadWalletPKs();
     pks.map(({ description, name, privateKey }) => {
         const wallet = WalletUtils.loadWalletFromPrivateKey(privateKey);
-        WalletsStore.addWallet(name, wallet, description);
+        WalletsStorage.addWallet(name, wallet, description);
     });
-    WalletsStore.isLoading(false);
+    WalletsStorage.isLoading(false);
 }
 
 export async function updateBalance(wallet) {
@@ -28,7 +34,7 @@ export async function removeWallet(wallet) {
 }
 
 export async function saveWallets() {
-    await WalletsService.saveWalletPKs(WalletsStore.list);
+    await WalletsService.saveWalletPKs(WalletsStorage.list);
 }
 
 export async function selectWallet(wallet) {
