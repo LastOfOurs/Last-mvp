@@ -10,12 +10,10 @@ export default class WalletInitScreen extends React.Component {
   }
 
   handleCreateWallet = () => {
-    console.log('wallet created')
     this.props.navigation.navigate("CreateWallet")
   }
 
   handleImportWallet = () => {
-    console.log('wallet imported')
     this.props.navigation.navigate("ImportWallet")
   }
 

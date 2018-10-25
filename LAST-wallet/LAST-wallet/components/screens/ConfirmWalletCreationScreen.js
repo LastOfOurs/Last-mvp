@@ -25,7 +25,8 @@ export default class ConfirmWalletCreationScreen extends React.Component {
             const { mnemonics } = this.state;
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics);
             // await WalletActions.addWallet(walletName, wallet, walletDescription);
-            console.log('wallet created')
+            console.log('new wallet created! mnemonics are: '+ this.state.mnemonics)
+            this.props.navigation.navigate('WalletsOverview', { replaceRoute: true });
             // await WalletActions.saveWallets();
         } catch (e) {
             // GeneralActions.notify(e.message, 'long');
@@ -36,7 +37,9 @@ export default class ConfirmWalletCreationScreen extends React.Component {
     render() {
         return (
             <View style={styles.mainContainer}>
-              <ConfirmMnemonicsBox ref='confirm' mnemonics={this.state.mnemonics} />
+              <View style={styles.mnemonicsContainer}>
+                <ConfirmMnemonicsBox ref='confirm' mnemonics={this.state.mnemonics} />
+              </View>
               <View style={styles.buttonsContainer}>
                 <TouchableOpacity style={styles.button}
                   onPress={() => this.handleConfirm()}>
@@ -63,6 +66,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 32
     },
     mnemonicsContainer: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: 'wrap',
@@ -71,9 +75,13 @@ const styles = StyleSheet.create({
     mnemonic: {
         margin: 4
     },
-    buttonsContainer: {
-        width: '100%',
-        justifyContent: 'flex-end',
-        height: 104
+    button: {
+      padding: 10,
+      backgroundColor: '#E0E0E0',
+      margin: 7,
+      borderWidth: 1,
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignSelf: 'center'
     }
 });

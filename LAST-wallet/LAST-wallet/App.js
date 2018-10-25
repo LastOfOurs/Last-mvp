@@ -12,6 +12,8 @@ import LastGameScreen from './components/screens/LastGameScreen'
 import SettingsScreen from './components/screens/SettingsScreen'
 import LoginScreen from './components/screens/LoginScreen'
 import ConfirmWalletCreationScreen from './components/screens/ConfirmWalletCreationScreen'
+import ImportWalletWithMnemonicsScreen from './components/screens/ImportWalletWithMnemonicsScreen'
+import ImportWalletWithPKScreen from './components/screens/ImportWalletWithPKScreen'
 
 const MainStack = createStackNavigator(
   {
@@ -20,6 +22,8 @@ const MainStack = createStackNavigator(
     CreateWallet: CreateWalletScreen,
     ConfirmWalletCreation: ConfirmWalletCreationScreen,
     ImportWallet: ImportWalletScreen,
+    ImportWithPK: ImportWalletWithPKScreen,
+    ImportWithMnemonic: ImportWalletWithMnemonicsScreen,
   },
   {
     initialRouteName: "WalletInit",
