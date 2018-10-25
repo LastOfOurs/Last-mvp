@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import WordBox from '../widgets/WordBox'
-import { colors, measures } from '../../common/styles';
+import { colors, measures } from '../../common/styles'
 var WalletUtils = require('../../common/utils/wallet.js')
 import PropTypes from 'prop-types'
 
