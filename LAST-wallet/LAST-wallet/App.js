@@ -15,6 +15,7 @@ import ConfirmWalletCreationScreen from './components/screens/ConfirmWalletCreat
 import ImportWalletWithMnemonicsScreen from './components/screens/ImportWalletWithMnemonicsScreen'
 import ImportWalletWithPKScreen from './components/screens/ImportWalletWithPKScreen'
 import WalletNamingScreen from './components/screens/WalletNamingScreen'
+import WalletsOverviewScreen from './components/screens/WalletsOverviewScreen'
 
 const MainStack = createStackNavigator(
   {
@@ -26,9 +27,10 @@ const MainStack = createStackNavigator(
     ImportWithPK: ImportWalletWithPKScreen,
     ImportWithMnemonic: ImportWalletWithMnemonicsScreen,
     WalletNaming: WalletNamingScreen,
+    WalletsOverview: WalletsOverviewScreen,
   },
   {
-    initialRouteName: "WalletInit",
+    initialRouteName: "WalletsOverview",
     navigationOptions: {
       headerTintColor: "#59F8B6",
       headerStyle: {
