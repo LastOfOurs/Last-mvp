@@ -7,6 +7,7 @@ import GeneralActions from '../../common/actions/generalActions'
 import PricesActions from '../../common/actions/pricesActions'
 import walletStorage from '../../common/stores/walletStorage'
 import WalletCard from '../widgets/WalletCard'
+import { measures } from '../../common/styles'
 
 var WalletActions = require('../../common/actions/walletActions')
 
@@ -69,8 +70,8 @@ export default class WalletsOverviewScreen extends React.Component {
         <StatusBar barStyle='light-content'/>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Wallets Overview Screen</Text>
-          {this.renderBody(list)}
         </View>
+          {this.renderBody(list)}
       </View>
     );
   }
@@ -81,9 +82,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
+    alignItems: 'stretch',
+    padding: measures.defaultPadding,
   },
   titleContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: 10
   },
   title: {
     fontWeight: 'bold',
@@ -95,5 +99,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     justifyContent: 'center'
+  },
+  content: {
+    marginTop: measures.defaultMargin,
+    padding: 5
   }
 })

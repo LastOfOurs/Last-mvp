@@ -29,7 +29,7 @@ export default class WalletCard extends React.Component {
             <TouchableWithoutFeedback onPress={onPress}>
                 <View style={styles.container}>
                     <View style={styles.leftColumn}>
-                      <Text>Testing</Text>
+                      <Text>$$</Text>
                     </View>
                     <View style={styles.middleColumn}>
                         <Text style={styles.title}>{wallet.name}</Text>

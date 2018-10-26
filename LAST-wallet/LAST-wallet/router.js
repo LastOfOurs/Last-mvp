@@ -12,7 +12,7 @@ import CreateWalletScreen from './components/screens/CreateWalletScreen'
 import ImportWalletScreen from './components/screens/ImportWalletScreen'
 import WalletDetailsScreen from './components/screens/WalletDetailsScreen'
 import LastGameScreen from './components/screens/LastGameScreen'
-import SettingsScreen from './components/screens/SettingsScreen'
+import WalletSettingsScreen from './components/screens/WalletSettingsScreen'
 import LoginScreen from './components/screens/LoginScreen'
 import ConfirmWalletCreationScreen from './components/screens/ConfirmWalletCreationScreen'
 import ImportWalletWithMnemonicsScreen from './components/screens/ImportWalletWithMnemonicsScreen'
@@ -30,7 +30,8 @@ const MainStack = createStackNavigator(
     ImportWithPK: ImportWalletWithPKScreen,
     ImportWithMnemonic: ImportWalletWithMnemonicsScreen ,
     WalletNaming: WalletNamingScreen,
-    WalletsOverview: WalletsOverviewScreen 
+    WalletsOverview: WalletsOverviewScreen,
+    WalletSettings: WalletSettingsScreen 
   },
   {
     initialRouteName: INITIAL_ROUTE,
@@ -57,7 +58,6 @@ const MainTabs = createBottomTabNavigator(
   {
     Wallet: MainStack,
     LastGame: LastGameScreen,
-    Settings: SettingsScreen,
   },
   {
     tabBarOptions: {

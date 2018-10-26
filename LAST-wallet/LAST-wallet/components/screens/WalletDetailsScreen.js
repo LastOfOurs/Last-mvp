@@ -1,14 +1,22 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
 export default class WalletDetailsScreen extends React.Component {
   static navigationOptions = { title: 'My Wallet' }
+  handleWalletSettingsPressed = () => {
+    this.props.navigation.navigate("WalletSettings")
+  }
+  
   render() {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Wallet Details Screen</Text>
+          <TouchableOpacity style={styles.button}
+          onPress={this.handleWalletSettingsPressed}>>
+            <Text>Wallet Settings</Text>
+        </TouchableOpacity>
         </View>
       </View>
     );
