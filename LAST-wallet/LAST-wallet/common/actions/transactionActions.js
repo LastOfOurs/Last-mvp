@@ -1,7 +1,7 @@
 import ethers from 'ethers'
-import { notify } from './general'
-import WalletStore from '..common/stores'
-import TransactionsService from '..common/services'
+import { notify } from './generalActions'
+import WalletStore from '../stores/walletStorage'
+import TransactionsService from '../services/transactionsService'
 
 async function waitForTransaction(wallet, txn) {
   await wallet.provider.waitForTransaction(txn.hash);

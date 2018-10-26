@@ -1,92 +1,54 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
-import {createStackNavigator, createSwitchNavigator, createBottomTabNavigator } from 'react-navigation'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { BackHandler, StatusBar, StyleSheet, View } from 'react-native'
+import { Provider } from 'mobx-react'
+import { colors } from './common/styles'
+import Router, { INITIAL_ROUTE } from './router'
+import * as stores from './common/stores/'
 
-//Screens
-import WalletInitScreen from './components/screens/WalletInitScreen'
-import CreateWalletScreen from './components/screens/CreateWalletScreen'
-import ImportWalletScreen from './components/screens/ImportWalletScreen'
-import WalletDetailsScreen from './components/screens/WalletDetailsScreen'
-import LastGameScreen from './components/screens/LastGameScreen'
-import SettingsScreen from './components/screens/SettingsScreen'
-import LoginScreen from './components/screens/LoginScreen'
-import ConfirmWalletCreationScreen from './components/screens/ConfirmWalletCreationScreen'
-import ImportWalletWithMnemonicsScreen from './components/screens/ImportWalletWithMnemonicsScreen'
-import ImportWalletWithPKScreen from './components/screens/ImportWalletWithPKScreen'
-import WalletNamingScreen from './components/screens/WalletNamingScreen'
-import WalletsOverviewScreen from './components/screens/WalletsOverviewScreen'
-
-const MainStack = createStackNavigator(
-  {
-    WalletInit: WalletInitScreen,
-    WalletDetails: WalletDetailsScreen,
-    CreateWallet: CreateWalletScreen,
-    ConfirmWalletCreation: ConfirmWalletCreationScreen,
-    ImportWallet: ImportWalletScreen,
-    ImportWithPK: ImportWalletWithPKScreen,
-    ImportWithMnemonic: ImportWalletWithMnemonicsScreen,
-    WalletNaming: WalletNamingScreen,
-    WalletsOverview: WalletsOverviewScreen,
-  },
-  {
-    initialRouteName: "WalletsOverview",
-    navigationOptions: {
-      headerTintColor: "#59F8B6",
-      headerStyle: {
-        backgroundColor: "#10171F"
-      }
-    }
-  }
-)
-
-MainStack.navigationOptions = {
-  tabBarIcon: ({ focused, tintColor }) => (
-    <Ionicons
-      name={`ios-contacts${focused ? "" : "-outline"}`}
-      size={25}
-      color={tintColor}
-    />
-  )
-}
-
-const MainTabs = createBottomTabNavigator(
-  {
-    Wallet: MainStack,
-    LastGame: LastGameScreen,
-    Settings: SettingsScreen,
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: "#153C59"
-    }
-  }
-);
-
-const AppNavigator = createSwitchNavigator(
-  {
-  Login: LoginScreen,
-  Main: MainTabs
-  },
-  {
-    initialRouteName: "Login"
-  }
-)
+const STATUSBAR_CONFIG = {
+    backgroundColor: colors.statusBar,
+    barStyle: 'light-content',
+    translucent: false
+};
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <AppNavigator />
-      </View>
-    );
-  }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => this.handleBackButton())
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress')
+    }
+
+    handleBackButton() {
+        if (!this.props.navigation) return false;
+        
+        const { state, goBack } = this.props.navigation
+        if (state.routes.length > 1 && state.index > 0) {
+            goBack()
+            return true
+        }
+        return false
+    }
+
+    render() {
+        return (
+            <Provider {...stores}>
+                <View style={styles.container}>
+                    <StatusBar {...STATUSBAR_CONFIG} />
+                    <Router />
+                </View>
+            </Provider>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
+    container: {
+        backgroundColor: colors.defaultBackground,
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center'
+    }
 })

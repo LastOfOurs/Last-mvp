@@ -1,12 +1,13 @@
 var WalletsService = require('../services/walletsService.js')
+var WalletUtils = require('../utils/wallet.js')
 import ApiService from '../services/apiService'
 import WalletsStorage from '../stores/walletsStorage'
 import WalletStorage from '../stores/walletStorage'
 
 export async function addWallet(walletName, wallet, walletDescription='') {
-    WalletsStorage.isLoading(true);
-    WalletsStorage.addWallet(walletName, wallet, walletDescription);
-    WalletsStorage.isLoading(false);
+    WalletsStorage.isLoading(true)
+    WalletsStorage.addWallet(walletName, wallet, walletDescription)
+    WalletsStorage.isLoading(false)
 }
 
 export async function loadWallets() {

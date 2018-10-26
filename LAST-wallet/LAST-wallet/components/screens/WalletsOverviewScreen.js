@@ -3,8 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity, Button, StatusBar, FlatList, 
 import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import GeneralActions from '../../common/actions/generalActions'
-import WalletActions from '../../common/actions/walletActions'
+// import WalletActions from '../../common/actions/walletActions'
 import PricesActions from '../../common/actions/pricesActions'
+import walletStorage from '../../common/stores/walletStorage'
+import WalletCard from '../widgets/WalletCard'
+
+var WalletActions = require('../../common/actions/walletActions')
 
 // @inject('prices', 'wallets')
 @inject('wallets')
@@ -36,8 +40,13 @@ export default class WalletsOverviewScreen extends React.Component {
     this.populate();
   }
 
-  // renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.onPressWallet(item)} />
-  renderItem = ({ item }) => <Text>I'd be impressed if you see this {item} </Text>
+  handleWalletPressed(wallet) {
+    if (this.loading) return;
+    WalletActions.selectWallet(wallet);
+    this.props.navigation.navigate('WalletDetails', { wallet });
+}
+
+  renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.handleWalletPressed(item)} />
   
   renderBody = (list) => (!list.length && !this.loading) ? 
     <View style={styles.noWalletsMessageContainer}>
@@ -51,10 +60,10 @@ export default class WalletsOverviewScreen extends React.Component {
         refreshControl={<RefreshControl refreshing={this.loading} onRefresh={() => this.populate()} />}
         keyExtractor={(item, index) => String(index)}
         renderItem={this.renderItem} />
-    );
-  
+    )
+ 
   render() {
-    const { list } = this.props.wallets;
+    const { list } = this.props.wallets
     return (
       <View style={styles.mainContainer}>
         <StatusBar barStyle='light-content'/>

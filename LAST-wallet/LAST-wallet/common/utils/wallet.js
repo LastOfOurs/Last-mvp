@@ -1,9 +1,7 @@
 import ethers from 'ethers';
 
 const { HDNode, providers, utils, Wallet } = ethers;
-
 const network = (process.env.NODE_ENV === 'production') ? 'mainnet' : 'rinkeby';
-
 const PROVIDER = providers.getDefaultProvider(network);
 
 export function generateMnemonics() {

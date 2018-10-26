@@ -1,12 +1,13 @@
-// import SensitiveInfoStorage from 'react-native-sensitive-info';
-// import { Storage } from '../constants/storageConstants.js';
+// import SInfo from 'react-native-sensitive-info';
+// // import { Storage } from '../constants/storageConstants.js';
+// import CONFIG from '../constants/storageConstants.js';
 
 // export function getItem(key) {
-//     return SensitiveInfoStorage.getItem(key, Storage.CONFIG).then(item => item || '');
+//     return SInfo.getItem(key, CONFIG).then(item => item || '');
 // }
 
 // export function setItem(key, value) {
-//     return SensitiveInfoStorage.setItem(key, value || '', Storage.CONFIG);
+//     return SInfo.setItem(key, value || '', CONFIG);
 // }
 
 
