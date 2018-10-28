@@ -27,7 +27,7 @@ import SelectDestinationScreen from './components/screens/SelectDestinationScree
 import SelectCurrencyScreen from './components/screens/SelectCurrencyScreen'
 import SettingsScreen from './components/screens/SettingsScreen'
 import ExportPKScreen from './components/screens/ExportPKScreen'
-import MarketPlaceScreen from './components/screens/MarketplaceScreen'
+import MarketplaceScreen from './components/screens/MarketplaceScreen'
 
 const MainStack = createStackNavigator(
   {
@@ -90,6 +90,36 @@ const WalletDetailsStack = createStackNavigator(
   }
 )
 
+const MarketplaceStack = createStackNavigator(
+  {
+    Marketplace: MarketplaceScreen,
+  },
+  {
+    initialRouteName: 'Marketplace',
+    navigationOptions: {
+      headerTintColor: "#59F8B6",
+      headerStyle: {
+        backgroundColor: "#10171F"
+      }
+    }
+  }
+)
+
+const GameStack = createStackNavigator(
+  {
+    LastGame: LastGameScreen,
+  },
+  {
+    initialRouteName: 'LastGame',
+    navigationOptions: {
+      headerTintColor: "#59F8B6",
+      headerStyle: {
+        backgroundColor: "#10171F"
+      }
+    }
+  }
+)
+
 MainStack.navigationOptions = {
   tabBarIcon: ({ focused, tintColor }) => (
     <Ionicons
@@ -100,11 +130,31 @@ MainStack.navigationOptions = {
   )
 }
 
+MarketplaceStack.navigationOptions = {
+  tabBarIcon: ({ focused, tintColor }) => (
+    <Ionicons
+      name={`ios-basket${focused ? "" : "-outline"}`}
+      size={25}
+      color={tintColor}
+    />
+  )
+}
+
+GameStack.navigationOptions = {
+  tabBarIcon: ({ focused, tintColor }) => (
+    <Ionicons
+      name={`ios-paw${focused ? "" : "-outline"}`}
+      size={25}
+      color={tintColor}
+    />
+  )
+}
+
 const MainTabs = createBottomTabNavigator(
   {
     Wallet: MainStack,
-    Marketplace: MarketPlaceScreen,
-    LastGame: LastGameScreen,
+    Marketplace: MarketplaceStack,
+    LastGame: GameStack,
   },
   {
     tabBarOptions: {

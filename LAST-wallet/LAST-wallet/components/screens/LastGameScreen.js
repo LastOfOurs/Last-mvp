@@ -4,15 +4,20 @@ import PropTypes from 'prop-types'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default class LastGameScreen extends React.Component {
-  static navigationOptions = {
-    tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons
-        name={`ios-paw${focused ? "" : "-outline"}`}
-        size={25}
-        color={tintColor}
-      />
-    )
-  }
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Last Game',
+    headerTitle: 'Last Game',
+  })
+  
+  // static navigationOptions = {
+  //   tabBarIcon: ({ focused, tintColor }) => (
+  //     <Ionicons
+  //       name={`ios-paw${focused ? "" : "-outline"}`}
+  //       size={25}
+  //       color={tintColor}
+  //     />
+  //   )
+  // }
   render() {
     return (
       <View style={styles.container}>

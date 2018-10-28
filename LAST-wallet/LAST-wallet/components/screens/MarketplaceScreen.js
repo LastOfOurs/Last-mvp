@@ -1,23 +1,24 @@
 import React from 'react'
-import { View, WebView, StyleSheet, StatusBar } from 'react-native'
+import { WebView, StyleSheet, StatusBar, ActivityIndicator } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { measures } from '../../common/styles'
 
 export default class MarketplaceScreen extends React.Component {
-  static navigationOptions = {
-    tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons
-        name={`ios-basket${focused ? "" : "-outline"}`}
-        size={25}
-        color={tintColor}
-      />
-    )
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Marketplace',
+    headerTitle: 'Marketplace',
+  })
+ 
+  renderLoading = () => {
+    <ActivityIndicator />
   }
+
   render() {
     return (
       <WebView
         style={styles.mainContainer} 
         source={{uri: 'https://opensea.io/assets'}}
+        renderLoading={()=>{return(<ActivityIndicator style={styles.activityLoader} />)}}
+        startInLoadingState
       >
         <StatusBar backgroundColor='blue' barStyle='dark-content'/>
       </WebView>
@@ -30,7 +31,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flex: 1,
-    marginTop: 20,
+  },
+  activityLoader: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 
