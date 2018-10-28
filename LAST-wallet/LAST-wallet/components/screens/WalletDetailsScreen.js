@@ -7,6 +7,14 @@ export default class WalletDetailsScreen extends React.Component {
   handleWalletSettingsPressed = () => {
     this.props.navigation.navigate("WalletSettings")
   }
+
+  handleSendPressed = () => {
+    this.props.navigation.navigate("SendTransaction")
+  }
+
+  handleReceivePressed = () => {
+    this.props.navigation.navigate("ReceiveTransaction")
+  }
   
   render() {
     return (
@@ -16,7 +24,15 @@ export default class WalletDetailsScreen extends React.Component {
           <TouchableOpacity style={styles.button}
           onPress={this.handleWalletSettingsPressed}>>
             <Text>Wallet Settings</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}
+          onPress={this.handleSendPressed}>
+            <Text>Send</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}
+          onPress={this.handleReceivePressed}>
+            <Text>Receive</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

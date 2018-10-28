@@ -38,7 +38,7 @@ export default class WalletsOverviewScreen extends React.Component {
   }
  
   componentDidMount() {
-    this.populate();
+    this.populate()
   }
 
   handleWalletPressed(wallet) {

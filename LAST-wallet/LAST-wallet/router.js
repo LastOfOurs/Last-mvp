@@ -19,6 +19,9 @@ import ImportWalletWithMnemonicsScreen from './components/screens/ImportWalletWi
 import ImportWalletWithPKScreen from './components/screens/ImportWalletWithPKScreen'
 import WalletNamingScreen from './components/screens/WalletNamingScreen'
 import WalletsOverviewScreen from './components/screens/WalletsOverviewScreen'
+import SendTransactionScreen from './components/screens/SendTransactionScreen'
+import ReceiveTransactionScreen from './components/screens/ReceiveTransactionScreen'
+import ConfirmTransactionScreen from './components/screens/ConfirmTransactionScreen'
 
 const MainStack = createStackNavigator(
   {
@@ -31,7 +34,10 @@ const MainStack = createStackNavigator(
     ImportWithMnemonic: ImportWalletWithMnemonicsScreen ,
     WalletNaming: WalletNamingScreen,
     WalletsOverview: WalletsOverviewScreen,
-    WalletSettings: WalletSettingsScreen 
+    WalletSettings: WalletSettingsScreen,
+    SendTransaction: SendTransactionScreen,
+    ReceiveTransaction: ReceiveTransactionScreen, 
+    ConfirmTransactoin: ConfirmTransactionScreen,
   },
   {
     initialRouteName: INITIAL_ROUTE,

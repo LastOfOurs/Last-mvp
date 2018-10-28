@@ -11,8 +11,8 @@ export default class WalletDetailsScreen extends React.Component {
   }
   
   handleProceedToMnemonics = () => {
-    Keyboard.dismiss();
-    const { walletName, walletDescription } = this.state;
+    Keyboard.dismiss()
+    const { walletName, walletDescription } = this.state
     if (!walletName) {
       alert('please give your wallet a name')
       return
