@@ -1,10 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, Keyboard } from 'react-native'
 // import InputWithIcon from '../widgets/InputWithIcon'
-import QRScanner from '../widgets/ExpoCamera'
+import QRScanner from '../widgets/QRScanner'
 import { colors, measures } from '../../common/styles'
 var WalletUtils = require('../../common/utils/wallet.js')
-// import Camera from '../widgets/Camera'
 import PropTypes from 'prop-types'
 
 export default class ImportWalletWithPKScreen extends React.Component {

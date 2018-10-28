@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import Button from '../widgets/Button'
 import InputWithIcon from '../widgets/InputWithIcon'
-import QRScanner from '../widgets/ExpoCamera'
+import QRScanner from '../widgets/QRScanner'
 import { colors, measures } from '../../common/styles'
 // import Recents from './Recents'
 
