@@ -17,8 +17,7 @@ The Project consists of multiple microservices
 - __LAST-contract__: contains Ethereum smart contract
 - __LAST-IPFS__: IPFS node and Data
 - __LAST-minting-services__: minting microservices
-- __LAST-proxy__: NGINX proxy server for Data Oracle
-- __LAST-server__: contains all the server side code for the Data Oracle including Mongi Database
+- __LAST-server__: contains all the server side code for the Data Oracle including Mongo Database
 - __LAST-wallet__: contains all the client side code and wallet implementation
 
 
@@ -60,7 +59,7 @@ docker-compose down
 
 ## API
 Exposed API for client is as follows:
-1. http://localhost:8090/explorer/ - Swagger , Loopback Server API explorer
+1. http://localhost:3000/explorer/ - Swagger , Loopback Server API explorer
 2. http://localhost:8546/ - Ganache , Test Ethereum Blockchain RPC port
 3. http://localhost:5001/ - IPFS , API Gateway port to IPFS
 

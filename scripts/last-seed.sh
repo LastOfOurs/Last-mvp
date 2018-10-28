@@ -4,7 +4,7 @@
 printf "======= generating 3 Animals ...\n"
 
 curl -X POST \
-  http://localhost:8090/api/animals \
+  http://0.0.0.0:3000/api/animals \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -30,7 +30,7 @@ curl -X POST \
 }'
 
 curl -X POST \
-  http://localhost:8090/api/animals \
+  http://0.0.0.0:3000/api/animals \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -56,7 +56,7 @@ curl -X POST \
 }'
 
 curl -X POST \
-  http://localhost:8090/api/animals \
+  http://0.0.0.0:3000/api/animals \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
   -d '{
