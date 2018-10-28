@@ -26,6 +26,7 @@ import WalletHistoryScreen from './components/screens/WalletHistoryScreen'
 import SelectDestinationScreen from './components/screens/SelectDestinationScreen'
 import SelectCurrencyScreen from './components/screens/SelectCurrencyScreen'
 import SettingsScreen from './components/screens/SettingsScreen'
+import ExportPKScreen from './components/screens/ExportPKScreen'
 
 const MainStack = createStackNavigator(
   {
@@ -43,6 +44,7 @@ const MainStack = createStackNavigator(
     ReceiveTransaction: ReceiveTransactionScreen, 
     ConfirmTransaction: ConfirmTransactionScreen,
     WalletHistory: WalletHistoryScreen,
+    ExportPK: ExportPKScreen,
     SelectDestination: SelectDestinationScreen,
     SelectCurrency: SelectCurrencyScreen,
     Settings: SettingsScreen,

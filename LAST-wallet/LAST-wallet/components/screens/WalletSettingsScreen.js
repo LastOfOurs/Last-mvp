@@ -24,7 +24,7 @@ export default class WalletSettingsScreen extends React.Component {
 
     showPK() {
         const { wallet } = this.props;
-        this.props.navigation.push('ShowPrivateKey', { wallet });
+        this.props.navigation.push('ExportPK', { wallet });
     }
 
     confirmRemoveWallet() {
