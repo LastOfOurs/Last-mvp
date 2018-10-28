@@ -3,7 +3,6 @@ import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { measures } from '../../common/styles'
 import { Button } from '../widgets/Button'
-import { Recents as RecentsActions } from '../../common/actions'
 import ErrorMessage from '../widgets/ErrorMessage'
 import SuccessMessage from '../widgets/SuccessMessage'
 var WalletUtils = require('../../common/utils/wallet.js')
@@ -14,62 +13,62 @@ var TransactionActions = require('../../common/actions/transactionActions.js')
 @observer
 export default class ConfirmTransactionScreen extends React.Component {
     
-    static navigationOptions = { title: 'Confirm transaction' };
+    static navigationOptions = { title: 'Confirm transaction' }
 
-    state = { txn: null, error: null };
+    state = { txn: null, error: null }
 
     get returnButton() {
-        return { title: 'Return to wallet', action: () => this.onPressReturn() };
+        return { title: 'Return to wallet', action: () => this.onPressReturn() }
     }
 
     get confirmButton() {
-        return { title: 'Confirm & send', action: () => this.onPressSend() };
+        return { title: 'Confirm & send', action: () => this.onPressSend() }
     }
 
     get actionButton() {
-        if (this.props.wallet.loading) return <ActivityIndicator loading />;
+        if (this.props.wallet.loading) return <ActivityIndicator loading />
         const buttonConfig = ((this.state.txn && this.state.txn.hash) || this.state.error) ?
-            this.returnButton : this.confirmButton;
-         return <Button children={buttonConfig.title} onPress={buttonConfig.action} />;
+            this.returnButton : this.confirmButton
+         return <Button children={buttonConfig.title} onPress={buttonConfig.action} />
     }
 
     get estimatedFee() {
-        const estimate = WalletUtils.estimateFee(this.state.txn);
-        return WalletUtils.formatBalance(estimate);
+        const estimate = WalletUtils.estimateFee(this.state.txn)
+        return WalletUtils.formatBalance(estimate)
     }
     
     get fiatAmount() {
-        const { txn } = this.state;
-        return Number(this.props.prices.usd * Number(WalletUtils.formatBalance(txn.value))).toFixed(2);
+        const { txn } = this.state
+        return Number(this.props.prices.usd * Number(WalletUtils.formatBalance(txn.value))).toFixed(2)
     }
     
     get fiatEstimatedFee() {
-        return Number(this.props.prices.usd * Number(this.estimatedFee)).toFixed(2);
+        return Number(this.props.prices.usd * Number(this.estimatedFee)).toFixed(2)
     }
 
     componentDidMount() {
-        const { address, amount } = this.props.navigation.state.params;
-        const txn = TransactionUtils.createTransaction(address, amount);
-        this.setState({ txn });
+        const { address, amount } = this.props.navigation.state.params
+        const txn = TransactionUtils.createTransaction(address, amount)
+        this.setState({ txn })
     }
 
     async onPressSend() {
-        const { wallet } = this.props;
-        wallet.isLoading(true);
+        const { wallet } = this.props
+        wallet.isLoading(true)
         try {
-            const txn = await TransactionActions.sendTransaction(wallet.item, this.state.txn);
-            this.setState({ txn });
-            RecentsActions.saveAddressToRecents(txn.to);
+            const txn = await TransactionActions.sendTransaction(wallet.item, this.state.txn)
+            this.setState({ txn })
+            // RecentsActions.saveAddressToRecents(txn.to)
         } catch (error) {
-            this.setState({ error });
+            this.setState({ error })
         } finally {
-            wallet.isLoading(false);
+            wallet.isLoading(false)
         }
     }
 
     onPressReturn() {
-        const { wallet } = this.props;
-        this.props.navigation.navigate('WalletDetails', { wallet: wallet.item, replaceRoute: true, leave: 2 });
+        const { wallet } = this.props
+        this.props.navigation.navigate('WalletDetails', { wallet: wallet.item, replaceRoute: true, leave: 2 })
     }
 
     render() {
@@ -137,4 +136,4 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100
     }
-});
+})

@@ -8,14 +8,14 @@ import { colors, measures } from '../../common/styles'
 
 export default class SelectDestinationScreen extends React.Component {
     
-    static navigationOptions = { title: 'Select destination' };
+    static navigationOptions = { title: 'Select destination' }
 
-    state = { address: '' };
+    state = { address: '' }
     
     onPressContinue() {
-        const { amount } = this.props.navigation.state.params;
-        const { address } = this.state;
-        this.props.navigation.navigate('ConfirmTransaction', { address, amount });
+        const { amount } = this.props.navigation.state.params
+        const { address } = this.state
+        this.props.navigation.navigate('ConfirmTransaction', { address, amount })
     }
 
     render() {
@@ -39,7 +39,7 @@ export default class SelectDestinationScreen extends React.Component {
                     onClose={() => this.refs.camera.hide()}
                     onBarCodeRead={address => this.refs.input.onChangeText(address)} />
             </View>
-        );
+        )
     }
 }
 
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         marginVertical: measures.defaultMargin
     }
-});
+})

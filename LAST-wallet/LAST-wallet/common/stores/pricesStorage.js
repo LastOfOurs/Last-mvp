@@ -1,11 +1,11 @@
-import { action, observable } from 'mobx';
+import { action, observable } from 'mobx'
 
 const INITIAL = {
     usd: 0,
     eur: 0,
     brl: 0,
     loading: false
-};
+}
 
 export class PricesStorage {
 

@@ -4,15 +4,13 @@ import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import GeneralActions from '../../common/actions/generalActions'
 // import WalletActions from '../../common/actions/walletActions'
-import PricesActions from '../../common/actions/pricesActions'
 import walletStorage from '../../common/stores/walletStorage'
 import WalletCard from '../widgets/WalletCard'
 import { measures } from '../../common/styles'
-
+var PricesActions = require('../../common/actions/pricesActions')
 var WalletActions = require('../../common/actions/walletActions')
 
-// @inject('prices', 'wallets')
-@inject('wallets')
+@inject('prices', 'wallets')
 @observer
 export default class WalletsOverviewScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -22,14 +20,13 @@ export default class WalletsOverviewScreen extends React.Component {
     ),
   })
 
-  // get loading() { return this.props.prices.loading || this.props.wallets.loading }
-  get loading() { return this.props.wallets.loading } 
+  get loading() { return this.props.prices.loading || this.props.wallets.loading }
 
   async populate() {
     try {
         await Promise.all([
             WalletActions.loadWallets(),
-            // PricesActions.getPrice()
+            PricesActions.getPrice()
         ]);
     } catch (e) {
         // GeneralActions.notify(e.message, 'long');

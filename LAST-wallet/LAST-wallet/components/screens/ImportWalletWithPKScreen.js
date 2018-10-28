@@ -57,7 +57,7 @@ export default class ImportWalletWithPKScreen extends React.Component {
           </TouchableOpacity>
           {this.state.qrScanning && <QRScanner
               ref='camera'
-              onBarCodeScanned={data => this.handleTextChange(data)} />}
+              onBarCodeRead={data => this.handleTextChange(data)} />}
           <TouchableOpacity style={styles.button}
             onPress={() => this.handleLoadWallet()}>
               <Text>Open Wallet</Text> 
