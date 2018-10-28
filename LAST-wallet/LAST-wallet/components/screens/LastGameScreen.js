@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import PropTypes from 'prop-types'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -18,6 +18,8 @@ export default class LastGameScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text>Last Game Screen</Text>
+          <Image style={styles.logo} source={require('../../assets/animals/giant-panda.png')}/>
+          <Image style={styles.logo} source={require('../../assets/animals/black-rhino.png')}/>
         </View>
       </View>
     );
@@ -32,5 +34,11 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     alignItems: 'center'
-  }
+  },
+  logo: {
+    width: 80,
+    height: 80,
+    alignSelf: 'center',
+    margin: 10,
+  },
 })

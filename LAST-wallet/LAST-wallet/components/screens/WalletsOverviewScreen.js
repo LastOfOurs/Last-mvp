@@ -12,7 +12,7 @@ var GeneralActions = require('../../common/actions/generalActions')
 @observer
 export default class WalletsOverviewScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'My Wallets',
+    headerTitle: 'Last of Ours',
     headerLeft: (
       <HeaderIcon
         name='add'

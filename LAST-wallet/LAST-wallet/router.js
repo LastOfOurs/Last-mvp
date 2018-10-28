@@ -27,6 +27,7 @@ import SelectDestinationScreen from './components/screens/SelectDestinationScree
 import SelectCurrencyScreen from './components/screens/SelectCurrencyScreen'
 import SettingsScreen from './components/screens/SettingsScreen'
 import ExportPKScreen from './components/screens/ExportPKScreen'
+import MarketPlaceScreen from './components/screens/MarketplaceScreen'
 
 const MainStack = createStackNavigator(
   {
@@ -102,6 +103,7 @@ MainStack.navigationOptions = {
 const MainTabs = createBottomTabNavigator(
   {
     Wallet: MainStack,
+    Marketplace: MarketPlaceScreen,
     LastGame: LastGameScreen,
   },
   {

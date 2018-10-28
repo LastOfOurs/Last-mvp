@@ -51,7 +51,6 @@ export default class TransactionDetails extends React.Component {
     }
 
     show() {
-        console.log(this.props.transaction)
         this.setState({ show: true })
     }
 
