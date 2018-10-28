@@ -14,8 +14,11 @@ var WalletActions = require('../../common/actions/walletActions')
 export default class WalletsOverviewScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Overview',
-    headerRight: (
+    headerLeft: (
         <Button title='+'onPress={() => navigation.navigate('WalletInit')} />
+    ),
+    headerRight: (
+      <Button title='Settings'onPress={() => navigation.navigate('Settings')} />
     ),
   })
 

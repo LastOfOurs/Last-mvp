@@ -16,15 +16,15 @@ export default class WalletCard extends React.Component {
     }
 
     get fiatBalance() {
-        return Number(this.props.prices.usd * this.balance);
+        return Number(this.props.prices.usd * this.balance)
     }
 
     componentDidMount() {
-        WalletActions.updateBalance(this.props.wallet);
+        WalletActions.updateBalance(this.props.wallet)
     }
 
     render() {
-        const { onPress, wallet } = this.props;
+        const { onPress, wallet } = this.props
         return (
             <TouchableWithoutFeedback onPress={onPress}>
                 <View style={styles.container}>

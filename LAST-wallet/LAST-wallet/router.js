@@ -23,6 +23,8 @@ import SendTransactionScreen from './components/screens/SendTransactionScreen'
 import ReceiveTransactionScreen from './components/screens/ReceiveTransactionScreen'
 import ConfirmTransactionScreen from './components/screens/ConfirmTransactionScreen'
 import SelectDestinationScreen from './components/screens/SelectDestinationScreen'
+import SelectCurrencyScreen from './components/screens/SelectCurrencyScreen'
+import SettingsScreen from './components/screens/SettingsScreen'
 
 const MainStack = createStackNavigator(
   {
@@ -40,6 +42,8 @@ const MainStack = createStackNavigator(
     ReceiveTransaction: ReceiveTransactionScreen, 
     ConfirmTransaction: ConfirmTransactionScreen,
     SelectDestination: SelectDestinationScreen,
+    SelectCurrency: SelectCurrencyScreen,
+    Settings: SettingsScreen,
   },
   {
     initialRouteName: INITIAL_ROUTE,
