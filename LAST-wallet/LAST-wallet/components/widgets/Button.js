@@ -6,7 +6,7 @@ const Button = ({ children, onPress }) => (
     <TouchableOpacity style={styles.container} onPress={onPress} underlayColor={null}>
         <Text style={styles.title} children={children} />
     </TouchableOpacity>
-);
+)
 
 export default Button
 
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         fontSize: 16
     }
-});
+})

@@ -11,51 +11,51 @@ var WalletUtils = require('../../common/utils/wallet')
 @observer
 export default class TransactionDetails extends React.Component {
 
-    state = { show: false };
+    state = { show: false }
 
     get isReceiving() {
-        return this.to.toLowerCase() === this.props.walletAddress.toLowerCase();
+        return this.to.toLowerCase() === this.props.walletAddress.toLowerCase()
     }
 
     get isConfirmed() {
-        return this.props.transaction.confirmations > 0;
+        return this.props.transaction.confirmations > 0
     }
 
     get from() {
-        return this.props.transaction.from;
+        return this.props.transaction.from
     }
 
     get to() {
-        return this.props.transaction.to;
+        return this.props.transaction.to
     }
 
     get iconName() {
-        return (this.isReceiving) ? 'download' : 'upload';
+        return (this.isReceiving) ? 'download' : 'upload'
     }
 
     get balance() {
-        return Number(WalletUtils.formatBalance(this.props.transaction.value));
+        return Number(WalletUtils.formatBalance(this.props.transaction.value))
     }
     
     get fiatBalance() {
-        return Number(this.props.prices.usd * this.balance).toFixed(2);
+        return Number(this.props.prices.usd * this.balance).toFixed(2)
     }
 
     get timestamp() {
         return (this.props.transaction.timeStamp) ?
-            moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss') : 'Pending';
+            moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss') : 'Pending'
     }
 
     get transactionError() {
-        return Number(this.props.transaction.isError) > 0 ? 'Yes' : 'No';
+        return Number(this.props.transaction.isError) > 0 ? 'Yes' : 'No'
     }
 
     show() {
-        this.setState({ show: true });
+        this.setState({ show: true })
     }
 
     hide() {
-        this.setState({ show: false });
+        this.setState({ show: false })
     }
 
     renderTransactionOperator = () => (
@@ -133,7 +133,7 @@ export default class TransactionDetails extends React.Component {
     );
 
     render() {
-        const { transaction } = this.props;
+        const { transaction } = this.props
         return (
             <Modal
                 isVisible={this.state.show}
@@ -173,4 +173,4 @@ const styles = StyleSheet.create({
     value: {
         textAlign: 'center'
     }
-});
+})

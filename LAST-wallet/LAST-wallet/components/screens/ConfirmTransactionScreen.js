@@ -2,7 +2,7 @@ import React from 'react'
 import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { measures } from '../../common/styles'
-import { Button } from '../widgets/Button'
+import Button from '../widgets/Button'
 import ErrorMessage from '../widgets/ErrorMessage'
 import SuccessMessage from '../widgets/SuccessMessage'
 var WalletUtils = require('../../common/utils/wallet.js')
@@ -72,7 +72,7 @@ export default class ConfirmTransactionScreen extends React.Component {
     }
 
     render() {
-        const { error, txn } = this.state;
+        const { error, txn } = this.state
         return (!txn) ? null : (
             <View style={styles.container}>
                 <View style={styles.content}>
@@ -84,8 +84,7 @@ export default class ConfirmTransactionScreen extends React.Component {
                                 ellipsizeMode="middle"
                                 children={txn.to} />
                         </View>
-                        {/* <Image style={styles.avatar}
-                            source={{ uri: ImageUtils.generateAvatar(txn.to) }} /> */}
+                        <Text>IMG</Text>
                     </View>
                     <View style={styles.textColumn}>
                         <Text style={styles.title}>Amount (ETH)</Text>

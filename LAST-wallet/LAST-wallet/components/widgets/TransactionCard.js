@@ -12,36 +12,36 @@ var WalletUtils = require('../../common/utils/wallet')
 export default class TransactionCard extends React.Component {
 
     get isReceiving() {
-        return this.to.toLowerCase() === this.props.walletAddress.toLowerCase();
+        return this.to.toLowerCase() === this.props.walletAddress.toLowerCase()
     }
 
     get isConfirmed() {
-        return this.props.transaction.confirmations > 0;
+        return this.props.transaction.confirmations > 0
     }
 
     get from() {
-        return this.props.transaction.from;
+        return this.props.transaction.from
     }
 
     get to() {
-        return this.props.transaction.to;
+        return this.props.transaction.to
     }
 
     get iconName() {
-        return (this.isReceiving) ? 'download' : 'upload';
+        return (this.isReceiving) ? 'download' : 'upload'
     }
 
     get balance() {
-        return Number(WalletUtils.formatBalance(this.props.transaction.value));
+        return Number(WalletUtils.formatBalance(this.props.transaction.value))
     }
     
     get fiatBalance() {
-        return Number(this.props.prices.usd * this.balance).toFixed(2);
+        return Number(this.props.prices.usd * this.balance).toFixed(2)
     }
 
     get timestamp() {
         return (this.props.transaction.timeStamp) ?
-            moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss') : 'Pending';
+            moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss') : 'Pending'
     }
 
     renderTransactionOperator = () => (
@@ -89,7 +89,7 @@ export default class TransactionCard extends React.Component {
                         walletAddress={walletAddress} />
                 </View>
             </TouchableHighlight>
-        );
+        )
     }
 }
 
