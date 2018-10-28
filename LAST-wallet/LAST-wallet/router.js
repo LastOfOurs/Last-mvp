@@ -22,6 +22,7 @@ import WalletsOverviewScreen from './components/screens/WalletsOverviewScreen'
 import SendTransactionScreen from './components/screens/SendTransactionScreen'
 import ReceiveTransactionScreen from './components/screens/ReceiveTransactionScreen'
 import ConfirmTransactionScreen from './components/screens/ConfirmTransactionScreen'
+import WalletHistoryScreen from './components/screens/WalletHistoryScreen'
 import SelectDestinationScreen from './components/screens/SelectDestinationScreen'
 import SelectCurrencyScreen from './components/screens/SelectCurrencyScreen'
 import SettingsScreen from './components/screens/SettingsScreen'
@@ -41,6 +42,7 @@ const MainStack = createStackNavigator(
     SendTransaction: SendTransactionScreen,
     ReceiveTransaction: ReceiveTransactionScreen, 
     ConfirmTransaction: ConfirmTransactionScreen,
+    WalletHistory: WalletHistoryScreen,
     SelectDestination: SelectDestinationScreen,
     SelectCurrency: SelectCurrencyScreen,
     Settings: SettingsScreen,

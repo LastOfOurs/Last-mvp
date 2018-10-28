@@ -1,6 +1,6 @@
 var WalletsService = require('../services/walletsService.js')
 var WalletUtils = require('../utils/wallet.js')
-import ApiService from '../services/apiService'
+var ApiService = require('../services/apiService')
 import WalletsStorage from '../stores/walletsStorage'
 import WalletStorage from '../stores/walletStorage'
 
