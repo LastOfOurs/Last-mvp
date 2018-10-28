@@ -228,6 +228,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNSnackbar (0.5.3):
+    - React
   - Stripe (13.0.3)
   - yoga (0.55.4.React)
 
@@ -278,6 +280,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -378,6 +381,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  RNSnackbar:
+    :path: "../node_modules/react-native-snackbar"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -445,9 +450,10 @@ SPEC CHECKSUMS:
   JKBigInteger2: e91672035c42328c48b7dd015b66812ddf40ca9b
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   React: aa2040dbb6f317b95314968021bd2888816e03d5
+  RNSnackbar: 90718c3ffbe9ca9178763c96fc2aa7e81d78851f
   Stripe: 76c203e21555089b708e6cbe972a3e3baf1ab4d8
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: 94247c294d71996b0fbbd856a1f3ce56a2633e6c
+PODFILE CHECKSUM: 2bd0e245159f01c2efd5d7eb031290b4d1254da8
 
 COCOAPODS: 1.5.3
