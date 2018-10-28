@@ -3,14 +3,16 @@ import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { measures } from '../../common/styles'
 import { Button } from '../widgets/Button'
-import { Recents as RecentsActions, Transactions as TransactionActions } from '../../common/actions'
-import { Image as ImageUtils, Transaction as TransactionUtils, Wallet as WalletUtils } from '../../common/utils'
+import { Recents as RecentsActions } from '../../common/actions'
 import ErrorMessage from '../widgets/ErrorMessage'
 import SuccessMessage from '../widgets/SuccessMessage'
+var WalletUtils = require('../../common/utils/wallet.js')
+var TransactionUtils = require('../../common/utils/transactionUtils.js')
+var TransactionActions = require('../../common/actions/transactionActions.js')
 
 @inject('prices', 'wallet')
 @observer
-export class ConfirmTransaction extends React.Component {
+export default class ConfirmTransactionScreen extends React.Component {
     
     static navigationOptions = { title: 'Confirm transaction' };
 
@@ -83,8 +85,8 @@ export class ConfirmTransaction extends React.Component {
                                 ellipsizeMode="middle"
                                 children={txn.to} />
                         </View>
-                        <Image style={styles.avatar}
-                            source={{ uri: ImageUtils.generateAvatar(txn.to) }} />
+                        {/* <Image style={styles.avatar}
+                            source={{ uri: ImageUtils.generateAvatar(txn.to) }} /> */}
                     </View>
                     <View style={styles.textColumn}>
                         <Text style={styles.title}>Amount (ETH)</Text>
