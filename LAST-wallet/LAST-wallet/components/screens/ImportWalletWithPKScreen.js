@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button, Keyboard }
 import QRScanner from '../widgets/QRScanner'
 import { colors, measures } from '../../common/styles'
 var WalletUtils = require('../../common/utils/wallet.js')
+var WalletsActions = require('../../common/actions/walletActions.js')
 import PropTypes from 'prop-types'
 
 export default class ImportWalletWithPKScreen extends React.Component {
@@ -25,10 +26,10 @@ export default class ImportWalletWithPKScreen extends React.Component {
       Keyboard.dismiss()
       try {
           const wallet = WalletUtils.loadWalletFromPrivateKey(this.state.pk)
-          // const { walletName, walletDescription } = this.props.navigation.state.params
-          // await WalletsActions.addWallet(walletName, wallet, walletDescription)
+          const { walletName, walletDescription } = this.props.navigation.state.params
+          await WalletsActions.addWallet(walletName, wallet, walletDescription)
           this.props.navigation.navigate('WalletDetails', { replaceRoute: true })
-          // await WalletsActions.saveWallets()
+          await WalletsActions.saveWallets()
       } catch (e) {
           // GeneralActions.notify(e.message, 'long')
           alert(e)

@@ -1,5 +1,5 @@
 import Snackbar from 'react-native-snackbar';
-import * as store from '@common/stores';
+import * as store from '../stores';
 
 export async function notify(title, duration, driver=Snackbar) {
     switch (duration) {

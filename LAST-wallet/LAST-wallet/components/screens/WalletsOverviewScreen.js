@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity, Button, StatusBar, FlatList, 
 import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import GeneralActions from '../../common/actions/generalActions'
-// import WalletActions from '../../common/actions/walletActions'
 import walletStorage from '../../common/stores/walletStorage'
 import WalletCard from '../widgets/WalletCard'
 import { measures } from '../../common/styles'

@@ -1,18 +1,25 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { colors } from '../../common/styles'
 import PropTypes from 'prop-types'
 
 export default class ImportWalletScreen extends React.Component {
   static navigationOptions = { title: 'Import Wallet' }
+  state = {
+    walletName: '',
+    walletDescription: '',
+  }
   
   handleLoadWithMnemonics = () => {
-    this.props.navigation.navigate("ImportWithMnemonic")
+    const { walletName, walletDescription } = this.state
+    this.props.navigation.navigate("ImportWithMnemonic", { walletName, walletDescription })
     console.log('loading with mnemonics')
   }
 
   handleLoadWithPrivateKey = () => {
-    this.props.navigation.navigate("ImportWithPK")
+    const { walletName, walletDescription } = this.state
     console.log('loading with private key')
+    this.props.navigation.navigate("ImportWithPK", { walletName, walletDescription })
   }
   
   render() {
@@ -20,6 +27,20 @@ export default class ImportWalletScreen extends React.Component {
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Import Wallet Screen</Text>
+          <View style={styles.inputContainer}>
+            <Text style={styles.message}>Give your new wallet a name!</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="e.g. daily transactions"
+                underlineColorAndroid="transparent"
+                onChangeText={walletName => this.setState({ walletName })} />
+            <Text style={styles.message}>Give it a description too (optional)</Text>
+            <TextInput
+                style={styles.input}
+                underlineColorAndroid="transparent"
+                placeholder="e.g. groceries and all that"
+                onChangeText={walletDescription => this.setState({ walletDescription })} />
+          </View>
           <TouchableOpacity style={styles.button}
             onPress={this.handleLoadWithPrivateKey}>
             <Text>Import using Private Key</Text>
@@ -45,6 +66,23 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
+  },
+  inputContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 8,
+    padding: 10,
+  },
+  input: {
+    width: '90%',
+    borderBottomWidth: 1,
+    borderBottomColor: colors.black,
+    padding: 4,
+    paddingLeft: 0,
+    marginRight: 2,
+    textAlign: 'center',
+    color: colors.black,
+    margin: 8
   },
   button: {
     padding: 10,

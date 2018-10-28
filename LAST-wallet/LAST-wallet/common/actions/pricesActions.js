@@ -1,6 +1,5 @@
-// import ApiService from '../services/apiService'
 var ApiService = require('../services/apiService')
-var PricesStorage = require('../stores/pricesStorage')
+import PricesStorage from '../stores/pricesStorage'
 
 export async function getPrice() {
     PricesStorage.isLoading(true)
