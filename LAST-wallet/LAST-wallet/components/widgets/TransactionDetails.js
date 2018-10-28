@@ -47,10 +47,11 @@ export default class TransactionDetails extends React.Component {
     }
 
     get transactionError() {
-        return Number(this.props.transaction.isError) > 0 ? 'Yes' : 'No'
+        return Number(this.props.transaction.isError) > 0 ? 'Yes' : 'None'
     }
 
     show() {
+        console.log(this.props.transaction)
         this.setState({ show: true })
     }
 
@@ -101,8 +102,8 @@ export default class TransactionDetails extends React.Component {
                     <Text style={styles.value}>{transaction.blockNumber}</Text>
                 </View>
                 <View style={styles.row}>
-                    <Text style={styles.label}>Block hash:</Text>
-                    <Text style={styles.value}>{transaction.blockHash}</Text>
+                    <Text style={styles.label}>TxHash:</Text>
+                    <Text style={styles.value}>{transaction.hash}</Text>
                 </View>
                 <View style={styles.row}>
                     <Text style={styles.label}>Gas:</Text>
@@ -125,7 +126,7 @@ export default class TransactionDetails extends React.Component {
                     <Text style={styles.value}>{transaction.confirmations}</Text>
                 </View>
                 <View style={styles.row}>
-                    <Text style={styles.label}>Error:</Text>
+                    <Text style={styles.label}>Errors:</Text>
                     <Text style={styles.value}>{this.transactionError}</Text>
                 </View>
             </ScrollView>
@@ -140,7 +141,7 @@ export default class TransactionDetails extends React.Component {
                 onBackButtonPress={() => this.hide()}
                 onBackdropPress={() => this.hide()}
                 children={this.renderBody(transaction)} />
-        );
+        )
     }
 }
 

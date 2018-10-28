@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 import { colors, measures } from '../../common/styles'
 import ConfirmMnemonicsBox from '../widgets/ConfirmMnemonicsBox'
 var WalletUtils = require('../../common/utils/wallet.js')
-// var GeneralActions = require('../../common/actions/general.js')
+var GeneralActions = require('../../common/actions/generalActions.js')
 var WalletActions = require('../../common/actions/walletActions.js')
 
 export default class ConfirmWalletCreationScreen extends React.Component {
@@ -32,8 +32,7 @@ export default class ConfirmWalletCreationScreen extends React.Component {
             this.props.navigation.navigate('WalletDetails', { replaceRoute: true });
             await WalletActions.saveWallets()
         } catch (e) {
-            // GeneralActions.notify(e.message, 'long');
-            console.log(e)
+            GeneralActions.notify(e.message, 'long')
         }
     }
 

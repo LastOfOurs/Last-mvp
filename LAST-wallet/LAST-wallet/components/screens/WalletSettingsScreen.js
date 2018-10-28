@@ -2,6 +2,7 @@ import React from 'react'
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { colors, measures } from '../../common/styles'
+import { Icon } from '../widgets/Icon'
 var WalletActions = require('../../common/actions/walletActions.js')
 var GeneralActions = require('../../common/actions/generalActions.js')
 import ListItem from '../widgets/ListItem'
@@ -56,7 +57,7 @@ export default class WalletSettingsScreen extends React.Component {
                 <ListItem onPress={() => this.confirmExportPK()}>
                     <View style={styles.itemContainer}>
                         <View style={styles.icon}>
-                            <Text>Icon</Text>
+                            <Icon name='key' type='mdc' />
                         </View>
                         <Text style={styles.itemTitle}>Export private key</Text>
                     </View>
@@ -64,7 +65,7 @@ export default class WalletSettingsScreen extends React.Component {
                 <ListItem onPress={() => this.confirmRemoveWallet()}>
                     <View style={styles.itemContainer}>
                         <View style={styles.icon}>
-                            <Text>Icon</Text>
+                            <Icon name='trash' />
                         </View>
                         <Text style={styles.itemTitle}>Remove wallet</Text>
                     </View>

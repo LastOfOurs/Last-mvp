@@ -12,12 +12,19 @@ export default class ImportWalletScreen extends React.Component {
   
   handleLoadWithMnemonics = () => {
     const { walletName, walletDescription } = this.state
+    if (walletName === '') {
+      alert('please give your wallet a name')
+      return
+    }
     this.props.navigation.navigate("ImportWithMnemonic", { walletName, walletDescription })
-    console.log('loading with mnemonics')
   }
 
   handleLoadWithPrivateKey = () => {
     const { walletName, walletDescription } = this.state
+    if (walletName === '') {
+      alert('please give your wallet a name')
+      return
+    }
     console.log('loading with private key')
     this.props.navigation.navigate("ImportWithPK", { walletName, walletDescription })
   }
@@ -28,7 +35,7 @@ export default class ImportWalletScreen extends React.Component {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Import Wallet Screen</Text>
           <View style={styles.inputContainer}>
-            <Text style={styles.message}>Give your new wallet a name!</Text>
+            <Text style={styles.message}>Give your wallet a name!</Text>
             <TextInput
                 style={styles.input}
                 placeholder="e.g. daily transactions"

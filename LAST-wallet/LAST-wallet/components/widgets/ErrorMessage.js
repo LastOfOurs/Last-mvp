@@ -29,4 +29,4 @@ export default ({ error }) => !error ? null : (
     <Text style={styles.title}>Transaction failed</Text>
     <Text style={styles.message}>{error.message}</Text>
   </View>
-); 
+);

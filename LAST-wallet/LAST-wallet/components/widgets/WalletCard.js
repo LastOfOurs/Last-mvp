@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { inject, observer } from 'mobx-react'
-import Icon from './Icon'
+import { Icon } from './Icon'
 import { colors, measures } from '../../common/styles'
 var WalletUtils = require('../../common/utils/wallet.js')
 var WalletActions = require('../../common/actions/walletActions.js')
@@ -29,7 +29,7 @@ export default class WalletCard extends React.Component {
             <TouchableWithoutFeedback onPress={onPress}>
                 <View style={styles.container}>
                     <View style={styles.leftColumn}>
-                      <Text>$$</Text>
+                      <Icon name='wallet' size='large' type='ent' />
                     </View>
                     <View style={styles.middleColumn}>
                         <Text style={styles.title}>{wallet.name}</Text>
@@ -54,8 +54,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: measures.defaultPadding,
-        marginBottom: measures.defaultMargin,
-        height: 70
+        height: 70,
+        borderWidth: 1,
+        borderColor: colors.lightGray,
+        borderRadius: 10,
+        margin: 10,
     },
     leftColumn: {
         width: 40,

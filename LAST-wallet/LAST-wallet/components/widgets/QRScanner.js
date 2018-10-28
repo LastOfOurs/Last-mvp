@@ -4,7 +4,7 @@ import Modal from 'react-native-modal'
 import Permissions from 'react-native-permissions'
 import { RNCamera } from 'react-native-camera'
 
-import { Icon } from '../widgets/Icon'
+import { Icon } from './Icon'
 import { colors } from '../../common/styles'
 
 const { BarCodeType } = RNCamera.Constants;
@@ -48,17 +48,14 @@ export default class QRScanner extends React.Component {
                 barCodeTypes={[BarCodeType.qr]}
                 onBarCodeRead={(data) => this.onBarCodeRead(data)} />
             <TouchableWithoutFeedback onPress={onClose}>
-                {/* <Icon name='close' color={colors.white} style={styles.closeIcon} /> */}
-                <View>
-                    <Text>close button</Text>
-                </View>
+                <Icon name='close' color={colors.white} style={styles.closeIcon} />
             </TouchableWithoutFeedback>
             <View style={styles.marker} />
         </View>
     );
 
     render() {
-        const { modal, onClose } = this.props;
+        const { modal, onClose } = this.props
         return !modal ? this.renderView(onClose) : (
             <Modal
                 onBackButtonPress={onClose}

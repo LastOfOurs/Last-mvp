@@ -58,6 +58,35 @@ const MainStack = createStackNavigator(
   }
 )
 
+const WalletCreationStack = createStackNavigator(
+  {
+    CreateWallet: CreateWalletScreen,
+    ConfirmWalletCreation: ConfirmWalletCreationScreen,
+    ImportWallet: ImportWalletScreen,
+    ImportWithPK: ImportWalletWithPKScreen,
+    ImportWithMnemonic: ImportWalletWithMnemonicsScreen ,
+    WalletNaming: WalletNamingScreen,
+  },
+  {
+    initialRouteName: 'CreateWallet',
+    navigationOptions: {
+      headerTintColor: "#59F8B6",
+      headerStyle: {
+        backgroundColor: "#10171F"
+      }
+    }
+  }
+)
+
+const WalletDetailsStack = createStackNavigator(
+  {
+    WalletDetails: WalletDetailsScreen,
+    SendTransaction: SendTransactionScreen,
+    ReceiveTransaction: ReceiveTransactionScreen, 
+    ConfirmTransaction: ConfirmTransactionScreen,
+  }
+)
+
 MainStack.navigationOptions = {
   tabBarIcon: ({ focused, tintColor }) => (
     <Ionicons

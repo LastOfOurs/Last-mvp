@@ -2,10 +2,10 @@ import React from 'react'
 import { FlatList, RefreshControl, StyleSheet, View, Text } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { measures, colors } from '../../common/styles'
-var WalletActions = require('../../common/actions/walletActions')
 import WalletBalance from '../widgets/WalletBalance'
 import TransactionCard from '../widgets/TransactionCard'
-import { GeneralActions } from '../../common/actions'
+var WalletActions = require('../../common/actions/walletActions')
+var GeneralActions = require('../../common/actions/generalActions')
 
 const NoTransactions = () => (
   <View style={styles.noTransactionsContainer}>
@@ -25,8 +25,7 @@ export default class WalletHistoryScreen extends React.Component {
         try {
             await WalletActions.updateHistory(this.props.wallet.item)
         } catch (e) {
-            // GeneralActions.notify(e.message, 'long')
-            console.log('error loading wallet history: ' + e)
+            GeneralActions.notify(e.message, 'long')
         }
     }
 
@@ -39,7 +38,7 @@ export default class WalletHistoryScreen extends React.Component {
             refreshControl={<RefreshControl refreshing={loading} onRefresh={() => this.updateHistory()} />}
             keyExtractor={(element) => element.hash}
             renderItem={this.renderItem(item.getAddress())} />
-    );
+    )
 
     render() {
         return (
@@ -47,7 +46,7 @@ export default class WalletHistoryScreen extends React.Component {
                 <WalletBalance />
                 {this.renderBody(this.props.wallet)}
             </View>
-        );
+        )
     }
 }
 

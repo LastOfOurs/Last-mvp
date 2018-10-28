@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         height: 60,
         flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: colors.lightGray
+        borderBottomColor: colors.lightGray,
+        padding: 10
     },
     leftColumn: {
         flex: 1

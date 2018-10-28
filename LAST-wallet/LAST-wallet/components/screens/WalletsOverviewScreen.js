@@ -1,24 +1,32 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Button, StatusBar, FlatList, RefreshControl } from 'react-native'
-import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
-import GeneralActions from '../../common/actions/generalActions'
-import walletStorage from '../../common/stores/walletStorage'
 import WalletCard from '../widgets/WalletCard'
-import { measures } from '../../common/styles'
+import { measures, colors } from '../../common/styles'
+import { HeaderIcon } from '../widgets/HeaderIcon'
 var PricesActions = require('../../common/actions/pricesActions')
 var WalletActions = require('../../common/actions/walletActions')
+var GeneralActions = require('../../common/actions/generalActions')
 
 @inject('prices', 'wallets')
 @observer
 export default class WalletsOverviewScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Overview',
+    title: 'My Wallets',
     headerLeft: (
-        <Button title='+'onPress={() => navigation.navigate('WalletInit')} />
+      <HeaderIcon
+        name='add'
+        size='large'
+        color={colors.white}
+        onPress={() => navigation.navigate('WalletInit')} />
     ),
     headerRight: (
-      <Button title='Settings'onPress={() => navigation.navigate('Settings')} />
+      <HeaderIcon
+        name='settings'
+        size='medium'
+        type='md'
+        color={colors.white}
+        onPress={() => navigation.navigate('Settings')} />
     ),
   })
 
@@ -31,8 +39,7 @@ export default class WalletsOverviewScreen extends React.Component {
             PricesActions.getPrice()
         ]);
     } catch (e) {
-        // GeneralActions.notify(e.message, 'long');
-        console.log('error populating page because ' + e)
+        GeneralActions.notify(e.message, 'long')
     }
   }
  

@@ -5,6 +5,7 @@ import QRScanner from '../widgets/QRScanner'
 import { colors, measures } from '../../common/styles'
 var WalletUtils = require('../../common/utils/wallet.js')
 var WalletsActions = require('../../common/actions/walletActions.js')
+var GeneralActions = require('../../common/actions/generalActions')
 import PropTypes from 'prop-types'
 
 export default class ImportWalletWithPKScreen extends React.Component {
@@ -28,11 +29,10 @@ export default class ImportWalletWithPKScreen extends React.Component {
           const wallet = WalletUtils.loadWalletFromPrivateKey(this.state.pk)
           const { walletName, walletDescription } = this.props.navigation.state.params
           await WalletsActions.addWallet(walletName, wallet, walletDescription)
-          this.props.navigation.navigate('WalletDetails', { replaceRoute: true })
+          this.props.navigation.navigate('WalletsOverview', { replaceRoute: true })
           await WalletsActions.saveWallets()
       } catch (e) {
-          // GeneralActions.notify(e.message, 'long')
-          alert(e)
+          GeneralActions.notify(e.message, 'long')
       }
   }
 
@@ -43,7 +43,7 @@ export default class ImportWalletWithPKScreen extends React.Component {
   render() {
     return (
         <View style={styles.mainContainer}>
-          <View style={styles.body}>
+          <View style={styles.titleContainer}>
               <Text style={styles.title}>Import with Private Key</Text>
               <TextInput style={styles.input} 
                 autofocus={true}
@@ -85,18 +85,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 32,
     fontWeight: 'bold',
   },
-  buttonContainer: {
-    width: '100%',
-    justifyContent: 'center',
-    padding: 5,
-  },
   button: {
     padding: 10,
     backgroundColor: '#E0E0E0',
     margin: 7,
     borderWidth: 1,
     borderRadius: 10,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   message: {
     color: colors.black,
@@ -114,5 +110,5 @@ const styles = StyleSheet.create({
     marginRight: 2,
     textAlign: 'center',
     color: colors.black
-}
+  }
 })

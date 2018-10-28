@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import WalletBalance from '../widgets/WalletBalance'
 import PropTypes from 'prop-types'
 
 export default class WalletDetailsScreen extends React.Component {
@@ -25,6 +26,7 @@ export default class WalletDetailsScreen extends React.Component {
       <View style={styles.mainContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Wallet Details Screen</Text>
+          <WalletBalance />
           <TouchableOpacity style={styles.button}
           onPress={this.handleSendPressed}>
             <Text>Send</Text>
