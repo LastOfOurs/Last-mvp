@@ -8,7 +8,7 @@ export default class ExportPKScreen extends React.Component {
     static navigationOptions = { title: 'Private key' }
 
     render() {
-        const { wallet: { item } } = this.props.navigation.state.params;
+        const { wallet: { item } } = this.props.navigation.state.params
         return (
             <View style={styles.container}>
                 <View style={styles.centered}>
@@ -30,6 +30,5 @@ const styles = StyleSheet.create({
     },
     centered: {
         alignSelf: 'center',
-        textAlign: 'center'
     }
 })

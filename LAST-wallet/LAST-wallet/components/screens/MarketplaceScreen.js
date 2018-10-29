@@ -7,10 +7,6 @@ export default class MarketplaceScreen extends React.Component {
     title: 'Marketplace',
     headerTitle: 'Marketplace',
   })
- 
-  renderLoading = () => {
-    <ActivityIndicator />
-  }
 
   render() {
     return (

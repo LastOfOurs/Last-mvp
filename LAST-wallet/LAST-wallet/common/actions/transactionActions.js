@@ -1,12 +1,13 @@
 import ethers from 'ethers'
-import { notify } from './generalActions'
+// import { notify } from './generalActions'
 var TransactionsService = require('../services/transactionsService')
 import WalletStore from '../stores/walletStorage'
 
 async function waitForTransaction(wallet, txn) {
   await wallet.provider.waitForTransaction(txn.hash)
   WalletStore.moveToHistory(txn)
-  notify('Transaction confirmed')
+  console.log('transaction confirmed')
+  // notify('Transaction confirmed')
 }
 
 export async function sendEther(wallet, destination, amount, options) {

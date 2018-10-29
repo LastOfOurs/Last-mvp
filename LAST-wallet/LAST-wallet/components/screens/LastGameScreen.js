@@ -8,21 +8,12 @@ export default class LastGameScreen extends React.Component {
     title: 'Last Game',
     headerTitle: 'Last Game',
   })
-  
-  // static navigationOptions = {
-  //   tabBarIcon: ({ focused, tintColor }) => (
-  //     <Ionicons
-  //       name={`ios-paw${focused ? "" : "-outline"}`}
-  //       size={25}
-  //       color={tintColor}
-  //     />
-  //   )
-  // }
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
-          <Text>Last Game Screen</Text>
+          <Text style={styles.title}>Last Game Screen</Text>
           <Image style={styles.logo} source={require('../../assets/animals/giant-panda.png')}/>
           <Image style={styles.logo} source={require('../../assets/animals/black-rhino.png')}/>
         </View>
@@ -39,6 +30,9 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     alignItems: 'center'
+  },
+  title: {
+    fontWeight: 'bold'
   },
   logo: {
     width: 80,
