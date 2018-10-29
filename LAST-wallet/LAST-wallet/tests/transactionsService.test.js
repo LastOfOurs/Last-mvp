@@ -3,6 +3,9 @@ const TransactionUtils = require('../common/utils/transactionUtils')
 const Transactions = require('../common/services/transactionService')
 import ethers from ethers
 
+const WALLET_PK = '0xded62a7c46fc74fec0d1c79eff1cf940b2c9f6fdcd6e7361c2d9bc52c27afbe8' //Main wallet
+const DESTINATION_ADDRESS = '0xf0925244aE28e7Bf4D213901D2a666AE3B9A85C1' //Test address
+
 describe.skip('TransactionsService', () => {
 
   it('`sendTransaction` should break if wallet is invalid', async function() {
@@ -71,9 +74,8 @@ describe.skip('TransactionsService', () => {
   })
 
   it('`sendTransaction` should send ether to some address when there are funds available', async function() {
-    const pk = '62384683889eae6de8440eb735856f31bb4f17815888f847c8567b3c87f00be8'
-    const wallet = WalletUtils.loadWalletFromPrivateKey(pk)
-    const to = '0x407428BF09ea7Dac2824A64AfE88171041a02b14'
+    const wallet = WalletUtils.loadWalletFromPrivateKey(WALLET_PK)
+    const to = DESTINATION_ADDRESS
     const value = '0.002'
     const transaction = TransactionUtils.createTransaction(to, value)
     try {
@@ -99,9 +101,8 @@ describe.skip('TransactionsService', () => {
   })
 
   it('`sendEther` should send ether to some address when there are funds available', async function() {
-    const pk = '62384683889eae6de8440eb735856f31bb4f17815888f847c8567b3c87f00be8'
-    const wallet = WalletUtils.loadWalletFromPrivateKey(pk)
-    const to = '0x407428BF09ea7Dac2824A64AfE88171041a02b14'
+    const wallet = WalletUtils.loadWalletFromPrivateKey(WALLET_PK)
+    const to = DESTINATION_ADDRESS
     const value = '0.002'
     try {
       const txn = await Transactions.sendEther(wallet, to, value)
