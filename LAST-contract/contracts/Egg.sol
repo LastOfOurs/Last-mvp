@@ -13,7 +13,7 @@ contract Egg is MintableToken {
    * @param amount amount of eggs to hatch
    * @return A boolean that indicates if the operation was successful.
    */
-    function hatch(uint amount) public returns (bool){
+    function hatch(uint256 amount) public returns (bool){
         require(amount <= balances[msg.sender]);
         balances[msg.sender] = balances[msg.sender].sub(amount);
         emit Hatching(msg.sender, amount, block.timestamp);
