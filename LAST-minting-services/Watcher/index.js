@@ -22,7 +22,8 @@ if (typeof EggToken.currentProvider.sendAsync !== 'function') {
 async function watchHatching() {
   const LastTokenContract = await EggToken.deployed()
   const event = LastTokenContract.Hatching({fromBlock: 0, toBlock: 'latest'})
-  event.watch(function(error, res){
+  event.watch((error, res) => {
+    //push to message queue
     console.log(res)
   })
 }

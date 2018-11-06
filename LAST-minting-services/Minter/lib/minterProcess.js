@@ -9,19 +9,20 @@ const LastEndpoint = config.lastAnimalsEndpoint
  * Start minting process
  * 
  * @param {string} recipient - hex string of Ethereum Address
- * @param {string} animalId - id of the chosen animal to mint
  * 
  * @returns {object} Minted Token
  */
-async function startMintProcess (recipient, animalId) {
+async function startMintProcess (recipient) {
 
+  // GET a random unminted Animal
+  let animalToMint = await axios.get(`${LastEndpoint}/unminted`) 
   // UPDATE animal data to minted = true
-  let animal = await axios.patch(`${LastEndpoint}/${animalId}`, { 'minted': true })
+  let animal = await axios.patch(`${LastEndpoint}/${animalToMint.data.id}`, { 'minted': true })
   let animalData = animal.data
   //add file to IPFS
-  let ipfsHash = await ipfsAdd(animalId, animalData)
+  let ipfsHash = await ipfsAdd(animalToMint.data.id, animalData)
   // finally mint token in smart contract
-  let mintedToken = await lastMint(animalId, recipient, ipfsHash)
+  let mintedToken = await lastMint(animalToMint.data.id, recipient, ipfsHash)
   return mintedToken
 }
 
@@ -31,9 +32,9 @@ async function startMintProcess (recipient, animalId) {
  */
 process.on('message', async (message) => {
   try {
-    await startMintProcess(message.recipient, message.animal_id)
-    process.send('minted token for animal ID: ' + message.animal_id)
+    await startMintProcess(message.recipient)
+    process.send('minted a random animal token')
   } catch(err) {
-    process.send(`error has occured for animal ${message.animal_id}, error: ${err}`)
+    process.send(`error has occured trying to start random mint, error: ${err}`)
   }
 })

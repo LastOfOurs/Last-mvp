@@ -16,13 +16,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
  * @param {string} recipient - address of wallet to mint the token to
  */
 app.post('/api/v1/mint', function (req, res) {
-  let inputAnimalId = req.body.animal_id
   let inputRecipient = req.body.recipient
   // fork minter process
   let minterProcess = process.fork('./lib/minterProcess.js')
   // send data to minter process
   minterProcess.send({
-    animal_id: inputAnimalId,
     recipient: inputRecipient
   })
   // once minter returns message, output it back to the API req
