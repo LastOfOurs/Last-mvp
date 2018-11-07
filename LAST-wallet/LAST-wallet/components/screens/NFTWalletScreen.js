@@ -1,41 +1,45 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { inject, observer } from 'mobx-react'
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
-import { fetchTransactionsBegin } from '../../common/actions/transactionActions'
+import fetchTransactionsBegin from '../../common/actions/transactionActions'
 import getWeb3 from '../../common/utils/web3Utils'
 import PropTypes from 'prop-types'
 
+@inject('prices', 'wallet')
+@observer
 export class NFTWalletScreen extends React.Component {
   static navigationOptions = { title: 'My NFTs' }
   
-  toggleModal = tokenId => {
-    return () => {
-      let modals = this.state.modals
-      modals[tokenId] = !modals[tokenId]
-      this.setState({ modals })
-    }
-  }
+  // toggleModal = tokenId => {
+  //   return () => {
+  //     let modals = this.state.modals
+  //     modals[tokenId] = !modals[tokenId]
+  //     this.setState({ modals })
+  //   }
+  // }
   
   componentDidMount() {
     this.updateTransactions()
   }
   
   async updateTransactions() {
-    const web3 = await getWeb3()
-    const accounts = await web3.eth.getAccounts()
-    let contracts = localStorage.getItem("tokens")
-    contracts = contracts.split(",")
+    // const web3 = await getWeb3()
+    // const accounts = await web3.eth.getAccounts()
+    let contract = '0x16baF0dE678E52367adC69fD067E5eDd1D33e3bF'
   
-    this.props.getTransactions(accounts[0], contracts);
-    this.setState({ accounts });
+    this.props.getTransactions(this.props.wallet.address, contract)
+    console.log(this.props)
+    // this.setState({ accounts })
   }
   
   componentDidUpdate(prevProps, prevState) {
     if (this.props.contracts !== prevProps.contracts) {
-      this.updateTransactions();
+      this.updateTransactions()
     }
     if (this.props.error) {
-      toast.error(this.props.error.message);
+      // toast.error(this.props.error.message)
+      console.log(this.props.error.message)
     }
   }
   
@@ -50,18 +54,19 @@ export class NFTWalletScreen extends React.Component {
   totalCollectibles(transactions) {
     return Object.keys(transactions).reduce((initVal, currVal) => {
       return initVal + transactions[currVal].length;
-    }, 0);
+    }, 0)
   }
   
   render() {
-    const { modals } = this.state
+    // const { modals } = this.state
     const { transactions, loading } = this.props
     const totalCollectibles = this.totalCollectibles(transactions)
-    if (loading) {
-      return (
-        <ActivityIndicator style={styles.activityLoader} />
-      )
-    } else if (totalCollectibles === 0) {
+    // if (loading) {
+    //   return (
+    //     <ActivityIndicator style={styles.activityLoader} />
+    //   )
+    // } else 
+    if (totalCollectibles === 0) {
       return (
         <View>
           <Text>No collectibles found! Add a token to view your collectibles</Text>
@@ -84,9 +89,9 @@ export class NFTWalletScreen extends React.Component {
                       link={link}
                       name={name}
                       contract={contract}
-                      modals={modals}
+                      // modals={modals}
                       toggleModal={this.toggleModal}
-                      account={this.state.accounts[0]}
+                      account={this.state.wallet.address}
                     />
                   )
                 )}
@@ -96,17 +101,6 @@ export class NFTWalletScreen extends React.Component {
         </View>  
       )  
     }
-  }
-
-  render() {
-    return (
-      <View style={styles.mainContainer}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>NFT Wallet Screen</Text>
-          
-        </View>
-      </View>
-    );
   }
 }
 

@@ -16,8 +16,8 @@ export async function loadWallets() {
     pks.map(({ description, name, privateKey }) => {
         const wallet = WalletUtils.loadWalletFromPrivateKey(privateKey)
         WalletsStorage.addWallet(name, wallet, description)
-    });
-    WalletsStorage.isLoading(false);
+    })
+    WalletsStorage.isLoading(false)
 }
 
 export async function updateBalance(wallet) {

@@ -27,6 +27,7 @@ export default class WalletDetailsScreen extends React.Component {
 
   handleNFTWalletPressed = () => {
     this.props.navigation.navigate("NFTWallet")
+    console.log(this.props)
   }
   
   render() {
