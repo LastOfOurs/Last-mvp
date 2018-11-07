@@ -37,7 +37,7 @@ export default class WalletsOverviewScreen extends React.Component {
         await Promise.all([
             WalletActions.loadWallets(),
             PricesActions.getPrice()
-        ]);
+        ])
     } catch (e) {
         GeneralActions.notify(e.message, 'long')
     }
@@ -48,9 +48,9 @@ export default class WalletsOverviewScreen extends React.Component {
   }
 
   handleWalletPressed(wallet) {
-    if (this.loading) return;
-    WalletActions.selectWallet(wallet);
-    this.props.navigation.navigate('WalletDetails', { wallet });
+    if (this.loading) return
+    WalletActions.selectWallet(wallet)
+    this.props.navigation.navigate('WalletDetails', { wallet })
 }
 
   renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.handleWalletPressed(item)} />
@@ -58,7 +58,7 @@ export default class WalletsOverviewScreen extends React.Component {
   renderBody = (list) => (!list.length && !this.loading) ? 
     <View style={styles.noWalletsMessageContainer}>
       <Text style={styles.message}>
-          There are no wallets configured. Click on the + button to add a new one.
+          There are no wallets configured on this device. Click on the + button to add one!
       </Text>
     </View> : (
     <FlatList

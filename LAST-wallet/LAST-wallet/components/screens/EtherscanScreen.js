@@ -1,22 +1,18 @@
 import React from 'react'
 import { WebView, StyleSheet, StatusBar, ActivityIndicator } from 'react-native'
-import { inject, observer } from 'mobx-react'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 
-@inject('wallet')
-@observer
-export default class MarketplaceScreen extends React.Component {
+export default class EtherscanScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Marketplace',
-    headerTitle: 'Marketplace',
+    title: 'Etherscan',
+    headerTitle: 'Etherscan',
   })
 
   render() {
-    const wallet = this.props.wallet.item
+    const hash = this.props.transaction.hash
     return (
       <WebView
         style={styles.mainContainer} 
-        source={{uri: 'https://rinkeby.opensea.io/assets?sortBy=assets_prod_rinkeby&toggle%5Bon_sale%5D=true'}}
+        source={{uri: 'https://rinkeby.etherscan.io/tx/' + hash}}
         renderLoading={()=>{return(<ActivityIndicator style={styles.activityLoader} />)}}
         startInLoadingState
       >

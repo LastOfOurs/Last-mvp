@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { NumberPad } from './NumberPad'
-import { colors } from '@common/styles'
+import { colors } from '../../common/styles'
 import CalculatorPanel from './CalculatorPanel'
 
 export default class Calculator extends React.Component {

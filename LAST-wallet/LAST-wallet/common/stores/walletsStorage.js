@@ -24,7 +24,6 @@ export class WalletsStorage {
         wallet.description = walletDescription
         this.list.push(wallet)
         console.log('wallets in list: ' + this.list.length)
-        console.log(this.list[0])
     }
     
     @action removeWallet(wallet) {

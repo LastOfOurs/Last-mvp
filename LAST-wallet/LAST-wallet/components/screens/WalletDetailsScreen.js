@@ -20,6 +20,14 @@ export default class WalletDetailsScreen extends React.Component {
   handleHistoryPressed = () => {
     this.props.navigation.navigate("WalletHistory")
   }
+
+  handleMarketplacePressed = () => {
+    this.props.navigation.navigate("Marketplace")
+  }
+
+  handleNFTWalletPressed = () => {
+    this.props.navigation.navigate("NFTWallet")
+  }
   
   render() {
     return (
@@ -36,11 +44,19 @@ export default class WalletDetailsScreen extends React.Component {
             <Text>Receive</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
-          onPress={this.handleHistoryPressed}>>
+          onPress={this.handleHistoryPressed}>
             <Text>Wallet History</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
-          onPress={this.handleWalletSettingsPressed}>>
+          onPress={this.handleMarketplacePressed}>
+            <Text>Marketplace</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}
+          onPress={this.handleNFTWalletPressed}>
+            <Text>NFT Wallet</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}
+          onPress={this.handleWalletSettingsPressed}>
             <Text>Wallet Settings</Text>
           </TouchableOpacity>
         </View>

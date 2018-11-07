@@ -52,7 +52,7 @@ export default class QRScanner extends React.Component {
             </TouchableWithoutFeedback>
             <View style={styles.marker} />
         </View>
-    );
+    )
 
     render() {
         const { modal, onClose } = this.props

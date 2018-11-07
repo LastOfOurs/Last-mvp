@@ -4,6 +4,12 @@ import { Provider } from 'mobx-react'
 import { colors } from './common/styles'
 import Router, { INITIAL_ROUTE } from './router'
 import * as stores from './common/stores/'
+import createSagaMiddleware from 'redux-saga'
+
+//For NFTs
+import { createStore, applyMiddleware } from "redux"
+import { Provider as ReduxProvider } from 'react-redux'
+import reducers from './common/reducers'
 
 const STATUSBAR_CONFIG = {
     backgroundColor: colors.statusBar,
@@ -31,14 +37,17 @@ export default class App extends React.Component {
         }
         return false
     }
-
     render() {
+        const sagaMiddleware = createSagaMiddleware()
+        const store = createStore(reducers, applyMiddleware(sagaMiddleware))
         return (
             <Provider {...stores}>
-                <View style={styles.container}>
-                    <StatusBar {...STATUSBAR_CONFIG} />
-                    <Router />
-                </View>
+                <ReduxProvider store={store}>
+                    <View style={styles.container}>
+                        <StatusBar {...STATUSBAR_CONFIG} />
+                        <Router />
+                    </View>
+                </ReduxProvider>
             </Provider>
         )
     }

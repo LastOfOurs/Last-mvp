@@ -43,7 +43,7 @@ export default class TransactionCard extends React.Component {
         return (this.props.transaction.timeStamp) ?
             moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss') : 'Pending'
     }
-
+    
     renderTransactionOperator = () => (
         <Text
             style={styles.operatorLabel}
@@ -59,7 +59,7 @@ export default class TransactionCard extends React.Component {
     }
 
     render() {
-        const { transaction, walletAddress } = this.props;
+        const { transaction, walletAddress } = this.props
         return (
             <TouchableHighlight onPress={() => this.refs.details.wrappedInstance.show()}>
                 <View style={styles.container}>

@@ -29,9 +29,9 @@ export default class ImportWalletWithPKScreen extends React.Component {
           const wallet = WalletUtils.loadWalletFromPrivateKey(this.state.pk)
           const { walletName, walletDescription } = this.props.navigation.state.params
           await WalletsActions.addWallet(walletName, wallet, walletDescription)
+          await WalletsActions.saveWallets()
           this.props.navigation.navigate('WalletsOverview')
           navigation.dismiss()
-          await WalletsActions.saveWallets()
       } catch (e) {
           GeneralActions.notify(e.message, 'long')
       }

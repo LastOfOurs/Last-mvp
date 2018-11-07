@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
-export default class ImportWalletWithPKScreen extends React.Component {
+export default class ImportWalletWithMnemonicsScreen extends React.Component {
   static navigationOptions = { title: 'Import with Mnemonics' }
   
   render() {

@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
         flex: 4,
         alignItems: 'stretch',
         justifyContent: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        padding: 20,
     },
     row: {
         flex: 1,
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 2,
         borderColor: colors.secondary,
+        borderRadius: 10,
         backgroundColor: colors.lightGray,
         alignItems: 'center',
         justifyContent: 'center'

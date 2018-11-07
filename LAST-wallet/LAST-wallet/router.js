@@ -28,6 +28,8 @@ import SelectCurrencyScreen from './components/screens/SelectCurrencyScreen'
 import SettingsScreen from './components/screens/SettingsScreen'
 import ExportPKScreen from './components/screens/ExportPKScreen'
 import MarketplaceScreen from './components/screens/MarketplaceScreen'
+import EtherscanScreen from './components/screens/EtherscanScreen'
+import NFTWalletScreen from './components/screens/NFTWalletScreen'
 
 const MainStack = createStackNavigator(
   {
@@ -49,6 +51,9 @@ const MainStack = createStackNavigator(
     SelectDestination: SelectDestinationScreen,
     SelectCurrency: SelectCurrencyScreen,
     Settings: SettingsScreen,
+    Marketplace: MarketplaceScreen,
+    Etherscan: EtherscanScreen,
+    NFTWallet: NFTWalletScreen
   },
   {
     initialRouteName: INITIAL_ROUTE,
@@ -161,7 +166,7 @@ const MainTabs = createBottomTabNavigator(
       activeTintColor: "#153C59"
     }
   }
-);
+)
 
 const AppNavigator = createSwitchNavigator(
   {

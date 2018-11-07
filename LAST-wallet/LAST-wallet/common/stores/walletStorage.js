@@ -28,7 +28,7 @@ export class WalletStorage {
     @action setHistory(history) {
         if (!this.item) throw new Error(`Can't update the history. No wallet was selected.`)
         if (!(history instanceof Array)) throw new Error('The history must be an array.')
-        this.history = history;
+        this.history = history
     }
 
     @action addPendingTransaction(txn) {

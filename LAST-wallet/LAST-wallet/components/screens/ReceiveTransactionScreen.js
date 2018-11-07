@@ -21,7 +21,7 @@ export default class ReceiveTransactionScreen extends React.Component {
       Share.share({
           title: 'Wallet address:',
           message: item.getAddress()
-      });
+      })
   }
 
   renderColumn = (icon, label, action) => (
@@ -36,7 +36,7 @@ export default class ReceiveTransactionScreen extends React.Component {
     const { wallet: { item } } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.centered}>Show the code below to receive coins</Text>
+        <Text style={styles.centered}>My public address to receive ETH</Text>
         <View style={styles.centered}>
           <QRCode size={256} value={item.getAddress()} />
         </View>

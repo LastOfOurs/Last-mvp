@@ -21,7 +21,7 @@ export default class CalculatorPanel extends React.Component {
         let { amount } = this.state
         switch (value) {
             case 'erase':
-                amount = amount.slice(0, amount.length-1)
+                amount = amount.slice(0, amount.length - 1)
                 break
 
             case '.':

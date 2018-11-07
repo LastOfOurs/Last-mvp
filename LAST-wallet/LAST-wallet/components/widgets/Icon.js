@@ -24,14 +24,14 @@ function getSize(size) {
 }
 
 function getIonicon({ name, size, ...props }) {
-    name = (Platform.OS === 'ios') ? `ios-${name}` : `md-${name}`;
-    return <Ionicon {...props} name={name} size={size} />;
+    name = (Platform.OS === 'ios') ? `ios-${name}` : `md-${name}`
+    return <Ionicon {...props} name={name} size={size} />
 }
 
 export const Icon = (props) => {
-    if (!props.name) return null;
-    const size = getSize(props.size);
-    const color = props.color || colors.black;
+    if (!props.name) return null
+    const size = getSize(props.size)
+    const color = props.color || colors.black
     switch (props.type) {
         case 'ent': return <Entypo {...props} size={size} color={color} />
         case 'ei': return <EvilIcon {...props} size={size} color={color} />

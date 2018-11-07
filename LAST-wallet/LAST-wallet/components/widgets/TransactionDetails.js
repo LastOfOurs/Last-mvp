@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { StyleSheet, ScrollView, Text, WebView, TouchableWithoutFeedback, View, Button } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import Modal from 'react-native-modal'
 import moment from 'moment'
@@ -10,9 +10,8 @@ var WalletUtils = require('../../common/utils/wallet')
 @inject('prices')
 @observer
 export default class TransactionDetails extends React.Component {
-
     state = { show: false }
-
+    
     get isReceiving() {
         return this.to.toLowerCase() === this.props.walletAddress.toLowerCase()
     }
@@ -50,13 +49,11 @@ export default class TransactionDetails extends React.Component {
         return Number(this.props.transaction.isError) > 0 ? 'Yes' : 'None'
     }
 
-    show() {
-        this.setState({ show: true })
-    }
+    show() { 
+        console.log(this.props.transaction)
+        return Number(this.props.transaction.isError) > 0 ? console.log('failed') : this.setState({ show: true }) }
 
-    hide() {
-        this.setState({ show: false })
-    }
+    hide() { this.setState({ show: false }) }
 
     renderTransactionOperator = () => (
         <Text
@@ -128,6 +125,7 @@ export default class TransactionDetails extends React.Component {
                     <Text style={styles.label}>Errors:</Text>
                     <Text style={styles.value}>{this.transactionError}</Text>
                 </View>
+                {/* <Button title='View on Etherscan' onPress={this.renderEtherscan()} /> */}
             </ScrollView>
         </View>
     );

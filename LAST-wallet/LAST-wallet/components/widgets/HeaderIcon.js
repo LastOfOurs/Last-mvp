@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Icon } from './Icon';
-import { measures } from '../../common/styles';
+import React from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Icon } from './Icon'
+import { measures } from '../../common/styles'
 
 export const HeaderIcon = ({ onPress, ...props }) => (
     <TouchableOpacity onPress={onPress}>
@@ -9,7 +9,7 @@ export const HeaderIcon = ({ onPress, ...props }) => (
             <Icon {...props} />
         </View>
     </TouchableOpacity>
-);
+)
 
 const styles = StyleSheet.create({
     container: {
