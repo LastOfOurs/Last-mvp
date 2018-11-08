@@ -7,86 +7,17 @@ import { colors, measures } from '../../common/styles'
 import TransactionDetails from './TransactionDetails'
 var WalletUtils = require('../../common/utils/wallet')
 
-@inject('prices')
-@observer
 export default class NFTCard extends React.Component {
-
-    get isReceiving() {
-        return this.to.toLowerCase() === this.props.walletAddress.toLowerCase()
-    }
-
-    get isConfirmed() {
-        return this.props.transaction.confirmations > 0
-    }
-
-    get from() {
-        return this.props.transaction.from
-    }
-
-    get to() {
-        return this.props.transaction.to
-    }
-
-    get iconName() {
-        return (this.isReceiving) ? 'download' : 'upload'
-    }
-
-    get balance() {
-        return Number(WalletUtils.formatBalance(this.props.transaction.value))
-    }
     
-    get fiatBalance() {
-        return Number(this.props.prices.usd * this.balance).toFixed(2)
-    }
-
-    get timestamp() {
-        return (this.props.transaction.timeStamp) ?
-            moment.unix(this.props.transaction.timeStamp).format('DD/MM/YYYY hh:mm:ss') : 'Pending'
-    }
+    //Todo: Optimize performance with PureComponent or shouldComponentUpdate
     
-    renderTransactionOperator = () => (
-        <Text
-            style={styles.operatorLabel}
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            children={this.isReceiving ? `From ${this.from}` : `To ${this.to}`} />
-    );
-
-    renderConfirmationStatus() {
-        return this.isConfirmed ?
-            <Icon name="checkmark" color={colors.success} /> :
-            <Icon name="clock" type="ei" color={colors.pending} />
-    }
-
     render() {
-        const { transaction, walletAddress } = this.props
+        const { NFT } = this.props
         return (
-            <TouchableHighlight onPress={() => this.refs.details.wrappedInstance.show()}>
+            <TouchableHighlight onPress={() => console.log('meow')}>
                 <View style={styles.container}>
-                    <View style={styles.leftColumn}>
-                        <Icon name={this.iconName} type="fe" />
-                    </View>
-                    <View style={styles.centerColumn}>
-                        {this.renderTransactionOperator()}
-                        <Text>{this.timestamp}</Text>
-                    </View>
-                    <View style={styles.rightColumn}>
-                        <View style={styles.amountContainer}>
-                            <Text
-                                style={styles.amountLabel}
-                                ellipsizeMode="tail"
-                                numberOfLines={1}
-                                children={this.balance.toFixed(4)} />
-                            <Text style={styles.fiatLabel}>US$ {this.fiatBalance}</Text>
-                        </View>
-                        <View style={styles.confirmationsContainer}>
-                            {this.renderConfirmationStatus()}
-                        </View>
-                    </View>
-                    <TransactionDetails
-                        ref="details"
-                        transaction={transaction}
-                        walletAddress={walletAddress} />
+                    <Text>{NFT.token.name}</Text>
+                    <Text>Kitty# {NFT._tokenId}</Text>
                 </View>
             </TouchableHighlight>
         )
@@ -97,7 +28,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         flexDirection: 'row',
         backgroundColor: colors.secondary,
         height: 64,

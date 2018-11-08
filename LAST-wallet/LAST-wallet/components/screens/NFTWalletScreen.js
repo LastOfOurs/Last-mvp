@@ -1,11 +1,20 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { View, Text, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { Svg, Image } from 'react-native-svg'
+import SvgUri from 'react-native-svg-uri'
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, RefreshControl, FlatList } from 'react-native'
 const WalletActions = require('../../common/actions/walletActions.js')
 import getWeb3 from '../../common/utils/web3Utils'
 import PropTypes from 'prop-types'
+import NFTCard from '../widgets/NFTCard'
 
-@inject('prices', 'wallet')
+const NoNFTs = () => (
+  <View style={styles.noTransactionsContainer}>
+    <Text style={styles.noTransactionsMessage}>No NFTs found for this address.</Text>
+  </View>
+)
+
+@inject('wallet')
 @observer
 export default class NFTWalletScreen extends React.Component {
   static navigationOptions = { title: 'My NFTs' }
@@ -27,26 +36,35 @@ export default class NFTWalletScreen extends React.Component {
     }
   }
 
+  renderItem = (address) => ({ item }) => <NFTCard NFT={item} />
+
+    renderBody = ({ NFTs }) =>  (!NFTs) ? <NoNFTs /> : (
+    <FlatList
+        style={styles.content}
+        data={NFTs}
+        refreshControl={<RefreshControl refreshing={false} onRefresh={() => this.updateNFTs()} />}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={this.renderItem()} /> 
+)
+
   render() {
     const { loading } = this.props
     const totalCollectibles = this.state.NFTs.length
-    console.log(this.state.NFTs)
+    console.log(this.props)
     if (loading) {
       return (
         <ActivityIndicator style={styles.activityLoader} />
       )
     } else if (totalCollectibles === 0) {
       return (
-        <View>
+        <View style={styles.titleContainer}>
           <Text>No collectibles found! Add a token to view your collectibles</Text>
         </View>
       )
     } else {
       return (
-        <View>
-          <Image style={{width: 100, height: 100}} source={{uri: this.state.NFTs[0].token.image}}/>
-          <Text>{this.state.NFTs[0]._tokenId}</Text>
-          <Text>{this.state.NFTs[0].token.name}</Text>
+        <View style={styles.mainContainer}>
+          {this.renderBody(this.props.wallet)} 
         </View>  
       )  
     }
@@ -72,6 +90,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     justifyContent: 'center'
+  },
+  content: {
+    padding: 20
   },
   activityLoader: {
     position: 'absolute',
