@@ -6,7 +6,8 @@ const INITIAL = {
     item: null,
     history: [],
     pendingTransactions: [],
-    loading: false
+    loading: false,
+    NFTs: [],
 }
 
 export class WalletStorage {
@@ -22,13 +23,19 @@ export class WalletStorage {
 
     @action select(wallet) {
         if (!(wallet instanceof ethers.Wallet)) throw new Error('Invalid Wallet')
-        this.item = wallet;
+        this.item = wallet
     }
 
     @action setHistory(history) {
         if (!this.item) throw new Error(`Can't update the history. No wallet was selected.`)
         if (!(history instanceof Array)) throw new Error('The history must be an array.')
         this.history = history
+    }
+
+    @action setNFTs(NFTs) {
+        if (!this.item) throw new Error(`Can't load NFTs. No wallet was selected.`)
+        if (!(NFTs instanceof Array)) throw new Error('The NFTs must be in an array.')
+        this.NFTs = NFTs
     }
 
     @action addPendingTransaction(txn) {

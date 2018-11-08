@@ -43,3 +43,10 @@ export async function updateHistory(wallet) {
     if (data.status == 1) WalletStorage.setHistory(data.result)
     WalletStorage.isLoading(false)
 }
+
+export async function fetchNFTs(wallet) {
+    WalletStorage.isLoading(true)
+    const data = await ApiService.getCryptoKitties(wallet.getAddress())
+    if (data) WalletStorage.setNFTs(data)
+    WalletStorage.isLoading(false)
+}
