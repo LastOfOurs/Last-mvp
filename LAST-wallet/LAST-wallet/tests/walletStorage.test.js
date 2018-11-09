@@ -14,7 +14,7 @@ describe('WalletStorage', () => {
         expect(walletStore.item.getAddress()).toBe(wallet.getAddress())
     })
 
-    it('should be able to add a transaction into wallet history', () => {
+    it('should be able to add a transaction into transaction history', () => {
         const mnemonics = WalletUtils.generateMnemonics()
         const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics)
         walletStore.select(wallet)
