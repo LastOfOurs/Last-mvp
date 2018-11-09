@@ -18,12 +18,12 @@ export class WalletsStorage {
 
     @action addWallet(walletName, wallet, walletDescription='') {
         if (!(wallet instanceof ethers.Wallet)) throw new Error('Invalid Wallet')
-        console.log('wallet name: ' + walletName)
-        console.log(wallet)
+        // console.log('wallet name: ' + walletName)
+        // console.log(wallet)
         wallet.name = walletName
         wallet.description = walletDescription
         this.list.push(wallet)
-        console.log('wallets in list: ' + this.list.length)
+        // console.log('wallets in list: ' + this.list.length)
     }
     
     @action removeWallet(wallet) {

@@ -4,8 +4,6 @@ import { Svg, Image } from 'react-native-svg'
 import SvgUri from 'react-native-svg-uri'
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, RefreshControl, FlatList } from 'react-native'
 const WalletActions = require('../../common/actions/walletActions.js')
-import getWeb3 from '../../common/utils/web3Utils'
-import PropTypes from 'prop-types'
 import NFTCard from '../widgets/NFTCard'
 
 const NoNFTs = () => (
@@ -43,14 +41,13 @@ export default class NFTWalletScreen extends React.Component {
         style={styles.content}
         data={NFTs}
         refreshControl={<RefreshControl refreshing={false} onRefresh={() => this.updateNFTs()} />}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(index) => index.toString()}
         renderItem={this.renderItem()} /> 
 )
 
   render() {
     const { loading } = this.props
     const totalCollectibles = this.state.NFTs.length
-    console.log(this.props)
     if (loading) {
       return (
         <ActivityIndicator style={styles.activityLoader} />

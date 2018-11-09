@@ -49,8 +49,12 @@ export default class WalletsOverviewScreen extends React.Component {
 
   handleWalletPressed(wallet) {
     if (this.loading) return
-    WalletActions.selectWallet(wallet)
-    this.props.navigation.navigate('WalletDetails', { wallet })
+    try {
+      WalletActions.selectWallet(wallet)
+      this.props.navigation.navigate('WalletDetails', { wallet })
+    } catch (e) {
+      console.log(e)
+    }
 }
 
   renderItem = ({ item }) => <WalletCard wallet={item} onPress={() => this.handleWalletPressed(item)} />

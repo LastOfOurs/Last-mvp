@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
-import PropTypes from 'prop-types'
 
 export default class LoginScreen extends React.Component {
   _enter = () => {

@@ -6,7 +6,6 @@ import { colors, measures } from '../../common/styles'
 var WalletUtils = require('../../common/utils/wallet.js')
 var WalletsActions = require('../../common/actions/walletActions.js')
 var GeneralActions = require('../../common/actions/generalActions')
-import PropTypes from 'prop-types'
 
 export default class ImportWalletWithPKScreen extends React.Component {
   static navigationOptions = { title: 'Import Wallet' }

@@ -9,7 +9,7 @@ var WalletUtils = require('../../common/utils/wallet')
 export default class WalletBalance extends React.Component {
 
     get balance() {
-        const { item } = this.props.wallet;
+        const { item } = this.props.wallet
         return Number(WalletUtils.formatBalance(item.balance))
     }
     

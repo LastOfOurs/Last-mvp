@@ -3,26 +3,6 @@ import ethers from 'ethers'
 var TransactionsService = require('../services/transactionsService')
 import WalletStore from '../stores/walletStorage'
 
-//ERC721
-export const FETCH_TRANSACTIONS_BEGIN = "FETCH_TRANSACTIONS_BEGIN"
-export const FETCH_TRANSACTIONS_SUCCESS = "FETCH_TRANSACTIONS_SUCCESS"
-export const FETCH_TRANSACTIONS_FAILURE = "FETCH_TRANSACTIONS_FAILURE"
-
-export const fetchTransactionsBegin = (address, contracts) => ({
-  type: FETCH_TRANSACTIONS_BEGIN,
-  payload: { address, contracts }
-})
-
-export const fetchTransactionsSuccess = transactions => ({
-  type: FETCH_TRANSACTIONS_SUCCESS,
-  payload: { transactions }
-})
-
-export const fetchTransactionsFailure = error => ({
-  type: FETCH_TRANSACTIONS_FAILURE,
-  payload: { error }
-})
-
 async function waitForTransaction(wallet, txn) {
   await wallet.provider.waitForTransaction(txn.hash)
   WalletStore.moveToHistory(txn)

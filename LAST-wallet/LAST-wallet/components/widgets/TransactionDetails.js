@@ -51,7 +51,7 @@ export default class TransactionDetails extends React.Component {
 
     show() { 
         console.log(this.props.transaction)
-        return Number(this.props.transaction.isError) > 0 ? console.log('failed') : this.setState({ show: true }) }
+        return (Number(this.props.transaction.isError) > 0 || !this.props.transaction.timeStamp) ? console.log('failed or not ready') : this.setState({ show: true }) }
 
     hide() { this.setState({ show: false }) }
 

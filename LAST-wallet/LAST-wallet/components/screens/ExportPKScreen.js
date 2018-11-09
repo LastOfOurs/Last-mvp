@@ -12,7 +12,8 @@ export default class ExportPKScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.centered}>
-                    <QRCode size={256} value={item.privateKey} />
+                    {/* QR Code stopped working for some reason, TODO: fix react-native-svg link */}
+                    {/* <QRCode size={256} value={item.privateKey} /> */}
                 </View>
                 <Text style={styles.centered}>{item.privateKey}</Text>
             </View>

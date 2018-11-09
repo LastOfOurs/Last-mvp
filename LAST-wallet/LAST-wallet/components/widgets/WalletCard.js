@@ -11,8 +11,8 @@ var WalletActions = require('../../common/actions/walletActions.js')
 export default class WalletCard extends React.Component {
 
     get balance() {
-        if (!this.props.wallet.balance) return 0;
-        return Number(WalletUtils.formatBalance(this.props.wallet.balance));
+        if (!this.props.wallet.balance) return 0
+        return Number(WalletUtils.formatBalance(this.props.wallet.balance))
     }
 
     get fiatBalance() {
@@ -20,7 +20,11 @@ export default class WalletCard extends React.Component {
     }
 
     componentDidMount() {
-        WalletActions.updateBalance(this.props.wallet)
+        try {
+            WalletActions.updateBalance(this.props.wallet)
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     render() {

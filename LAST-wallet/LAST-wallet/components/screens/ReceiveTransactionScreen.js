@@ -13,11 +13,11 @@ export default class ReceiveTransactionScreen extends React.Component {
   copyToClipboard() {
     const { item } = this.props.wallet;
     Clipboard.setString(item.getAddress());
-    GeneralActions.notify('Copied to clipboard', 'short');
+    GeneralActions.notify('Copied to clipboard', 'short')
   }
 
   share() {
-      const { item } = this.props.wallet;
+      const { item } = this.props.wallet
       Share.share({
           title: 'Wallet address:',
           message: item.getAddress()
@@ -33,12 +33,11 @@ export default class ReceiveTransactionScreen extends React.Component {
   );
   
   render() {
-    const { wallet: { item } } = this.props;
+    const { wallet: { item } } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.centered}>My public address to receive ETH</Text>
         <View style={styles.centered}>
-          <QRCode size={256} value={item.getAddress()} />
         </View>
         <Text style={styles.centered}>{item.getAddress()}</Text>
         <View style={styles.actions}>

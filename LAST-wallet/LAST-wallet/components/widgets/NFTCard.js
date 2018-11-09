@@ -10,6 +10,7 @@ var WalletUtils = require('../../common/utils/wallet')
 export default class NFTCard extends React.Component {
     
     //Todo: Optimize performance with PureComponent or shouldComponentUpdate
+    //Todo: Add pictures and style the card
     
     render() {
         const { NFT } = this.props
@@ -17,7 +18,7 @@ export default class NFTCard extends React.Component {
             <TouchableHighlight onPress={() => console.log('meow')}>
                 <View style={styles.container}>
                     <Text>{NFT.token.name}</Text>
-                    <Text>Kitty# {NFT._tokenId}</Text>
+                    <Text style={styles.title}>Kitty# {NFT._tokenId}</Text>
                 </View>
             </TouchableHighlight>
         )
@@ -30,9 +31,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        backgroundColor: colors.secondary,
+        backgroundColor: '#1FABD0',
         height: 64,
         marginBottom: measures.defaultMargin,
+    },
+    title: {
+        fontWeight: 'bold'
     },
     leftColumn: {
         width: 40,
