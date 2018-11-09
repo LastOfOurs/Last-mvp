@@ -33,6 +33,7 @@ export default class ConfirmWalletCreationScreen extends React.Component {
             this.props.navigation.navigate('WalletsOverview')
             navigation.dismiss()
         } catch (e) {
+            console.log('wallet creation error: ' + e)
             GeneralActions.notify(e.message, 'long')
         }
     }

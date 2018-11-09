@@ -15,16 +15,17 @@ export default class WalletSettingsScreen extends React.Component {
         try {
             const { wallet } = this.props
             await WalletActions.removeWallet(wallet.item)
+            await WalletActions.saveWallets()
             this.props.navigation.navigate('WalletsOverview')
             navigation.dismiss()
-            await WalletActions.saveWallets()
         } catch (e) {
+            console.log('wallet deletion error: ' + e)
             GeneralActions.notify(e.message, 'long')
         }
     }
 
     showPK() {
-        const { wallet } = this.props;
+        const { wallet } = this.props
         this.props.navigation.push('ExportPK', { wallet })
     }
 

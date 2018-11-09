@@ -26,7 +26,7 @@ export async function updateBalance(wallet) {
 }
 
 export async function removeWallet(wallet) {
-    WalletsStorage.removeWallet(wallet)
+    await WalletsStorage.removeWallet(wallet)
 }
 
 export async function saveWallets() {
@@ -34,7 +34,7 @@ export async function saveWallets() {
 }
 
 export async function selectWallet(wallet) {
-    WalletStorage.select(wallet)
+    await WalletStorage.select(wallet)
 }
 
 export async function updateHistory(wallet) {
