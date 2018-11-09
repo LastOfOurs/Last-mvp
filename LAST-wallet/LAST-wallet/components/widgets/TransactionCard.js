@@ -19,6 +19,10 @@ export default class TransactionCard extends React.Component {
         return this.props.transaction.confirmations > 0
     }
 
+    get isSuccessful() {
+        return this.props.transaction.isError == 0
+    }
+
     get from() {
         return this.props.transaction.from
     }
@@ -53,8 +57,9 @@ export default class TransactionCard extends React.Component {
     );
 
     renderConfirmationStatus() {
+        if (this.isConfirmed && this.isSuccessful) return <Icon name="checkmark" color={colors.success} />
         return this.isConfirmed ?
-            <Icon name="checkmark" color={colors.success} /> :
+            <Icon name="alert" color={colors.error} /> :
             <Icon name="clock" type="ei" color={colors.pending} />
     }
 
