@@ -15,8 +15,8 @@ export async function getCryptoKitties(address) {
   testAddress = '0xef2931aa6256771c1e484b52cc9bba3cd2ecec0a' //a mainnet address with 157 kitties to test for display
     let tokens = await axios.get('https://api.cryptokitties.co/kitties/all/' + testAddress)
     tokens = tokens.data
-    let kitties = tokens.map(token => axios.get('https://api.cryptokitties.co/kitties/' + token.id))
-    console.log(kitties)
+    // let kitties = await tokens.map((kitty) => axios.get('https://api.cryptokitties.co/kitties/' + kitty.id))
+    // console.log(kitties)
     const returnValues = tokens.map((token, i) => ({
       _tokenId: token.id,
       link: "https://www.cryptokitties.co/kitty/" + token.id,

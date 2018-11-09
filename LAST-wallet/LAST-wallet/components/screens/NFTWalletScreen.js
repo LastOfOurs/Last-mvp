@@ -34,15 +34,15 @@ export default class NFTWalletScreen extends React.Component {
     }
   }
 
-  renderItem = (address) => ({ item }) => <NFTCard NFT={item} />
+  renderItem = () => ({ item }) => <NFTCard NFT={item} />
 
-    renderBody = ({ NFTs }) =>  (!NFTs) ? <NoNFTs /> : (
-    <FlatList
-        style={styles.content}
-        data={NFTs}
-        refreshControl={<RefreshControl refreshing={false} onRefresh={() => this.updateNFTs()} />}
-        keyExtractor={(index) => index.toString()}
-        renderItem={this.renderItem()} /> 
+  renderBody = ({ NFTs }) =>  (!NFTs) ? <NoNFTs /> : (
+  <FlatList
+      style={styles.content}
+      data={NFTs}
+      refreshControl={<RefreshControl refreshing={false} onRefresh={() => this.updateNFTs()} />}
+      keyExtractor={(index) => index.toString()}
+      renderItem={this.renderItem()} /> 
 )
 
   render() {

@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, Button, StatusBar, TouchableOpacity } from 'react-native'
-import PropTypes from 'prop-types'
 
 export default class WalletInitScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {

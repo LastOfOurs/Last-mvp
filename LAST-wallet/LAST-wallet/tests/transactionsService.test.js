@@ -1,7 +1,7 @@
 const WalletUtils = require('../common/utils/wallet')
 const TransactionUtils = require('../common/utils/transactionUtils')
-const Transactions = require('../common/services/transactionService')
-import ethers from ethers
+const Transactions = require('../common/services/transactionsService')
+import ethers from 'ethers'
 
 const WALLET_PK = '0xded62a7c46fc74fec0d1c79eff1cf940b2c9f6fdcd6e7361c2d9bc52c27afbe8' //Main wallet
 const DESTINATION_ADDRESS = '0xf0925244aE28e7Bf4D213901D2a666AE3B9A85C1' //Test address
