@@ -9,7 +9,7 @@ contract Egg is MintableToken {
     event Hatching(address recipient, uint256 amount, uint256 timestamp);
 
     /**
-   * @dev Function to hatch an egg (sends eggs to zero address)
+   * @dev Function to hatch eggs (sends eggs to zero address)
    * @param amount amount of eggs to hatch
    * @return A boolean that indicates if the operation was successful.
    */

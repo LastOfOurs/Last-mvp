@@ -24,6 +24,10 @@ services:
     image: pongch/last-minter:latest
     container_name: last-minter
     working_dir: /LAST-minting-services/Minter
+    restart: on-failure
+    depends_on: 
+      - rabbitmq
+      - last_ganache
     volumes:
       - ./LAST-minting-services/Minter:/LAST-minting-services/Minter
       - /LAST-minting-services/Minter/node_modules/
@@ -31,9 +35,7 @@ services:
       - ./LAST-contract/build/contracts:/LAST-contract/build/contracts
     ports:
       - "3001:3001"
-    command: bash -c "npm install && npm start"
-    depends_on:
-      - last_ganache
+    command: bash -c "npm install && npm run start"
   last_db:
     container_name: last-db
     volumes:
@@ -73,3 +75,15 @@ services:
     volumes:
       - ./LAST-IPFS:/data/ipfs/
       - ./LAST-IPFS/export:/export
+    depends_on: 
+      - rabbitmq
+  rabbitmq:
+    container_name: rabbitmq
+    image: 'bitnami/rabbitmq:latest'
+    ports:
+      - '4369:4369'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    volumes:
+      - './LAST-mq:/bitnami'
