@@ -2,7 +2,7 @@
 // on POST: Fetch a certain animal based on its ID
 // IMPORTANT: this will be depracated in the future in favor of Event Sourcing
 const process = require('child_process')
-const amqp = require('amqplib/callback_api');
+const amqp = require('amqplib');
 const express = require('express')
 const app = express()
 
@@ -38,15 +38,31 @@ app.listen(3001, function () {
   console.log('Running Minter listener on port 3001')
 })
 
-//ADD Subscribing to Message queue
-amqp.connect({ protocol: 'amqp', hostname: 'rabbitmq', port: 5672, username: 'user', password: 'bitnami', vhost: '/' }, function(err, conn) {
-  conn.createChannel(function(err, ch) {
-    var q = 'egg-hatch';
+async function subscribeToHatchEvent() {
+  try {
+    const conn = await amqp.connect({ 
+      protocol: 'amqp', 
+      hostname: 'rabbitmq', 
+      port: 5672, 
+      username: 'user', 
+      password: 'bitnami', 
+      vhost: '/' 
+    })
 
-    ch.assertQueue(q, {durable: false});
-    console.log("Waiting for messages for ", q);
-    ch.consume(q, function(msg) {
+    const channel = await conn.createChannel()
+    let q = 'egg-hatch'
+    await channel.assertQueue(q, {durable: false})
+    channel.consume(q, function(msg) {
       console.log("content is", msg.content.toString())
-    }, {noAck: true});
-  });
-});
+      console.log("content is", typeof msg.content)
+    }, {noAck: true})
+  } catch (err) {
+    throw new Error(err)
+    process.exit(1)
+  }
+} 
+
+//using setTimeout here so process waits for rabbitmq to initialize
+setTimeout(function () {
+  subscribeToHatchEvent()
+}, 18000); 
