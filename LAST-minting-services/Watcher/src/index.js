@@ -1,7 +1,7 @@
 const Web3 = require('web3')
 const contract = require('truffle-contract')
 const fs = require('nano-fs')
-const config = require('./config.js')
+const config = require('../config.js')
 const amqp = require('amqplib');
 const EggJson = fs.readFileSync('../../LAST-contract/build/contracts/Egg.json', 'utf8')
 const EggArtifacts = JSON.parse(EggJson)
@@ -12,6 +12,7 @@ const ownerAddr = config.lastOwnerAddr
 
 EggToken.setProvider(web3.currentProvider)
 
+//TODO: Find more elegant way to accept web3 provider
 if (typeof EggToken.currentProvider.sendAsync !== 'function') {
   EggToken.currentProvider.sendAsync = function () {
     return EggToken.currentProvider.send.apply(
@@ -20,7 +21,20 @@ if (typeof EggToken.currentProvider.sendAsync !== 'function') {
   }
 }
 
-async function pushHatchEvent(recipient, amount) {
+async function pushHatchEvent(conn, recipient) {
+  const channel = await conn.createChannel()
+  let q = 'egg-hatch'
+  let msgObj = {
+    recipient: recipient
+  }
+  await channel.assertQueue(q, {durable: false})
+  await channel.sendToQueue(q, Buffer.from(JSON.stringify(msgObj)))
+  console.log(`published ${JSON.stringify(msgObj)} to queue`)
+}
+
+async function watchHatching() {
+  const LastTokenContract = await EggToken.deployed({fromBlock: "pending", toBlock: "latest"})
+  const event = LastTokenContract.Hatching()
   const conn = await amqp.connect({ 
     protocol: 'amqp', 
     hostname: 'localhost', 
@@ -29,26 +43,12 @@ async function pushHatchEvent(recipient, amount) {
     password: 'bitnami', 
     vhost: '/' 
   })
-  const channel = await conn.createChannel()
-  let q = 'egg-hatch'
-  let msgObj = JSON.stringify({
-    recipient: recipient,
-    amount: amount
-  })
-  await channel.assertQueue(q, {durable: false})
-  await channel.sendToQueue(q, Buffer.from(msgObj))
-  console.log(`published ${msgObj} to queue`)
-}
-
-async function watchHatching() {
-  const LastTokenContract = await EggToken.deployed()
-  const event = LastTokenContract.Hatching({fromBlock: 0, toBlock: 'latest'})
   //console.log(LastTokenContract)
   event.watch((error, res) => {
     if(error) console.error(error)
     else {
       //push recipient address and amount
-      pushHatchEvent(res.args.recipient, res.args.amount.toNumber())
+      pushHatchEvent(conn, res.args.recipient)
     }
   })
 }

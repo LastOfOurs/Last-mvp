@@ -5,7 +5,7 @@ const config = {
   ipfsNodeHost: 'last-ipfs',
   ipfsNodePort: '5001',
   web3Provider: 'http://last_ganache:8546',
-  socketProvider: 'ws://localhost:8545',
+  socketProvider: 'ws://localhost:8546',
   lastAnimalsEndpoint: 'http://last_server:3000/api/animals'
 }
 

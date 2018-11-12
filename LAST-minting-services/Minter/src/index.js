@@ -20,7 +20,7 @@ app.post('/api/v1/mint', function (req, res) {
   let inputRecipient = req.body.recipient
   // fork minter process
   //TODO: use message queue instead of forked message
-  let minterProcess = process.fork('./lib/minterProcess.js')
+  let minterProcess = process.fork('./src/minterProcess.js')
   // send data to minter process
   minterProcess.send({
     recipient: inputRecipient
@@ -53,8 +53,18 @@ async function subscribeToHatchEvent() {
     let q = 'egg-hatch'
     await channel.assertQueue(q, {durable: false})
     channel.consume(q, function(msg) {
-      console.log("content is", msg.content.toString())
-      console.log("content is", typeof msg.content)
+      //console.log("content is", msg.content.toString())
+      //console.log("content is", JSON.parse(msg.content))
+      let msgObj = JSON.parse(msg.content.toString())
+      let minterProcess = process.fork('./src/minterProcess.js')
+      // send data to minter process
+      minterProcess.send({
+        recipient: msgObj.recipient
+      })
+      // once minter returns message, output it back to the API req
+      minterProcess.on('message', (message) => {
+        console.log(message)
+      })
     }, {noAck: true})
   } catch (err) {
     throw new Error(err)
