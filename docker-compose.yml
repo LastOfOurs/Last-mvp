@@ -20,13 +20,16 @@ services:
     volumes:
       - ./LAST-contract:/usr/src/app
     tty: true
+    command: bash -c "truffle compile && truffle migrate --reset --network compose && tail -f /dev/null"
+    depends_on: 
+      - last_ganache
   last_minter:
     image: pongch/last-minter:latest
     container_name: last-minter
     working_dir: /LAST-minting-services/Minter
-    restart: on-failure
+    restart: always
     depends_on: 
-      - rabbitmq
+      - last_rabbitmq
       - last_ganache
     volumes:
       - ./LAST-minting-services/Minter:/LAST-minting-services/Minter
@@ -76,9 +79,9 @@ services:
       - ./LAST-IPFS:/data/ipfs/
       - ./LAST-IPFS/export:/export
     depends_on: 
-      - rabbitmq
-  rabbitmq:
-    container_name: rabbitmq
+      - last_rabbitmq
+  last_rabbitmq:
+    container_name: last_rabbitmq
     image: 'bitnami/rabbitmq:latest'
     ports:
       - '4369:4369'

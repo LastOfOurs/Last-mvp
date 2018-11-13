@@ -42,7 +42,7 @@ async function subscribeToHatchEvent() {
   try {
     const conn = await amqp.connect({ 
       protocol: 'amqp', 
-      hostname: 'rabbitmq', 
+      hostname: 'last_rabbitmq', 
       port: 5672, 
       username: 'user', 
       password: 'bitnami', 
@@ -75,4 +75,4 @@ async function subscribeToHatchEvent() {
 //using setTimeout here so process waits for rabbitmq to initialize
 setTimeout(function () {
   subscribeToHatchEvent()
-}, 18000); 
+}, 20000)

@@ -33,7 +33,7 @@ async function pushHatchEvent(conn, recipient) {
 }
 
 async function watchHatching() {
-  const LastTokenContract = await EggToken.deployed({fromBlock: "pending", toBlock: "latest"})
+  const LastTokenContract = await EggToken.deployed()
   const event = LastTokenContract.Hatching()
   const conn = await amqp.connect({ 
     protocol: 'amqp', 
