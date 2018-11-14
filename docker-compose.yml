@@ -39,6 +39,20 @@ services:
     ports:
       - "3001:3001"
     command: bash -c "npm install && npm run start"
+  last_watcher:
+    build: ./LAST-minting-services/Watcher
+    working_dir: /LAST-minting-services/Watcher
+    container_name: last-watcher
+    restart: always
+    depends_on: 
+      - last_rabbitmq
+      - last_ganache
+      - last_minter
+    volumes:
+      - ./LAST-contract/build/contracts:/LAST-contract/build/contracts
+      - ./LAST-minting-services/Watcher:/LAST-minting-services/Watcher
+      - /LAST-minting-services/Watcher/node_modules/
+    command: bash -c "npm run start"
   last_db:
     container_name: last-db
     volumes:
