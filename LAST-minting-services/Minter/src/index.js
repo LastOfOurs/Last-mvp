@@ -53,8 +53,6 @@ async function subscribeToHatchEvent() {
     let q = 'egg-hatch'
     await channel.assertQueue(q, {durable: false})
     channel.consume(q, function(msg) {
-      //console.log("content is", msg.content.toString())
-      //console.log("content is", JSON.parse(msg.content))
       let msgObj = JSON.parse(msg.content.toString())
       let minterProcess = process.fork('./src/minterProcess.js')
       // send data to minter process

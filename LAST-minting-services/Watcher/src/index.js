@@ -37,7 +37,7 @@ async function watchHatching() {
   const event = LastTokenContract.Hatching()
   const conn = await amqp.connect({ 
     protocol: 'amqp', 
-    hostname: 'localhost', 
+    hostname: 'last_rabbitmq', 
     port: 5672, 
     username: 'user', 
     password: 'bitnami', 
@@ -53,4 +53,6 @@ async function watchHatching() {
   })
 }
 
-watchHatching()
+setTimeout(function () {
+  watchHatching()
+}, 20000)

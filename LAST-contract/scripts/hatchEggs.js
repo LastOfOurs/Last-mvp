@@ -17,7 +17,6 @@ module.exports = async () => {
     await eggContract.hatch({from: web3.eth.accounts[1]})
     await sleep(1000)
     await eggContract.hatch({from: web3.eth.accounts[1]})
-    //console.log(eggOne, eggTwo, eggThree)
   } catch (err) {
     throw err
   }
