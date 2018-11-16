@@ -1,4 +1,4 @@
-const Last = artifacts.require('LAST')
+const Last = artifacts.require('Last')
 
 module.exports = async () => {
   try {

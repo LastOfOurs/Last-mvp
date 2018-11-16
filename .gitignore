@@ -1,7 +1,7 @@
-LAST-IPFS/*
-!LAST-IPFS/.gitkeep
-LAST-IPFS/export/*
-!LAST-IPFS/export/.gitkeep
-./LAST-server/db/mongodb/*
-!./LAST-server/db/mongodb/.gitkeep
-LAST-mq
+Last-IPFS/*
+!Last-IPFS/.gitkeep
+Last-IPFS/export/*
+!Last-IPFS/export/.gitkeep
+./Last-core/db/mongodb/*
+!./Last-core/db/mongodb/.gitkeep
+Last-mq

@@ -1,13 +1,13 @@
-var LAST = artifacts.require('./LAST.sol')
+var Last = artifacts.require('./Last.sol')
 var assert = require('assert')
 var expectThrow = require('./helper.js')
 
-contract('LAST', async () => {
+contract('Last', async () => {
   // "should have the correct Contract name and symbol"
   it('should have the correct Contract name and symbol', async () => {
     let correctSymbol = 'LTK'
-    let correctName = 'LAST'
-    let inst = await LAST.deployed()
+    let correctName = 'Last'
+    let inst = await Last.deployed()
     let contract = inst
     callSymbol = await contract.symbol.call()
     callName = await contract.name.call()
@@ -18,7 +18,7 @@ contract('LAST', async () => {
   // "Should check to make sure that the owner of the contract is the msg.sender"
   it('should check to make sure that the owner of the contract is the msg.sender', async () => {
     let owner = web3.eth.accounts[0]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
 
     callOwner = await contract.owner.call()
@@ -29,7 +29,7 @@ contract('LAST', async () => {
   it('should mint to a specified wallet address', async () => {
     let user1 = web3.eth.accounts[0]
 
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/1'
 
@@ -40,7 +40,7 @@ contract('LAST', async () => {
 
   // "should check of token exists"
   it('should check of token exists', async () => {
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
 
     existedToken = await contract.exists.call(1)
@@ -54,7 +54,7 @@ contract('LAST', async () => {
   it('should store correct tokenUri', async () => {
     let user1 = web3.eth.accounts[0]
 
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/2'
 
@@ -66,7 +66,7 @@ contract('LAST', async () => {
   // "should not allow minting without tokenURi"
   it('should not allow minting without tokenURi', async () => {
     let user2 = web3.eth.accounts[1]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
 
     await expectThrow(contract.mint(user2, 3))
@@ -77,7 +77,7 @@ contract('LAST', async () => {
     let user2 = web3.eth.accounts[1]
     let tx = { from: web3.eth.accounts[1] }
 
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/3'
 
@@ -90,7 +90,7 @@ contract('LAST', async () => {
     let user2 = web3.eth.accounts[1]
     let tx = { from: user2 }
 
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/3'
 
@@ -101,7 +101,7 @@ contract('LAST', async () => {
   // "should not allow a duplicated token ID to be minted"
   it('should not allow duplicated token ID to be minted', async () => {
     let user1 = web3.eth.accounts[0]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/3'
 
@@ -113,7 +113,7 @@ contract('LAST', async () => {
   // "it should get all the token balances of an account"
   it('should get all the token balances of an account', async () => {
     let user3 = web3.eth.accounts[2]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/3'
 
@@ -126,7 +126,7 @@ contract('LAST', async () => {
   // should ouput token of owner by indexes
   it('should output tokens of owner by indexes', async () => {
     let user3 = web3.eth.accounts[2]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/3'
     index0 = await contract.tokenOfOwnerByIndex(user3, 0)
@@ -139,7 +139,7 @@ contract('LAST', async () => {
   it('should approve a user to spend fund', async () => {
     let user1 = web3.eth.accounts[0]
     let user2 = web3.eth.accounts[1]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/3'
 
@@ -153,7 +153,7 @@ contract('LAST', async () => {
   it('should allow approved user to transfer funds', async () => {
     let user1 = web3.eth.accounts[0]
     let user2 = web3.eth.accounts[1]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
 
     await contract.transferFrom(user1, user2, 7, { from: user2 })
@@ -165,7 +165,7 @@ contract('LAST', async () => {
   it('should revoke user from spending funds', async () => {
     let user1 = web3.eth.accounts[0]
     let user2 = web3.eth.accounts[1]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/3'
 
@@ -179,7 +179,7 @@ contract('LAST', async () => {
     let user1 = web3.eth.accounts[0]
     let user3 = web3.eth.accounts[2]
 
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     await contract.setApprovalForAll(user3, true)
     isApprovedForAll = await contract.isApprovedForAll(user1, user3)
@@ -190,7 +190,7 @@ contract('LAST', async () => {
   it('should not let safeTransferFrom transfer to a non-nft accepting address', async () => {
     let user1 = web3.eth.accounts[0]
     let user2 = web3.eth.accounts[1]
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     let tokenUri = 'http://data.lastofours.io/3'
     let tx = { from: user2 }
@@ -205,7 +205,7 @@ contract('LAST', async () => {
     let user1 = web3.eth.accounts[0]
     let user3 = web3.eth.accounts[2]
 
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
     await contract.setApprovalForAll(user3, false)
     isApprovedForAll = await contract.isApprovedForAll(user1, user3)
@@ -217,7 +217,7 @@ contract('LAST', async () => {
     let oldOwner = web3.eth.accounts[0]
     let newOwner = web3.eth.accounts[1]
 
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
 
     await contract.transferOwnership(newOwner)

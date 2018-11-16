@@ -8,4 +8,4 @@ curl -X DELETE http://0.0.0.0:3000/api/animals/3 -H 'Cache-Control: no-cache' -H
 
 #nuke your IPFS data store
 
-rm ./LAST-IPFS/export/*
+rm ./Last-IPFS/export/*

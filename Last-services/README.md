@@ -1,4 +1,4 @@
-## LAST-services
+## Last-services
 
 Minting Engine Distributed Applications consists of:
 1. Watcher(s) : watch for an outside events happening to a smart contract

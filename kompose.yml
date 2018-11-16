@@ -17,15 +17,15 @@ services:
     container_name: last_truffle
     image: pongch/truffle:latest
     volumes:
-      - ./LAST-contract:/usr/src/app
+      - ./Last-contract:/usr/src/app
     tty: true
   last_minter:
     image: pongch/last-minter:kube
     container_name: last-minter
     volumes:
       - /usr/src/app/node_modules/
-      - ./LAST-IPFS/export:/LAST-IPFS/export
-      - ./LAST-contract/build/contracts:/LAST-contract/build/contracts
+      - ./Last-IPFS/export:/Last-IPFS/export
+      - ./Last-contract/build/contracts:/Last-contract/build/contracts
     ports:
       - "3001:3001"
     command: bash -c "npm install && npm start"
@@ -34,7 +34,7 @@ services:
   last_db:
     container_name: last-db
     volumes:
-      - ./LAST-server/db:/bitnami
+      - ./Last-core/db:/bitnami
     ports:
       - "27017:27017"
     image: aashreys/mongo-auth:latest
@@ -68,5 +68,5 @@ services:
     - 8080:8080
     image: ipfs/go-ipfs
     volumes:
-      - ./LAST-IPFS:/data/ipfs/
-      - ./LAST-IPFS/export:/export
+      - ./Last-IPFS:/data/ipfs/
+      - ./Last-IPFS/export:/export

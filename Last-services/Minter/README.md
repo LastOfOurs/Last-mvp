@@ -6,10 +6,10 @@ Run `npm install`
 
 ### Configuration
 
-1. Make sure you have IPFS, Ganache-cli, LAST-server endpoints running and configured inside `config.js` in root
+1. Make sure you have IPFS, Ganache-cli, Last-core endpoints running and configured inside `config.js` in root
 2. Make sure you have Animal Data with the appropriate ID number 
-(Ensure that you have created the animal first inside the `LAST-server`)
-3. Deployed `LAST.sol` by running `truffle migrate --reset --network development`
+(Ensure that you have created the animal first inside the `Last-core`)
+3. Deployed `Last.sol` by running `truffle migrate --reset --network development`
 
 Once you have all the configuration done- you can get started
 
@@ -35,7 +35,7 @@ the payload should look like the following
 Once you have sent the event, essentially Minter will automatically spawn a process `minterProcess` that will do the following under the hood:
 
 1. UPDATE API endpoint and set Animal (using the `animal_id` in the payload) `minted` attribute to `true`
-2. Get the data of the animal within `ipfsData` field and create a `.JSON` file under `LAST-IPFS/export` directory.
+2. Get the data of the animal within `ipfsData` field and create a `.JSON` file under `Last-IPFS/export` directory.
 3. Adding the `.JSON` file to the IPFS daemon, returning the IPFS hash
 4. Finally use the `animal_id`, `ipfsHash`, `recipient` to mint the token to the recipient
 

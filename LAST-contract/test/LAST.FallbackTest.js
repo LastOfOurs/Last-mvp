@@ -1,16 +1,16 @@
-var LAST = artifacts.require('./LAST.sol')
+var Last = artifacts.require('./Last.sol')
 var assert = require('assert')
 var expectThrow = require('./helper.js')
 
 beforeEach(async function () {
-  // generate new LAST Contract for every test
-  this.contract = await LAST.new('Last', 'LTK')
+  // generate new Last Contract for every test
+  this.contract = await Last.new('Last', 'LTK')
 })
 
 describe('fallback function', async () => {
   // should not accept ETH
   it('should not accept ETH', async () => {
-    let inst = await LAST.deployed()
+    let inst = await Last.deployed()
     let contract = inst
 
     await assert.throws(

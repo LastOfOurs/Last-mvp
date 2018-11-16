@@ -12,11 +12,11 @@ const ipfs = ipfsAPI(ipfsNodeHost, ipfsNodePort, { protocol: 'http' })
  * @param {object} animalData 
  */
 async function ipfsAdd(animalId, animalData) {
-  await fs.writeFile(`../../LAST-IPFS/export/LAST_ANIMAL_${animalId}.json`, JSON.stringify(animalData.ipfsData))
-  let Ipfscontent = await fs.readFileSync(`../../LAST-IPFS/export/LAST_ANIMAL_${animalId}.json`)
+  await fs.writeFile(`../../Last-IPFS/export/Last_ANIMAL_${animalId}.json`, JSON.stringify(animalData.ipfsData))
+  let Ipfscontent = await fs.readFileSync(`../../Last-IPFS/export/Last_ANIMAL_${animalId}.json`)
   let IpfsData = Buffer.from(Ipfscontent)
   let files = {
-    path: `../../../LAST-IPFS/export/LAST_ANIMAL_${animalId}.json`,
+    path: `../../../Last-IPFS/export/Last_ANIMAL_${animalId}.json`,
     content: IpfsData
   }
   let ipfsAdded = await ipfs.add(files)

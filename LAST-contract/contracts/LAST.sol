@@ -3,9 +3,9 @@ pragma solidity^0.4.17;
 import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/ERC721Token.sol';
 
-contract LAST is Ownable, ERC721Token {
+contract Last is Ownable, ERC721Token {
 
-  function LAST(string _name, string _symbol) ERC721Token(_name, _symbol) public {
+  function Last(string _name, string _symbol) ERC721Token(_name, _symbol) public {
   
   }
 

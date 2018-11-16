@@ -37,7 +37,7 @@ $ truffle migrate
 Log into Console, Play around with Minting new Tokens and Trying to Get TokenMetadata:
 ```
 $ truffle console
-> LAST.deployed().then((inst)=>{LASTcontract = inst})
-> LASTcontract.mint("<Your-Account-Address>", "<unique_id>", "<url>")
-> LASTcontract.tokenURI("<unique_id>")
+> Last.deployed().then((inst)=>{Lastcontract = inst})
+> Lastcontract.mint("<Your-Account-Address>", "<unique_id>", "<url>")
+> Lastcontract.tokenURI("<unique_id>")
 ```

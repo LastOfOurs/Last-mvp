@@ -6,7 +6,7 @@ const amqp = require('amqplib');
 const axios = require('axios')
 const ipfsAdd = require('./minter/ipfsAdd')
 const lastMint = require('./minter/lastMint')
-const config = require('../config.js')
+const config = require('../../../config.js')
 const LastEndpoint = config.lastAnimalsEndpoint
 
 
