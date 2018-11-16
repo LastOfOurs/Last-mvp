@@ -36,11 +36,9 @@ services:
       - /LAST-minting-services/Minter/node_modules/
       - ./LAST-IPFS/export:/LAST-IPFS/export
       - ./LAST-contract/build/contracts:/LAST-contract/build/contracts
-    ports:
-      - "3001:3001"
     command: bash -c "npm install && npm run start"
   last_watcher:
-    build: ./LAST-minting-services/Watcher
+    image: pongch/last-watcher:latest
     working_dir: /LAST-minting-services/Watcher
     container_name: last-watcher
     restart: always
@@ -53,6 +51,8 @@ services:
       - ./LAST-minting-services/Watcher:/LAST-minting-services/Watcher
       - /LAST-minting-services/Watcher/node_modules/
     command: bash -c "npm run start"
+    ports:
+      - "3001:3001"
   last_db:
     container_name: last-db
     volumes:

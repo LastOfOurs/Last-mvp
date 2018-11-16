@@ -13,10 +13,11 @@ module.exports = async () => {
   try {
     let eggContract = await Egg.deployed()
     await eggContract.hatch({from: web3.eth.accounts[1]})
-    await sleep(1000)
+    //await sleep(1000)
     await eggContract.hatch({from: web3.eth.accounts[1]})
-    await sleep(1000)
+    //await sleep(1000)
     await eggContract.hatch({from: web3.eth.accounts[1]})
+    console.log(`eggs minted`)
   } catch (err) {
     throw err
   }

@@ -11,8 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "amqplib": "^0.5.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
     "nano-fs": "^1.2.5",
     "truffle-contract": "^3.0.6",
-    "web3": "^1.0.0-beta.36"
+    "web3": "^1.0.0-beta.36",
+    "websocket": "^1.0.28"
   }
 }

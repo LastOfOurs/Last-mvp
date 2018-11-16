@@ -3,40 +3,36 @@
 // IMPORTANT: this will be depracated in the future in favor of Event Sourcing
 const process = require('child_process')
 const amqp = require('amqplib');
-const express = require('express')
-const app = express()
+const axios = require('axios')
+const ipfsAdd = require('./minter/ipfsAdd')
+const lastMint = require('./minter/lastMint')
+const config = require('../config.js')
+const LastEndpoint = config.lastAnimalsEndpoint
 
-const bodyParser = require('body-parser')
-app.use(bodyParser.json()) 
-app.use(bodyParser.urlencoded({ extended: true })) 
 
 /**
- * POST req for new animal
+ * Start minting process
  * 
- * @param {string} animal_id - ID number of the last token
- * @param {string} recipient - address of wallet to mint the token to
+ * @param {string} recipient - hex string of Ethereum Address
+ * 
+ * @returns {object} Minted Token
  */
-app.post('/api/v1/mint', function (req, res) {
-  let inputRecipient = req.body.recipient
-  // fork minter process
-  //TODO: use message queue instead of forked message
-  let minterProcess = process.fork('./src/minterProcess.js')
-  // send data to minter process
-  minterProcess.send({
-    recipient: inputRecipient
-  })
-  // once minter returns message, output it back to the API req
-  minterProcess.on('message', (message) => {
-    res.send(message)
-  })
-})
+async function mintLast (recipient) {
+  // GET a random unminted Animal
+  let animalToMint = await axios.get(`${LastEndpoint}/unminted`) 
+  // UPDATE animal data to minted = true
+  let animal = await axios.patch(`${LastEndpoint}/${animalToMint.data.id}`, { 'minted': true })
+  let animalData = animal.data
+  //add file to IPFS
+  let ipfsHash = await ipfsAdd(animalToMint.data.id, animalData)
+  // finally mint token in smart contract
+  let mintedToken = await lastMint(animalToMint.data.id, recipient, ipfsHash)
+  return mintedToken
+}
+
 
 //ADD Message queue Logic
 //on egg-hatch message, fork a process and send input recipient to it
-
-app.listen(3001, function () {
-  console.log('Running Minter listener on port 3001')
-})
 
 async function subscribeToHatchEvent() {
   try {
@@ -51,22 +47,14 @@ async function subscribeToHatchEvent() {
 
     const channel = await conn.createChannel()
     let q = 'egg-hatch'
-    await channel.assertQueue(q, {durable: false})
-    channel.consume(q, function(msg) {
+    await channel.assertQueue(q, {durable: true})
+    channel.consume(q, async (msg) => {
       let msgObj = JSON.parse(msg.content.toString())
-      let minterProcess = process.fork('./src/minterProcess.js')
-      // send data to minter process
-      minterProcess.send({
-        recipient: msgObj.recipient
-      })
-      // once minter returns message, output it back to the API req
-      minterProcess.on('message', (message) => {
-        console.log(message)
-      })
-    }, {noAck: true})
+      let lastMinted = await mintLast(msgObj.recipient)
+      channel.ack(msg)
+    }, {noAck: false})
   } catch (err) {
     throw new Error(err)
-    process.exit(1)
   }
 } 
 

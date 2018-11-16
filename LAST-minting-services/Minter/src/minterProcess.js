@@ -38,7 +38,8 @@ process.on('message', async (message) => {
     await process.send('minted a random animal')
     process.exit(0)
   } catch(err) {
-    process.send(`error has occured trying to start random mint, error: ${err}`)
+    await process.send(err)
+    process.exit(0)
   }
 })
 
