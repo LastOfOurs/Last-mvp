@@ -33,8 +33,8 @@ export function formatBalance(balance) {
 }
 
 export function reduceBigNumbers(items) {
-    if (!(items instanceof Array)) throw new Error('The input is not an Array');
-    return items.reduce((prev, next) => prev.add(next), utils.bigNumberify('0'));
+    if (!(items instanceof Array)) throw new Error('The input is not an Array')
+    return items.reduce((prev, next) => prev.add(next), utils.bigNumberify('0'))
 }
 
 export function calculateFee({ gasUsed, gasPrice }) {
