@@ -55,4 +55,4 @@ async function watchHatching() {
 
 setTimeout(function () {
   watchHatching()
-}, 20000)
+}, 30000)
