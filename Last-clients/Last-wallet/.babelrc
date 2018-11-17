@@ -1,0 +1,18 @@
+{
+  "presets": ["babel-preset-expo"],
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "@assets": "./assets",
+        "@common": "./common",
+        "@components": "./components"
+      }
+    }],
+    ["transform-decorators-legacy"]
+    ],
+  "env": {
+    "development": {
+      "plugins": ["transform-react-jsx-source", "transform-decorators-legacy"]
+    }
+  }
+}
