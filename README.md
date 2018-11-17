@@ -40,16 +40,18 @@ bash tests/integration-test.sh
 
 ## Getting Started in Development Mode
 
-Running development scripts, this will:
-  - generate 3 sets of dummy animal data
-  - deploy Last smart contract
-  - mint 3 sets of animals data to ERC721 tokens and immutable meta data files stored on disk via IPFS
-
 ```
 bash scripts/last-seed.sh 
-bash scripts/last-deploy.sh 
-bash scripts/last-mint.sh 
+bash scripts/last-mint-eggs.sh 
+bash scripts/last-hatch-eggs.sh 
 ```
+
+Running development scripts, this will:
+  - generate 3 set of dummy animal data
+  - mint egg tokens
+  - hatch 3 egg tokens
+    - After 3 egg tokens are hatched, event will be transferred to message queue by the Watcher. Minter will mint this animal event data to ERC721 tokens and immutable meta data files stored on disk via IPFS
+
 After you are done developing and wants to delete the animal data, simply run 
 
 ``` 
