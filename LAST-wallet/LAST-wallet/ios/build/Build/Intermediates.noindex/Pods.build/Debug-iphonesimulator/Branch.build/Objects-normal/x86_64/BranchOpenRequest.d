@@ -1,0 +1,41 @@
+dependencies: \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/Networking/Requests/BranchOpenRequest.m \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Target\ Support\ Files/Branch/Branch-prefix.pch \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/Networking/Requests/BranchOpenRequest.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/Networking/BNCServerRequest.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/Networking/BNCServerInterface.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/Networking/BNCServerResponse.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCPreferenceHelper.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/Networking/BNCNetworkServiceProtocol.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCCallbacks.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCSystemObserver.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchConstants.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchContentDiscoveryManifest.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchContentPathProperties.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchContentDiscoverer.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/NSMutableDictionary+Branch.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCEncodingUtils.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCCrashlyticsWrapper.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCFabricAnswers.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCDeviceInfo.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/Branch.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCCommerceEvent.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCAvailability.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCConfig.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCDebug.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCError.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCLinkCache.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCLinkData.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCLog.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/Networking/BNCServerRequestQueue.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchActivityItemProvider.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchDeepLinkingController.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchEvent.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchUniversalObject.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchLinkProperties.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchDelegate.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchShareLink.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchView.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BranchViewHandler.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/UIViewController+Branch.h \
+  /Users/NichananK/last-mvp/LAST-wallet/LAST-wallet/ios/Pods/Branch/Branch-SDK/Branch-SDK/BNCApplication.h
