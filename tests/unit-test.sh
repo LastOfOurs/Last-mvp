@@ -2,7 +2,7 @@
 # RUN UNIT TESTS IN ALL APPS
 # TEST CONTRACTS
 printf '======= running unit test for smart contracts \n'
-cd Last-contract && npm run coverage
+cd Last-contracts && npm run coverage
 cd ..
 # TEST SERVER
 printf '======= running unit test for server \n'

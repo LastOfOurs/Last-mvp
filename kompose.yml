@@ -17,7 +17,7 @@ services:
     container_name: last_truffle
     image: pongch/truffle:latest
     volumes:
-      - ./Last-contract:/usr/src/app
+      - ./Last-contracts:/usr/src/app
     tty: true
   last_minter:
     image: pongch/last-minter:kube
@@ -25,7 +25,7 @@ services:
     volumes:
       - /usr/src/app/node_modules/
       - ./Last-IPFS/export:/Last-IPFS/export
-      - ./Last-contract/build/contracts:/Last-contract/build/contracts
+      - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
     ports:
       - "3001:3001"
     command: bash -c "npm install && npm start"

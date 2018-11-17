@@ -6,7 +6,7 @@ const amqp = require('amqplib');
 const axios = require('axios')
 const ipfsAdd = require('./minter/ipfsAdd')
 const lastMint = require('./minter/lastMint')
-const config = require('../../../config.js')
+const config = require('../config.js')
 const LastEndpoint = config.lastAnimalsEndpoint
 
 
@@ -49,6 +49,7 @@ async function subscribeToHatchEvent() {
     let q = 'egg-hatch'
     await channel.assertQueue(q, {durable: true})
     channel.consume(q, async (msg) => {
+      console.log(msgObj.recipient)
       let msgObj = JSON.parse(msg.content.toString())
       let lastMinted = await mintLast(msgObj.recipient)
       channel.ack(msg)

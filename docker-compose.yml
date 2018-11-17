@@ -18,7 +18,7 @@ services:
     container_name: last_truffle
     image: pongch/truffle:latest
     volumes:
-      - ./Last-contract:/usr/src/app
+      - ./Last-contracts:/usr/src/app
     tty: true
     command: bash -c "truffle compile && truffle migrate --reset --network compose && tail -f /dev/null"
     depends_on: 
@@ -26,20 +26,20 @@ services:
   last_minter:
     image: pongch/last-minter:latest
     container_name: last-minter
-    working_dir: /Last-minting-services/Minter
+    working_dir: /Last-services/Minter
     restart: always
     depends_on: 
       - last_rabbitmq
       - last_ganache
     volumes:
-      - ./Last-minting-services/Minter:/Last-minting-services/Minter
-      - /Last-minting-services/Minter/node_modules/
+      - ./Last-services/Minter:/Last-services/Minter
+      - /Last-services/Minter/node_modules/
       - ./Last-IPFS/export:/Last-IPFS/export
-      - ./Last-contract/build/contracts:/Last-contract/build/contracts
-    command: bash -c "npm install && npm run start"
+      - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
+    command: bash -c "npm run start"
   last_watcher:
     image: pongch/last-watcher:latest
-    working_dir: /Last-minting-services/Watcher
+    working_dir: /Last-services/Watcher
     container_name: last-watcher
     restart: always
     depends_on: 
@@ -47,10 +47,10 @@ services:
       - last_ganache
       - last_minter
     volumes:
-      - ./Last-contract/build/contracts:/Last-contract/build/contracts
-      - ./Last-minting-services/Watcher:/Last-minting-services/Watcher
-      - /Last-minting-services/Watcher/node_modules/
-    command: bash -c "npm install && npm run start"
+      - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
+      - ./Last-services/Watcher:/Last-services/Watcher
+      - /Last-services/Watcher/node_modules/
+    command: bash -c "npm run start"
     ports:
       - "3001:3001"
   last_db:

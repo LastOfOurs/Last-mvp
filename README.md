@@ -14,9 +14,9 @@ https://docs.google.com/document/d/1bT8tXOCoHplJq63HBT4i-ExM19-70l_aUVWt4nmpseg/
 
 The Project consists of multiple microservices
 
-- __Last-contract__: contains Ethereum smart contract
+- __Last-contracts__: contains Ethereum smart contract
 - __Last-IPFS__: IPFS node and Data
-- __Last-minting-services__: minting microservices
+- __Last-services__: minting microservices
 - __Last-core__: contains all the server side code for the Data Oracle including Mongo Database
 - __Last-wallet__: contains all the client side code and wallet implementation
 
@@ -26,7 +26,7 @@ Make sure you have `node.js >= v8.11.3`, `npm >= 6.3.0`, `docker >= 18.03.1` , `
 
 The Applications are built as independent services, however you want to run them altogether for Development:
 
-1. install all the dependencies by running `npm install` inside Last-core, Last-contract, Last-minting-services directories
+1. install all the dependencies by running `npm install` inside Last-core, Last-contracts, Last-services directories
 2. Running `docker-compose up --build --force-recreate` inside the root directory
 
 ## Run Test
