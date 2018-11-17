@@ -49,7 +49,6 @@ async function subscribeToHatchEvent() {
     let q = 'egg-hatch'
     await channel.assertQueue(q, {durable: true})
     channel.consume(q, async (msg) => {
-      console.log(msgObj.recipient)
       let msgObj = JSON.parse(msg.content.toString())
       let lastMinted = await mintLast(msgObj.recipient)
       channel.ack(msg)

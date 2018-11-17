@@ -19,4 +19,4 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -d '{ "recipient":"0x066ec5590625785b38b740311fc0273660ea3997"}'
   
-  printf "======= animal data seeded ...\n"
+  printf "======= LAST minted ...\n"

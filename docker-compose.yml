@@ -36,7 +36,7 @@ services:
       - /Last-services/Minter/node_modules/
       - ./Last-IPFS/export:/Last-IPFS/export
       - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
-    command: bash -c "npm run start"
+    command: bash -c "npm install && npm run start"
   last_watcher:
     image: pongch/last-watcher:latest
     working_dir: /Last-services/Watcher
@@ -50,7 +50,7 @@ services:
       - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
       - ./Last-services/Watcher:/Last-services/Watcher
       - /Last-services/Watcher/node_modules/
-    command: bash -c "npm run start"
+    command: bash -c "npm install && npm run start"
     ports:
       - "3001:3001"
   last_db:

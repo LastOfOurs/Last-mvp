@@ -18,7 +18,7 @@ The Project consists of multiple microservices
 - __Last-IPFS__: IPFS node and Data
 - __Last-services__: minting microservices
 - __Last-core__: contains all the server side code for the Data Oracle including Mongo Database
-- __Last-wallet__: contains all the client side code and wallet implementation
+- __Last-clients__: contains all the client side code and wallet implementation
 
 
 ## Installation
@@ -62,6 +62,13 @@ Exposed API for client is as follows:
 1. http://localhost:3000/explorer/ - Swagger , Loopback Server API explorer
 2. http://localhost:8546/ - Ganache , Test Ethereum Blockchain RPC port
 3. http://localhost:5001/ - IPFS , API Gateway port to IPFS
+
+## TROUBLESHOOT
+- *[contract] has not been deployed to the network* 
+  Try checking your config for the correct ethereum node, or restart docker container
+- *error connecting to rabbit mq* 
+  Try checking your config for the correct rabbitmq node, or restart docker container
+- 
 
 ## License
 GNU Lesser General Public License
