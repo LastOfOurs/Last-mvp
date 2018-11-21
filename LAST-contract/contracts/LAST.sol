@@ -9,7 +9,7 @@ contract LAST is Ownable, ERC721Token {
   
   }
 
-  function mint(address toAddress, uint256 tokenId, string uri) public onlyOwner{
+  function mint(address toAddress, uint256 tokenId, string uri) public onlyOwner {
       _mint(toAddress, tokenId);
        _setTokenURI(tokenId, uri);
   }

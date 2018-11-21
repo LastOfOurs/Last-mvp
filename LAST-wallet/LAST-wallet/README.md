@@ -6,12 +6,9 @@
 
 ## Setup
 
-### `npm install`
-Installs dependancies required for the app to run.
+If you are in the last-mvp directory, navigate to the wallet directory using `cd LAST-wallet`. Run `npm install` to install dependancies required for the app to run.
 
-Since the app is detached from expo, we must build manually using XCode and Android Studio.
-
-If you are in the last-mvp directory, navigate to the wallet directory using `cd LAST-wallet`.
+Since the app is detached from expo, we must build manually using XCode and Android Studio. If you are running on a device and not a simulator, make sure that your device is connected to the same wifi as your computer.
 
 ### Running on iOS
 1. Install [XCode](https://developer.apple.com/xcode/)
@@ -30,3 +27,10 @@ If you are in the last-mvp directory, navigate to the wallet directory using `cd
 
 ### `npm test`
 Runs the [jest](https://github.com/facebook/jest) test runner on the test suite.
+
+### 'npm t -- --coverage'
+Runs the test suite with code coverage overview
+
+## Contributing
+
+## License
