@@ -25,7 +25,9 @@ curl -X POST \
   "ipfsData": {
     "Name": "Joe",
     "favoriteActivity": "Parkour",
-    "description": "idk lol"
+    "description": "idk lol",
+    "url": "http://localhost:3000/api/1",
+    "id": 1
   }
 }'
 
@@ -51,7 +53,9 @@ curl -X POST \
   "ipfsData": {
     "Name": "Bob",
     "favoriteActivity": "Parkour",
-    "description": "idk lol"
+    "description": "idk lol",
+    "url": "http://localhost:3000/api/1",
+    "id": 2
   }
 }'
 
@@ -77,6 +81,8 @@ curl -X POST \
   "ipfsData": {
     "Name": "Alice",
     "favoriteActivity": "Parkour",
-    "description": "idk lol"
+    "description": "idk lol",
+    "url": "http://localhost:3000/api/1",
+    "id": 3
   }
 }'

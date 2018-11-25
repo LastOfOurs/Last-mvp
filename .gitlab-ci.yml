@@ -8,7 +8,7 @@ build_contract:
  image: pongch/truffle:ci  
  stage: build_contract
  script:
-  - cd LAST-contract
+  - cd Last-contracts
   - npm install
   - truffle compile
   - ganache-cli -p 8545 & truffle migrate --network development
@@ -17,7 +17,7 @@ test_contract:
  image: pongch/truffle:ci  
  stage: test_contract
  script:    
-   - cd LAST-contract
+   - cd Last-contracts
    - npm install 
    - npm run coverage
 
@@ -25,5 +25,5 @@ build_server:
   image: node:alpine
   stage: build_server
   script:
-    - cd LAST-server
+    - cd Last-core
     - npm install
