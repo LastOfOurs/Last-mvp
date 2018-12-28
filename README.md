@@ -5,10 +5,14 @@
 
 ## Description
 
-⚠ FOR INTERNAL DEVELOPMENT, TESTING USE ONLY- NOT SAFE FOR PRODUCTION USAGE ⚠
+⚠ FOR DEVELOPMENT and POC use only, the production monorepo has been moved ⚠
 
-For more information about Zion and underlying architecture/design/rationale of the application services please refer to Technical Documentation:
-https://docs.google.com/document/d/1bT8tXOCoHplJq63HBT4i-ExM19-70l_aUVWt4nmpseg/edit?usp=sharing
+This codebase is a POC of LAST ecosystem architecture to develop:
+1. Egg as ERC20 token to facilitate minting/hatching of the actual NFT
+2. Keeping local ledger inside `Last-core`, utilizing DB as a source of truth before tokens are minted onchain
+3. Developing React Native reference implementation of a Wallet application
+4. Using IPFS for immutable storage of NFT data
+5. Automating the process of Egg minting, hatching and programmatic minting of Last NFTs.
 
 ## Project Outline
 
