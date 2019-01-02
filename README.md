@@ -8,7 +8,7 @@
 ⚠ FOR DEVELOPMENT and POC use only, the production monorepo has been moved ⚠
 
 This codebase is a POC of LAST ecosystem architecture to develop:
-1. Egg as ERC20 token to facilitate minting/hatching of the actual NFT
+1. Egg as ERC20-compliant token to facilitate minting/hatching of the actual NFT
 2. Keeping local ledger inside `Last-core`, utilizing DB as a source of truth before tokens are minted onchain
 3. Developing React Native reference implementation of a Wallet application
 4. Using IPFS for immutable storage of NFT data
