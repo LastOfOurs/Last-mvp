@@ -10,7 +10,7 @@ services:
     image: pongch/last-server:latest
     command: npm start
     volumes:
-      - ./LAST-server:/usr/src/app
+      - ./Last-core:/usr/src/app
       - /usr/src/app/node_modules     
     links:
       - last_db
@@ -18,26 +18,45 @@ services:
     container_name: last_truffle
     image: pongch/truffle:latest
     volumes:
-      - ./LAST-contract:/usr/src/app
+      - ./Last-contracts:/usr/src/app
     tty: true
+    command: bash -c "truffle compile && truffle migrate --reset --network compose && tail -f /dev/null"
+    depends_on: 
+      - last_ganache
   last_minter:
     image: pongch/last-minter:latest
     container_name: last-minter
-    working_dir: /LAST-minting-services/Minter
+    working_dir: /Last-services/Minter
+    restart: always
+    depends_on: 
+      - last_rabbitmq
+      - last_ganache
     volumes:
-      - ./LAST-minting-services/Minter:/LAST-minting-services/Minter
-      - /LAST-minting-services/Minter/node_modules/
-      - ./LAST-IPFS/export:/LAST-IPFS/export
-      - ./LAST-contract/build/contracts:/LAST-contract/build/contracts
+      - ./Last-services/Minter:/Last-services/Minter
+      - /Last-services/Minter/node_modules/
+      - ./Last-IPFS/export:/Last-IPFS/export
+      - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
+    command: bash -c "npm install && npm run start"
+  last_watcher:
+    image: pongch/last-watcher:latest
+    working_dir: /Last-services/Watcher
+    container_name: last-watcher
+    restart: always
+    depends_on: 
+      - last_rabbitmq
+      - last_ganache
+      - last_minter
+    volumes:
+      - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
+      - ./Last-services/Watcher:/Last-services/Watcher
+      - /Last-services/Watcher/node_modules/
+    command: bash -c "npm install && npm run start"
     ports:
       - "3001:3001"
-    command: bash -c "npm install && npm start"
-    depends_on:
-      - last_ganache
   last_db:
     container_name: last-db
     volumes:
-      - ./LAST-server/db:/bitnami
+      - ./Last-core/db:/bitnami
     ports:
       - "27017:27017"
     image: aashreys/mongo-auth:latest
@@ -71,5 +90,17 @@ services:
     - 8080:8080
     image: ipfs/go-ipfs
     volumes:
-      - ./LAST-IPFS:/data/ipfs/
-      - ./LAST-IPFS/export:/export
+      - ./Last-IPFS:/data/ipfs/
+      - ./Last-IPFS/export:/export
+    depends_on: 
+      - last_rabbitmq
+  last_rabbitmq:
+    container_name: last_rabbitmq
+    image: 'bitnami/rabbitmq:latest'
+    ports:
+      - '4369:4369'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    volumes:
+      - './Last-mq:/bitnami'
