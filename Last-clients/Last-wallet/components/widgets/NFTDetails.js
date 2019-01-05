@@ -128,7 +128,7 @@ export default class NFTDetails extends React.Component {
                 {/* <Button title='View on Etherscan' onPress={this.renderEtherscan()} /> */}
             </ScrollView>
         </View>
-    );
+    )
 
     render() {
         const { transaction } = this.props

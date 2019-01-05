@@ -2,13 +2,8 @@ import React from 'react'
 import { BackHandler, StatusBar, StyleSheet, View } from 'react-native'
 import { Provider } from 'mobx-react'
 import { colors } from './common/styles'
-import Router, { INITIAL_ROUTE } from './router'
+import Router from './router'
 import * as stores from './common/stores/'
-
-//For NFTs
-import { createStore, applyMiddleware } from "redux"
-import { Provider as ReduxProvider } from 'react-redux'
-import reducers from './common/reducers'
 
 const STATUSBAR_CONFIG = {
     backgroundColor: colors.statusBar,

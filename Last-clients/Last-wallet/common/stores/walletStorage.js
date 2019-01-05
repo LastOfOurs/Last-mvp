@@ -36,6 +36,7 @@ export class WalletStorage {
         if (!this.item) throw new Error(`Can't load NFTs. No wallet was selected.`)
         if (!(NFTs instanceof Array)) throw new Error('The NFTs must be in an array.')
         this.NFTs = NFTs
+        console.log(this.NFTs)
     }
 
     @action addPendingTransaction(txn) {
