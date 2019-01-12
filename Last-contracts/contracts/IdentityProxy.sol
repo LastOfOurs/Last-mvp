@@ -1,7 +1,7 @@
 pragma solidity ^0.4.17;
 
 //barebone implementation of a proxy contract 
-//WARNING no whitelist or ownership implemented, forwarding everything
+//TODO: add openzeppelin's whitelist lib
 contract IdentityProxy {
     event Forwarded (address indexed destination, uint value, bytes data);
     event Received (address indexed sender, uint value);
