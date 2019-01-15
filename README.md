@@ -32,6 +32,7 @@ The Applications are built as independent services, however you want to run them
 
 1. install all the dependencies by running `npm install` inside Last-core, Last-contracts, Last-services directories
 2. Running `docker-compose up --build --force-recreate` inside the root directory
+(run `docker-compose -f dev-docker-compose.yml up --build --force-recreate` to build docker images locally)
 
 ## Run Test
 
