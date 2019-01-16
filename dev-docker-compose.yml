@@ -1,0 +1,106 @@
+version: "2"
+services:
+  last_server:
+    container_name: last_server
+    restart: always
+    ports:
+      - '0.0.0.0:3000:3000'
+    depends_on: 
+      - last_db
+    build: ./Last-core
+    command: npm start
+    volumes:
+      - ./Last-core:/usr/src/app
+      - /usr/src/app/node_modules     
+    links:
+      - last_db
+  last_truffle:
+    container_name: last_truffle
+    image: pongch/truffle:latest
+    volumes:
+      - ./Last-contracts:/usr/src/app
+    tty: true
+    command: bash -c "truffle compile && truffle migrate --reset --network compose && tail -f /dev/null"
+    depends_on: 
+      - last_ganache
+  last_minter:
+    build: ./Last-services/Minter
+    container_name: last-minter
+    working_dir: /Last-services/Minter
+    restart: always
+    depends_on: 
+      - last_rabbitmq
+      - last_ganache
+    volumes:
+      - ./Last-services/Minter:/Last-services/Minter
+      - /Last-services/Minter/node_modules/
+      - ./Last-IPFS/export:/Last-IPFS/export
+      - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
+    command: bash -c "npm install && npm run start"
+  last_watcher:
+    build: ./Last-services/Watcher
+    working_dir: /Last-services/Watcher
+    container_name: last-watcher
+    restart: always
+    depends_on: 
+      - last_rabbitmq
+      - last_ganache
+      - last_minter
+    volumes:
+      - ./Last-contracts/build/contracts:/Last-contracts/build/contracts
+      - ./Last-services/Watcher:/Last-services/Watcher
+      - /Last-services/Watcher/node_modules/
+    command: bash -c "npm install && npm run start"
+    ports:
+      - "3001:3001"
+  last_db:
+    container_name: last-db
+    volumes:
+      - ./Last-core/db:/bitnami
+    ports:
+      - "27017:27017"
+    image: aashreys/mongo-auth:latest
+    environment:
+      - AUTH=yes
+      - MONGODB_ADMIN_USER=my_user
+      - MONGODB_ADMIN_PASS=last_db4312
+      - MONGODB_APPLICATION_DATABASE=last-db
+      - MONGODB_APPLICATION_USER=my_user
+      - MONGODB_APPLICATION_PASS=last_db4312
+    ports:
+      - "27017:27017"
+  last_ganache:
+    container_name: last_ganache
+    image: trufflesuite/ganache-cli
+    ports: 
+      - 8546:8546
+    command: "--seed hello last --defaultBalanceEther 100000000 --port 8546"
+    depends_on: 
+      - last_db
+      - last_ipfs
+  last_ipfs:
+    container_name: last-ipfs
+    restart: always
+    expose:
+    - 4001
+    - 8080
+    ports:
+    - 4001:4001
+    - 5001:5001
+    - 8080:8080
+    image: ipfs/go-ipfs
+    volumes:
+      - ./Last-IPFS:/data/ipfs/
+      - ./Last-IPFS/export:/export
+    depends_on: 
+      - last_rabbitmq
+  last_rabbitmq:
+    container_name: last_rabbitmq
+    image: 'bitnami/rabbitmq:latest'
+    ports:
+      - '4369:4369'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    volumes:
+      - './Last-mq:/bitnami'
