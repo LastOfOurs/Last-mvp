@@ -6,7 +6,8 @@ const fs = require('nano-fs')
 const IdentityJson = fs.readFileSync('../../../Last-contracts/build/contracts/IdentityProxy.json', 'utf8')
 const IdentityArtifacts = JSON.parse(IdentityJson)
 const Identity = contract(IdentityArtifacts)
-const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
+const web3 = new Web3(new Web3.providers.HttpProvider(config.web3Provider))
+const config = require('../config.js')
 
 Identity.setProvider(web3.currentProvider)
 
@@ -20,7 +21,7 @@ if (typeof Identity.currentProvider.sendAsync !== 'function') {
 }
 
 //address of Gas service
-let fromAccount = "0xe569d1f9dbe2bf342ea544a38ce9fe23b26beea2"
+let fromAccount = config.gasAccount
 
 async function relayTx(
   destAddr, 
