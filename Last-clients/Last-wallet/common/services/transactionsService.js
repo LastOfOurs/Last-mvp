@@ -1,5 +1,5 @@
 import ethers from 'ethers'
-var TransactionUtils = require('../utils/transactionUtils')
+const TransactionUtils = require('../utils/transactionUtils')
 
 const { Wallet, utils } = ethers
 

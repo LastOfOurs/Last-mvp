@@ -1,15 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import { inject, observer } from 'mobx-react'
-import moment from 'moment'
-import { Icon } from './Icon'
-import { colors, measures } from '../../common/styles'
-import TransactionDetails from './TransactionDetails'
-var WalletUtils = require('../../common/utils/wallet')
+import { StyleSheet, Text, TouchableHighlight, View, Image } from 'react-native'
+import { measures } from '../../common/styles'
 
-export default class NFTCard extends React.Component {
+export default class NFTCard extends React.PureComponent {
     
-    //Todo: Optimize performance with PureComponent or shouldComponentUpdate
     //Todo: Add pictures and style the card
     
     render() {
@@ -17,8 +11,13 @@ export default class NFTCard extends React.Component {
         return (
             <TouchableHighlight onPress={() => console.log('meow')}>
                 <View style={styles.container}>
-                    <Text>{NFT.token.name}</Text>
-                    <Text style={styles.title}>Kitty# {NFT._tokenId}</Text>
+                    <Text style={styles.title}>{NFT.token.name}</Text>
+                    <Text> LAST # {NFT.id}</Text>
+                    <Image
+                        style={{width: 70, height: 70}}
+                        source={{uri: NFT.token.image}} />
+                    <Text> Favorite Activity: {NFT.token.favoriteActivity}</Text>
+                    <Text> Bio: {NFT.token.description}</Text>
                 </View>
             </TouchableHighlight>
         )
@@ -30,13 +29,16 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'row',
+        flexDirection: 'column',
         backgroundColor: '#1FABD0',
-        height: 64,
-        marginBottom: measures.defaultMargin,
+        marginBottom: 12,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'black'
     },
     title: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 16,
     },
     leftColumn: {
         width: 40,

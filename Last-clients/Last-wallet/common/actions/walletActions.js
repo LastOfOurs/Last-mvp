@@ -1,6 +1,6 @@
-var WalletsService = require('../services/walletsService.js')
-var WalletUtils = require('../utils/wallet.js')
-var ApiService = require('../services/apiService')
+const WalletsService = require('../services/walletsService.js')
+const WalletUtils = require('../utils/wallet.js')
+const ApiService = require('../services/apiService')
 import WalletsStorage from '../stores/walletsStorage'
 import WalletStorage from '../stores/walletStorage'
 
@@ -46,7 +46,8 @@ export async function updateHistory(wallet) {
 
 export async function fetchNFTs(wallet) {
     WalletStorage.isLoading(true)
-    const data = await ApiService.getCryptoKitties(wallet.getAddress())
+    // const data = await ApiService.getCryptoKitties(wallet.getAddress())
+    const data = await ApiService.getAnimals(wallet.getAddress())
     if (data) WalletStorage.setNFTs(data)
     WalletStorage.isLoading(false)
 }

@@ -26,7 +26,7 @@ export default class ConfirmWalletCreationScreen extends React.Component {
             return
         }
         try {
-            const { mnemonics, walletName, walletDescription } = this.state;
+            const { mnemonics, walletName, walletDescription } = this.state
             const wallet = WalletUtils.loadWalletFromMnemonics(mnemonics)
             await WalletActions.addWallet(walletName, wallet, walletDescription)
             await WalletActions.saveWallets()

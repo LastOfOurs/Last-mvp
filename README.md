@@ -8,7 +8,7 @@
 ⚠ FOR DEVELOPMENT and POC use only, the production monorepo has been moved ⚠
 
 This codebase is a POC of LAST ecosystem architecture to develop:
-1. Egg as ERC20 token to facilitate minting/hatching of the actual NFT
+1. Egg as ERC20-compliant token to facilitate minting/hatching of the actual NFT
 2. Keeping local ledger inside `Last-core`, utilizing DB as a source of truth before tokens are minted onchain
 3. Developing React Native reference implementation of a Wallet application
 4. Using IPFS for immutable storage of NFT data
@@ -32,6 +32,7 @@ The Applications are built as independent services, however you want to run them
 
 1. install all the dependencies by running `npm install` inside Last-core, Last-contracts, Last-services directories
 2. Running `docker-compose up --build --force-recreate` inside the root directory
+(run `docker-compose -f dev-docker-compose.yml up --build --force-recreate` to build docker images locally)
 
 ## Run Test
 
