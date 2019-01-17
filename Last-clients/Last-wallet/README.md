@@ -6,7 +6,7 @@
 
  ## 🛠 Setup
 
-If you are in the last-mvp directory, navigate to the wallet directory using `cd LAST-wallet`. Run `npm install` to install dependancies required for the app to run.
+If you are in the last-mvp directory, navigate to the wallet directory using `cd /Last-clients/Last-wallet`. Run `npm install` to install dependancies required for the app to run.
 
 Since the app is detached from expo, we must build manually using XCode and Android Studio. If you are running on a device and not a simulator, make sure that your device is connected to the same wifi as your computer.
 
