@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
         margin: measures.defaultMargin
     },
     itemTitle: {
-        fontSize: measures.fontSizeMedium
+        fontSize: measures.fontSizeMedium,
+        fontFamily: 'Poppins-SemiBold'
     }
 })

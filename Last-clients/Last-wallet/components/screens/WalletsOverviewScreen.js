@@ -13,6 +13,9 @@ var GeneralActions = require('../../common/actions/generalActions')
 export default class WalletsOverviewScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: 'Last of Ours',
+    titleStyle: {
+      fontFamily: 'Poppins-SemiBold'
+    },
     headerLeft: (
       <HeaderIcon
         name='add'
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
     margin: 10
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold'
   },
   button: {
     padding: 10,

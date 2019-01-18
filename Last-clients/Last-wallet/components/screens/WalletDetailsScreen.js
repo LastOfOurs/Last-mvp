@@ -37,27 +37,27 @@ export default class WalletDetailsScreen extends React.Component {
           <WalletBalance />
           <TouchableOpacity style={styles.button}
           onPress={this.handleSendPressed}>
-            <Text>Send</Text>
+            <Text style={styles.title}>Send</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleReceivePressed}>
-            <Text>Receive</Text>
+            <Text style={styles.title}>Receive</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleHistoryPressed}>
-            <Text>Wallet History</Text>
+            <Text style={styles.title}>Wallet History</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleMarketplacePressed}>
-            <Text>Marketplace</Text>
+            <Text style={styles.title}>Marketplace</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleNFTWalletPressed}>
-            <Text>NFT Wallet</Text>
+            <Text style={styles.title}>NFT Wallet</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleWalletSettingsPressed}>
-            <Text>Wallet Settings</Text>
+            <Text style={styles.title}>Wallet Settings</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold',
   },
   button: {
     padding: 10,

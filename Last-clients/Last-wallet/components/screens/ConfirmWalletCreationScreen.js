@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
         marginVertical: measures.defaultMargin,
-        marginHorizontal: 32
+        marginHorizontal: 32,
+        fontFamily: 'Poppins-SemiBold'
     },
     mnemonicsContainer: {
         flex: 1,

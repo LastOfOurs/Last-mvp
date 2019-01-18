@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: colors.secondary,
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: 'Poppins-SemiBold',
     }
 })

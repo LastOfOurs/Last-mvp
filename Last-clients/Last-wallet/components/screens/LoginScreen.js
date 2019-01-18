@@ -11,10 +11,9 @@ export default class LoginScreen extends React.Component {
         <StatusBar barStyle='light-content'/>
         <View style={styles.titleContainer}>
           <Image style={styles.logo} source={require('../../assets/last-logo.png')}/>
-          <Text style={styles.title}>Enter</Text>
           <TouchableOpacity style={styles.button}
             onPress={this._enter}>
-            <Text>Press Me</Text>
+            <Text style={styles.title}>Enter your Sanctuary</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -33,13 +32,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     alignSelf: 'center',
     margin: 10,
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: "Poppins-SemiBold",
     margin: 5
   },
   button: {

@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold'
   },
   mnemonicsContainer: {
     flexDirection: 'row',

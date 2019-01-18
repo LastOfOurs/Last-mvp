@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     balance: {
         fontSize: measures.fontSizeMedium + 2,
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-SemiBold',
         color: colors.gray
     },
     fiatBalance: {

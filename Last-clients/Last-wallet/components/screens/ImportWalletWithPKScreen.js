@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: measures.defaultMargin,
     marginHorizontal: 32,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold'
   },
   button: {
     padding: 10,
