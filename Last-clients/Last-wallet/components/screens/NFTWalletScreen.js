@@ -34,6 +34,16 @@ export default class NFTWalletScreen extends React.Component {
     }
   }
 
+  async getEggs() {
+    try {
+      await WalletActions.requestNFTs(this.props.wallet.item)
+      // this.setState({ NFTs: this.props.wallet.NFTs })
+    } catch (e) {
+      // GeneralActions.notify(e.message, 'long')
+      console.log(e)
+    }
+  }
+
   renderItem = () => ({ item }) => <NFTCard NFT={item} />
 
   renderBody = ({ NFTs }) =>  (!NFTs) ? <NoNFTs /> : (
@@ -46,7 +56,7 @@ export default class NFTWalletScreen extends React.Component {
 )
 
   render() {
-    const { loading } = this.props
+    const { loading, wallet } = this.props
     const totalCollectibles = this.state.NFTs.length
     if (loading) {
       return (
@@ -56,6 +66,10 @@ export default class NFTWalletScreen extends React.Component {
       return (
         <View style={styles.titleContainer}>
           <Text>No collectibles found! Add a token to view your collectibles</Text>
+          <TouchableOpacity style={styles.button}
+            onPress={this.getEggs.bind(this)}>
+            <Text>Get Eggs</Text>
+          </TouchableOpacity>
         </View>
       )
     } else {

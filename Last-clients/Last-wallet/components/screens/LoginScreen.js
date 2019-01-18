@@ -11,7 +11,7 @@ export default class LoginScreen extends React.Component {
         <StatusBar barStyle='light-content'/>
         <View style={styles.titleContainer}>
           <Image style={styles.logo} source={require('../../assets/last-logo.png')}/>
-          <Text style={styles.title}>Login Screen</Text>
+          <Text style={styles.title}>Enter</Text>
           <TouchableOpacity style={styles.button}
             onPress={this._enter}>
             <Text>Press Me</Text>
