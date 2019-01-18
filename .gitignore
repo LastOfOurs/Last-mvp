@@ -5,8 +5,7 @@ Last-IPFS/export/*
 ./Last-core/db/mongodb/*
 !./Last-core/db/mongodb/.gitkeep
 Last-mq
-LAST-minting-services/*
-LAST-wallet/*
-LAST-server/*
+Last-clients/Last-wallet/android
+Last-clients/Last-wallet/ios
 
 /.idea

@@ -15,6 +15,7 @@
     "expo": "^30.0.1",
     "expokit": "^1.7.1",
     "lodash": "^4.17.11",
+    "merge": "^1.2.1",
     "mobx": "^5.5.2",
     "mobx-react": "^5.3.5",
     "module-resolver": "^1.0.0",
