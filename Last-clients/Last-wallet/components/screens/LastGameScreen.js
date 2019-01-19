@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    fontWeight: 'bold'
+    fontFamily: 'Poppins-SemiBold'
   },
   logo: {
     width: 80,

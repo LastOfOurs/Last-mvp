@@ -1,8 +1,13 @@
 import ethers from 'ethers'
 
 const { HDNode, providers, utils, Wallet } = ethers
-const network = (process.env.NODE_ENV === 'production') ? 'mainnet' : 'rinkeby'
-const PROVIDER = providers.getDefaultProvider(network)
+
+// const network = (process.env.NODE_ENV === 'production') ? 'mainnet' : 'rinkeby'
+// const PROVIDER = providers.getDefaultProvider(network)
+
+//Using local ganache as blockchain
+const url = "http://localhost:8546"
+const PROVIDER = new ethers.providers.JsonRpcProvider(url)
 
 export function generateMnemonics() {
     return HDNode.entropyToMnemonic(utils.randomBytes(16)).split(' ')

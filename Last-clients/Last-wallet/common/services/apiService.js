@@ -5,8 +5,29 @@ export function getPrice() {
     return axios.get(`${URL.CRYPTO_COMPARE}/data/price?fsym=ETH&tsyms=USD,EUR,BRL`)
 }
 
+//This doesn't currently work if on ganache, would only work if running on testnet or mainnet.
 export function getHistory(address) {
     return axios.get(`${URL.ETHERSCAN}?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&sort=asc`)
+}
+
+//MetaTX
+export async function getEggs(address) {
+  await axios.post('http://10.1.10.20:3002/api/v1/egg-tx', {
+    // eggAddress: "0xf32235620ce7ae274c377a27cd1a2f087c23a104",
+    // proxyAddress: "0xddfc2e31eeca6ed9e39ed4b7ba30f7217b3032a3",
+    eggAddress: "0xf7b14ff60bfb7bbccce839b19bf87be836d15c0c",
+    proxyAddress: "0x83ad164e81f0b01665689aad0581c09083c61b3b",
+    functionName: "transfer",
+    functionTypes: ["address","uint256"],
+    functionParams: [address, 1]
+  })
+  .then(function (res) {
+    console.log('POST request to relayer successful')
+    console.log(res)
+  })
+  .catch(function (err) {
+    console.log(err)
+  })
 }
 
 export async function getAnimals(address) {

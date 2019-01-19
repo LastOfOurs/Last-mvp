@@ -1,0 +1,19 @@
+{
+  "name": "relayer",
+  "version": "1.0.0",
+  "description": "relaying signed messages to the blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "eth-signer": "^0.3.4",
+    "express": "^4.16.4",
+    "nano-fs": "^1.2.5",
+    "truffle-contract": "^4.0.1",
+    "web3": "^1.0.0-beta.37"
+  }
+}

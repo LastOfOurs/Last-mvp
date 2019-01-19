@@ -1,9 +1,8 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { LinearGradient } from 'expo'
-// import { Svg, Image } from 'react-native-svg'
+import { Svg, Image } from 'react-native-svg'
 import SvgUri from 'react-native-svg-uri'
-import { View, Text, Image, StyleSheet, TouchableOpacity, ActivityIndicator, RefreshControl, FlatList } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, RefreshControl, FlatList } from 'react-native'
 const WalletActions = require('../../common/actions/walletActions.js')
 import NFTCard from '../widgets/NFTCard'
 
@@ -35,16 +34,6 @@ export default class NFTWalletScreen extends React.Component {
     }
   }
 
-  async getEggs() {
-    try {
-      await WalletActions.requestNFTs(this.props.wallet.item)
-      // this.setState({ NFTs: this.props.wallet.NFTs })
-    } catch (e) {
-      // GeneralActions.notify(e.message, 'long')
-      console.log(e)
-    }
-  }
-
   renderItem = () => ({ item }) => <NFTCard NFT={item} />
 
   renderBody = ({ NFTs }) =>  (!NFTs) ? <NoNFTs /> : (
@@ -65,17 +54,8 @@ export default class NFTWalletScreen extends React.Component {
       )
     } else if (totalCollectibles === 0) {
       return (
-        <View style={styles.mainContainer}>
-          <LinearGradient colors={['#143C5A', '#0AAAD2', '#F7F7F7']} style={styles.mainContainer}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title} >No animals found! Claim an egg to add animals to your sanctuary</Text>  
-              <TouchableOpacity style={styles.button}
-                onPress={this.getEggs.bind(this)}>
-                <Text style={styles.buttonText}>Claim my Eggs</Text>
-              </TouchableOpacity>
-          </View>
-          <Image style={styles.footerImage} source={require('../../assets/united-hands.png')}/>
-          </LinearGradient>
+        <View style={styles.titleContainer}>
+          <Text>No collectibles found! Add a token to view your collectibles</Text>
         </View>
       )
     } else {
@@ -91,27 +71,22 @@ export default class NFTWalletScreen extends React.Component {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    backgroundColor: '#fff',
     justifyContent: 'center',
   },
   titleContainer: {
-    alignItems: 'center',
-    padding: 10
+    alignItems: 'center'
   },
   title: {
-    fontFamily: 'Poppins-SemiBold',
-    color: 'white'
+    fontWeight: 'bold',
   },
   button: {
-    padding: 7,
-    margin: 5,
+    padding: 10,
+    backgroundColor: '#E0E0E0',
+    margin: 7,
+    borderWidth: 1,
     borderRadius: 10,
-    justifyContent: 'center',
-    backgroundColor: '#143C5A'
-  },
-  buttonText: {
-    fontFamily: "Poppins-SemiBold",
-    margin: 5,
-    color: 'white'
+    justifyContent: 'center'
   },
   content: {
     padding: 20
@@ -124,10 +99,5 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  footerImage: {
-    width: 100,
-    height: 100,
-    alignSelf: 'center',
   },
 })

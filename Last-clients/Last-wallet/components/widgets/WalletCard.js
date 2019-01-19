@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: measures.fontSizeMedium,
         color: colors.gray,
-        fontWeight: 'bold'
+        fontFamily: 'Poppins-SemiBold'
     },
     description: {
         fontSize: measures.fontSizeMedium - 2,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         fontSize: measures.fontSizeMedium - 1,
         color: colors.gray,
         marginLeft: measures.defaultMargin,
-        fontWeight: 'bold'
+        fontFamily: 'Poppins-SemiBold'
     },
     fiatbalance: {
         fontSize: measures.fontSizeMedium - 3,

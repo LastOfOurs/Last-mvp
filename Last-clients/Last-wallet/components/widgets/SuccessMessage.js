@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     marginVertical: measures.defaultMargin
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold',
     fontSize: measures.fontSizeMedium,
     color: colors.success,
     textAlign: 'center'
