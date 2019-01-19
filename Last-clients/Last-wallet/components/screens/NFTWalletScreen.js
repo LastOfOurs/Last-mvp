@@ -56,7 +56,7 @@ export default class NFTWalletScreen extends React.Component {
 )
 
   render() {
-    const { loading, wallet } = this.props
+    const { loading } = this.props
     const totalCollectibles = this.state.NFTs.length
     if (loading) {
       return (
@@ -65,10 +65,10 @@ export default class NFTWalletScreen extends React.Component {
     } else if (totalCollectibles === 0) {
       return (
         <View style={styles.titleContainer}>
-          <Text>No collectibles found! Add a token to view your collectibles</Text>
+          <Text style={styles.title} >No animals found! Claim an egg to add animals to your sanctuary</Text>
           <TouchableOpacity style={styles.button}
             onPress={this.getEggs.bind(this)}>
-            <Text>Get Eggs</Text>
+            <Text style={styles.title}>Claim my Eggs</Text>
           </TouchableOpacity>
         </View>
       )
@@ -89,10 +89,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   titleContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: 10,
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-SemiBold'
   },
   button: {
     padding: 10,

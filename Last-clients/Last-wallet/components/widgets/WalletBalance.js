@@ -39,23 +39,25 @@ const styles = StyleSheet.create({
         height: 60,
         flexDirection: 'row',
         borderBottomColor: colors.lightGray,
-        padding: 10
+        padding: 10,
+        margin: 20
     },
     leftColumn: {
         flex: 1
     },
     title: {
+        fontFamily: 'Poppins-SemiBold',
         fontSize: measures.fontSizeLarge,
-        color: colors.gray
+        color: colors.white
     },
     balance: {
         fontSize: measures.fontSizeMedium + 2,
         fontFamily: 'Poppins-SemiBold',
-        color: colors.gray
+        color: colors.white
     },
     fiatBalance: {
         fontSize: measures.fontSizeMedium - 3,
-        color: colors.gray
+        color: colors.white
     },
     rightColumn: {
         flex: 1,

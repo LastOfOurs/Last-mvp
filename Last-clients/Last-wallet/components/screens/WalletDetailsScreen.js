@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import WalletBalance from '../widgets/WalletBalance'
+import { LinearGradient } from 'expo'
 import PropTypes from 'prop-types'
 
 export default class WalletDetailsScreen extends React.Component {
@@ -32,16 +33,17 @@ export default class WalletDetailsScreen extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
+      <LinearGradient colors={['#143C5A', '#0AAAD2', '#F7F7F7']} style={styles.mainContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Wallet Details Screen</Text>
+          <Text style={styles.title}>Send/Receive ETH or adopt animals</Text>
           <WalletBalance />
           <TouchableOpacity style={styles.button}
           onPress={this.handleSendPressed}>
-            <Text style={styles.title}>Send</Text>
+            <Text style={styles.title}>Send ETH</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleReceivePressed}>
-            <Text style={styles.title}>Receive</Text>
+            <Text style={styles.title}>Receive ETH</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleHistoryPressed}>
@@ -53,13 +55,15 @@ export default class WalletDetailsScreen extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleNFTWalletPressed}>
-            <Text style={styles.title}>NFT Wallet</Text>
+            <Text style={styles.title}>View animals</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleWalletSettingsPressed}>
             <Text style={styles.title}>Wallet Settings</Text>
           </TouchableOpacity>
         </View>
+        <Image style={styles.footerImage} source={require('../../assets/penguin-moon.png')}/>
+        </LinearGradient>
       </View>
     );
   }
@@ -76,13 +80,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Poppins-SemiBold',
+    color: 'white'
   },
   button: {
-    padding: 10,
-    backgroundColor: '#E0E0E0',
-    margin: 7,
-    borderWidth: 1,
+    padding: 7,
+    margin: 5,
     borderRadius: 10,
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+    backgroundColor: '#143C5A'
+  },
+  footerImage: {
+    width: 100,
+    height: 100,
+    alignSelf: 'flex-end',
+  },
 })

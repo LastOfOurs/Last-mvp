@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Button, StatusBar, FlatList, RefreshControl } from 'react-native'
+import { View, Text, StyleSheet, Image, StatusBar, FlatList, RefreshControl } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import WalletCard from '../widgets/WalletCard'
 import { measures, colors } from '../../common/styles'
 import { HeaderIcon } from '../widgets/HeaderIcon'
+import { LinearGradient } from 'expo'
 var PricesActions = require('../../common/actions/pricesActions')
 var WalletActions = require('../../common/actions/walletActions')
 var GeneralActions = require('../../common/actions/generalActions')
@@ -12,7 +13,7 @@ var GeneralActions = require('../../common/actions/generalActions')
 @observer
 export default class WalletsOverviewScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: 'Last of Ours',
+    headerTitle: 'My Wallets',
     titleStyle: {
       fontFamily: 'Poppins-SemiBold'
     },
@@ -80,11 +81,14 @@ export default class WalletsOverviewScreen extends React.Component {
     const { list } = this.props.wallets
     return (
       <View style={styles.mainContainer}>
+      <LinearGradient colors={['#143C5A', '#0AAAD2', '#F7F7F7']} style={styles.mainContainer}>
         <StatusBar barStyle='light-content'/>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Wallets Overview Screen</Text>
+          <Text style={styles.title}>Select a wallet to view your animals</Text>
         </View>
           {this.renderBody(list)}
+          <Image style={styles.footerImage} source={require('../../assets/panda-back.png')}/>
+        </LinearGradient>
       </View>
     );
   }
@@ -96,14 +100,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'stretch',
-    padding: measures.defaultPadding,
   },
   titleContainer: {
     alignItems: 'center',
-    margin: 10
+    marginTop: 20,
   },
   title: {
-    fontFamily: 'Poppins-SemiBold'
+    fontFamily: 'Poppins-SemiBold',
+    color: 'white'
   },
   button: {
     padding: 10,
@@ -116,5 +120,10 @@ const styles = StyleSheet.create({
   content: {
     marginTop: measures.defaultMargin,
     padding: 5
-  }
+  },
+  footerImage: {
+    width: 100,
+    height: 100,
+    alignSelf: 'center',
+  },
 })
