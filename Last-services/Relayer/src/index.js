@@ -22,4 +22,4 @@ app.post('/api/v1/egg-tx', async (req, res) => {
   res.send(transaction)
 })
 
-app.listen(3000, () => console.log(`Relayer listening on port 3000!`))
+app.listen(3002, () => console.log(`Relayer listening on port 3002!`))

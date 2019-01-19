@@ -6,8 +6,9 @@ const fs = require('nano-fs')
 const IdentityJson = fs.readFileSync('../../../Last-contracts/build/contracts/IdentityProxy.json', 'utf8')
 const IdentityArtifacts = JSON.parse(IdentityJson)
 const Identity = contract(IdentityArtifacts)
+const config = require('../../config.js')
 const web3 = new Web3(new Web3.providers.HttpProvider(config.web3Provider))
-const config = require('../config.js')
+
 
 Identity.setProvider(web3.currentProvider)
 
@@ -32,7 +33,11 @@ async function relayTx(
   const LastIdentityContract = await Identity.deployed()
   let data = lightwallet.txutils._encodeFunctionTxData(funcName,typeArr,dataArr)
   // call forward request to a smart contract
-  await LastIdentityContract.forward(destAddr, 0, '0x' + data, {from: fromAccount})
+  try {
+    await LastIdentityContract.forward(destAddr, 0, '0x' + data, {from: fromAccount})
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 module.exports = relayTx
