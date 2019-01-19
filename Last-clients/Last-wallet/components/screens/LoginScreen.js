@@ -46,11 +46,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 10,
   },
-  titleLogo: {
-    alignSelf: 'center',
-    width: 300,
-    height: 100,
-  },
   title: {
     fontFamily: "Poppins-SemiBold",
     fontSize: 25,

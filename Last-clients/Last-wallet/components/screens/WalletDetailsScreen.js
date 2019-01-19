@@ -55,7 +55,7 @@ export default class WalletDetailsScreen extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleNFTWalletPressed}>
-            <Text style={styles.title}>View animals</Text>
+            <Text style={styles.title}>View Animals</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleWalletSettingsPressed}>
