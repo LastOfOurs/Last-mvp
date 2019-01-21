@@ -12,22 +12,30 @@ const LastEndpoint = config.lastAnimalsEndpoint
 
 /**
  * Start minting process
- * 
+ *
  * @param {string} recipient - hex string of Ethereum Address
- * 
- * @returns {object} Minted Token
+ * @param {number} amount - amount of token to be minted
+ *
+ * @returns {Promise} Minted Token Promises
  */
-async function mintLast (recipient) {
-  // GET a random unminted Animal
-  let animalToMint = await axios.get(`${LastEndpoint}/unminted`) 
-  // UPDATE animal data to minted = true
-  let animal = await axios.patch(`${LastEndpoint}/${animalToMint.data.id}`, { 'minted': true })
-  let animalData = animal.data
-  //add file to IPFS
-  let ipfsHash = await ipfsAdd(animalToMint.data.id, animalData)
-  // finally mint token in smart contract
-  let mintedToken = await lastMint(animalToMint.data.id, recipient, ipfsHash)
-  return mintedToken
+async function mintLast (recipient, amount) {
+  const unmintedCount = await axios.get(`${LastEndpoint}/unminted/count`)
+  if (unmintedCount < amount) throw new Error('insufficient amount of animal')
+
+  const tokenPromises = []
+  for (let i = 0; i < amount; i++) {
+    // GET a random unminted Animal
+    let animalToMint = await axios.get(`${LastEndpoint}/unminted`)
+    // UPDATE animal data to minted = true
+    let animal = await axios.patch(`${LastEndpoint}/${animalToMint.data.id}`, { 'minted': true })
+    let animalData = animal.data
+    // add file to IPFS
+    let ipfsHash = await ipfsAdd(animalToMint.data.id, animalData)
+    // finally mint token in smart contract
+    tokenPromises.push(lastMint(animalToMint.data.id, recipient, ipfsHash))
+  }
+
+  return Promise.all(tokenPromises)
 }
 
 
@@ -36,13 +44,13 @@ async function mintLast (recipient) {
 
 async function subscribeToHatchEvent() {
   try {
-    const conn = await amqp.connect({ 
-      protocol: 'amqp', 
-      hostname: 'last_rabbitmq', 
-      port: 5672, 
-      username: 'user', 
-      password: 'bitnami', 
-      vhost: '/' 
+    const conn = await amqp.connect({
+      protocol: 'amqp',
+      hostname: 'last_rabbitmq',
+      port: 5672,
+      username: 'user',
+      password: 'bitnami',
+      vhost: '/'
     })
 
     const channel = await conn.createChannel()
@@ -50,13 +58,13 @@ async function subscribeToHatchEvent() {
     await channel.assertQueue(q, {durable: true})
     channel.consume(q, async (msg) => {
       let msgObj = JSON.parse(msg.content.toString())
-      let lastMinted = await mintLast(msgObj.recipient)
+      let lastMinted = await mintLast(msgObj.recipient, msgObj.amount || 1)
       channel.ack(msg)
     }, {noAck: false})
   } catch (err) {
     throw new Error(err)
   }
-} 
+}
 
 //using setTimeout here so process waits for rabbitmq to initialize
 setTimeout(function () {

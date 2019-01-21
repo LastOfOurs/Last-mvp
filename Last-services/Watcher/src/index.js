@@ -19,16 +19,15 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 /**
  * Push a hatch event to queue
- * 
+ *
  * @param {object} conn - connection to rabbitmq
  * @param {string} recipient - address of wallet to mint the token to
+ * @param {number} amount - amount of egg token to hatch
  */
-async function pushHatchEvent(conn, recipient) {
+async function pushHatchEvent(conn, recipient, amount) {
   const channel = await conn.createChannel()
   let q = 'egg-hatch'
-  let msgObj = {
-    recipient: recipient
-  }
+  let msgObj = {recipient, amount}
   await channel.assertQueue(q, {durable: true})
   await channel.sendToQueue(q, Buffer.from(JSON.stringify(msgObj), {persistent: true}))
   console.log(`published ${JSON.stringify(msgObj)} to queue`)
@@ -36,22 +35,24 @@ async function pushHatchEvent(conn, recipient) {
 
 /**
  * POST req to call to mint new animal
- * 
+ *
  * @param {string} animal_id - ID number of the last token
  * @param {string} recipient - address of wallet to mint the token to
+ * @param {number} amount - amount of egg token to hatch
  */
 app.post('/api/v1/mint', async (req, res) => {
-  let inputRecipient = req.body.recipient
+  const { recipient, amount } = res.args
+
   //connect with message queue
-  const conn = await amqp.connect({ 
-    protocol: 'amqp', 
-    hostname: 'last_rabbitmq', 
-    port: 5672, 
-    username: 'user', 
-    password: 'bitnami', 
-    vhost: '/' 
+  const conn = await amqp.connect({
+    protocol: 'amqp',
+    hostname: 'last_rabbitmq',
+    port: 5672,
+    username: 'user',
+    password: 'bitnami',
+    vhost: '/'
   })
-  pushHatchEvent(conn, inputRecipient)
+  pushHatchEvent(conn, recipient, amount)
 })
 
 EggToken.setProvider(web3.currentProvider)
@@ -81,13 +82,15 @@ async function watchHatching() {
     })
 
     event.watch((error, res) => {
-      if (error) throw new Error(error)
-      else {
-        pushHatchEvent(conn, res.args.recipient)
+      if (error) {
+        throw new Error(error)
+      } else {
+        const { recipient, amount } = res.args
+        pushHatchEvent(conn, recipient, amount)
       }
     })
   } catch (err) {
-    throw new Error(err) 
+    throw new Error(err)
   }
 }
 
