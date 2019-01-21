@@ -6,7 +6,7 @@ contract Egg is MintableToken {
     string public constant symbol = "EGG";
     uint8 public constant decimals = 0;
 
-    event Hatching(address recipient, uint256 timestamp);
+    event Hatching(address recipient, uint256 timestamp, uint amount, uint256 tier);
 
     /**
    * @dev Function to hatch eggs (sends eggs to zero address)
@@ -15,7 +15,7 @@ contract Egg is MintableToken {
     function hatch() public returns (bool){
         require(1 <= balances[msg.sender]);
         balances[msg.sender] = balances[msg.sender].sub(1);
-        emit Hatching(msg.sender, block.timestamp);
+        emit Hatching(msg.sender, block.timestamp, 10, 1);
         return true;
     }
 }
