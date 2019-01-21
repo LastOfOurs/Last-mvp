@@ -1,6 +1,5 @@
 var Last = artifacts.require('./Last.sol')
 var assert = require('assert')
-var expectThrow = require('./helper.js')
 
 const interfaceERC165 = '0x01ffc9a7'
 const interfaceERC721 = '0x80ac58cd'

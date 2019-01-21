@@ -1,6 +1,6 @@
 var Last = artifacts.require('./Last.sol')
 var assert = require('assert')
-var expectThrow = require('./helper.js')
+var expectThrow = require('./helper.js').expectThrow
 
 contract('Last', async () => {
   // "should have the correct Contract name and symbol"
