@@ -1,35 +1,16 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { colors, measures } from '../../common/styles'
 var WalletUtils = require('../../common/utils/wallet')
-const WalletActions = require('../../common/actions/walletActions.js')
 
 @inject('prices', 'wallet')
 @observer
 export default class EggBalance extends React.Component {
-    
-    state = {
-        eggBalance: 0
-    }
 
-    componentDidMount() {
-       this.updateEggBalance()
-    }
-
-    async updateEggBalance() {
-        try {
-          await WalletActions.getEggBalance(this.props.wallet.item)
-          this.setState({ eggBalance: this.props.wallet.eggBalance })
-        } catch (e) {
-          // GeneralActions.notify(e.message, 'long')
-          console.log(e)
-        }
-      }
-    
-    get eggBalance() {
-        return Number(this.props.wallet.eggBalance)
-        // return Number(WalletUtils.formatBalance(item.eggBalance))
+    get balance() {
+        const { item } = this.props.wallet
+        return Number(WalletUtils.formatBalance(item.balance))
     }
 
     render() {
@@ -39,8 +20,8 @@ export default class EggBalance extends React.Component {
                     <Text style={styles.title}>My Eggs:</Text>
                 </View>
                 <View style={styles.rightColumn}>
-                    <Text style={styles.title}>{this.state.eggBalance}</Text>
-                    <Image style={styles.eggBalance} source={require('../../assets/egg.png')}/>
+                    <Text style={styles.balance}>ETH {this.balance.toFixed(3)}</Text>
+                    <Text style={styles.fiatBalance}>US$ {this.fiatBalance.toFixed(2)}</Text>
                 </View>
             </View>
         )
@@ -51,6 +32,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'flex-start',
+        height: 60,
         flexDirection: 'row',
         borderBottomColor: colors.lightGray,
         padding: 10,
@@ -59,13 +41,9 @@ const styles = StyleSheet.create({
     leftColumn: {
         flex: 1
     },
-    eggBalance: {
-      width: 40,
-      height: 40,
-    },
     title: {
         fontFamily: 'Poppins-SemiBold',
-        fontSize: measures.fontSizeMedium,
+        fontSize: measures.fontSizeLarge,
         color: colors.white
     },
     balance: {
@@ -80,7 +58,6 @@ const styles = StyleSheet.create({
     rightColumn: {
         flex: 1,
         alignItems: 'flex-end',
-        flexDirection: 'row',
         justifyContent: 'center'
     }
 })

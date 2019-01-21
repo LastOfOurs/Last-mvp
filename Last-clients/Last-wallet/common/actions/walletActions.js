@@ -54,7 +54,6 @@ export async function fetchNFTs(wallet) {
 
 export async function requestNFTs(wallet) {
     WalletStorage.isLoading(true)
-    console.log('Current Wallet: ' + wallet.getAddress())
     const data = await ApiService.getEggs(wallet.getAddress())
     if (data) WalletStorage.setNFTs(data)
     WalletStorage.isLoading(false)
@@ -63,6 +62,6 @@ export async function requestNFTs(wallet) {
 export async function getEggBalance(wallet) {
     WalletStorage.isLoading(true)
     const data = await ApiService.getEggBalance(wallet.getAddress())
-    if (data) WalletStorage.setEggBalance(data)
+    if (data) WalletStorage.setNFTs(data)
     WalletStorage.isLoading(false)
 }

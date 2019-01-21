@@ -1,8 +1,9 @@
-//exposes GET api for blockchain and web3
+//exposes POST api
+//on POST - Send 
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const getEggBalance = require('./web3-rn-helper')
+const relayTx = require('./web3-rn-helper')
 
 app.use(bodyParser.json()) 
 app.use(bodyParser.urlencoded({ extended: true })) 
@@ -16,4 +17,4 @@ app.post('/api/v1/egg-balance', async (req, res) => {
   res.send(balance)
 })
 
-app.listen(3003, () => console.log(`web3 service listening on port 3003!`))
+app.listen(3003, () => console.log(`Relayer listening on port 3003!`))
