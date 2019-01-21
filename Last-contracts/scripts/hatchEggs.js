@@ -1,4 +1,4 @@
-// const Egg = artifacts.require('EGG')
+const Egg = artifacts.require('EGG')
 
 function sleep(milliseconds) {
   var start = new Date().getTime();
@@ -12,7 +12,7 @@ function sleep(milliseconds) {
 
 module.exports = async () => {
   try {
-    const amount = process.argv[3] || 1
+    const amount = parseInt(process.argv[3]) || parseInt(process.argv[6]) || 1
 
     let eggContract = await Egg.deployed()
     let eggOne = await eggContract.hatch(amount, {from: web3.eth.accounts[1]})
