@@ -15,8 +15,8 @@ export default class SendTransactionScreen extends React.Component {
 
   render() {
       return (
-          <View style={styles.mainContainer}>
-          <LinearGradient colors={['#143C5A', '#0AAAD2', '#F7F7F7']} style={styles.mainContainer}>
+          <View style={styles.container}>
+          <LinearGradient colors={['#143C5A', '#0AAAD2', '#F7F7F7']} style={styles.container}>
             <Calculator ref="calc" />
             <Button title="Continue" onPress={() => this.onPressContinue()} />
           </LinearGradient>
@@ -26,10 +26,9 @@ export default class SendTransactionScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
+container: {
+    backgroundColor: colors.defaultBackground,
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'stretch',
-  },
+    alignItems: 'stretch'
+  }
 })

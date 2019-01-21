@@ -18,9 +18,24 @@ export async function getEggs(address) {
       proxyAddress: "0xddfc2e31eeca6ed9e39ed4b7ba30f7217b3032a3",
       functionName: "transfer",
       functionTypes: ["address","uint256"],
-      functionParams: [address, 1]
+      functionParams: [address, 10]
     })
     console.log('POST request to relayer successful')
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function sendEggs(address, amount) {
+  try {
+    await axios.post('http://10.1.10.12:3002/api/v1/egg-tx', {
+      eggAddress: "0xf32235620ce7ae274c377a27cd1a2f087c23a104",
+      proxyAddress: "0xddfc2e31eeca6ed9e39ed4b7ba30f7217b3032a3",
+      functionName: "transfer",
+      functionTypes: ["address","uint256"],
+      functionParams: [address, amount]
+    })
+    console.log('send POST request to relayer successful')
   } catch (err) {
     console.log(err)
   }

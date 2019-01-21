@@ -52,9 +52,16 @@ export async function fetchNFTs(wallet) {
     WalletStorage.isLoading(false)
 }
 
-export async function requestEggs(wallet) {
+export async function claimEggs(wallet) {
     WalletStorage.isLoading(true)
     const data = await ApiService.getEggs(wallet.getAddress())
+    if (data) WalletStorage.setEggBalance(data)
+    WalletStorage.isLoading(false)
+}
+
+export async function sendEggs(recipient, amount) {
+    WalletStorage.isLoading(true)
+    const data = await ApiService.sendEggs(recipient, amount)
     if (data) WalletStorage.setEggBalance(data)
     WalletStorage.isLoading(false)
 }
