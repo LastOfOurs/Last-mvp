@@ -39,6 +39,13 @@ export class WalletStorage {
         console.log(this.NFTs)
     }
 
+    @action setEggBalance(balance) {
+        if (!this.item) throw new Error(`Can't load egg balance. No wallet was selected.`)
+        // if (!(balance instanceof Number)) throw new Error('The NFTs must be an integer.')
+        this.eggBalance = balance
+        console.log(this.eggBalance)
+    }
+
     @action addPendingTransaction(txn) {
         this.pendingTransactions.push(txn)
     }

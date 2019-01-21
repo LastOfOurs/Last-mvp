@@ -5,7 +5,10 @@ import { LinearGradient } from 'expo'
 import SvgUri from 'react-native-svg-uri'
 import { View, Text, Image, StyleSheet, TouchableOpacity, ActivityIndicator, RefreshControl, FlatList } from 'react-native'
 const WalletActions = require('../../common/actions/walletActions.js')
+// const web3Utils = require('../../common/utils/web3.js')
 import NFTCard from '../widgets/NFTCard'
+import EggBalance from '../widgets/EggBalance'
+import WalletBalance from '../widgets/WalletBalance'
 
 const NoNFTs = () => (
   <View style={styles.noTransactionsContainer}>
@@ -16,18 +19,23 @@ const NoNFTs = () => (
 @inject('wallet')
 @observer
 export default class NFTWalletScreen extends React.Component {
-  static navigationOptions = { title: 'My NFTs' }
+  static navigationOptions = { title: 'Animals', 
+  headerTitleStyle: {
+    fontFamily: 'Poppins-SemiBold' }, 
+  }
   state = {
     NFTs: [],
   }
   
   componentDidMount() {
     this.updateNFTs()
+    // web3Utils.getEggBalance(this.props.wallet.item.address)
   }
   
   async updateNFTs() {
     try {
       await WalletActions.fetchNFTs(this.props.wallet.item)
+      await WalletActions.getEggBalance(this.props.wallet.item)
       this.setState({ NFTs: this.props.wallet.NFTs })
     } catch (e) {
       // GeneralActions.notify(e.message, 'long')
@@ -67,14 +75,23 @@ export default class NFTWalletScreen extends React.Component {
       return (
         <View style={styles.mainContainer}>
           <LinearGradient colors={['#143C5A', '#0AAAD2', '#F7F7F7']} style={styles.mainContainer}>
+          <WalletBalance />
+          <EggBalance />
             <View style={styles.titleContainer}>
-              <Text style={styles.title} >No animals found! Claim an egg to add animals to your sanctuary</Text>  
+              <Text style={styles.title} >You have eggs to claim! Go ahead and bring animals into your sanctuary</Text>  
+          </View>
+          <TouchableOpacity style={styles.button}
+                onPress={this.getEggs.bind(this)}>
+                <Text style={styles.buttonText}>Claim Eggs</Text>
+              </TouchableOpacity>
+              <View style={styles.titleContainer}>
+                <Text style={styles.title} >You can also send your eggs to a better home</Text>  
+              </View>
               <TouchableOpacity style={styles.button}
                 onPress={this.getEggs.bind(this)}>
-                <Text style={styles.buttonText}>Claim my Eggs</Text>
+                <Text style={styles.buttonText}>Send Eggs</Text>
               </TouchableOpacity>
-          </View>
-          <Image style={styles.footerImage} source={require('../../assets/united-hands.png')}/>
+          {/* <Image style={styles.footerImage} source={require('../../assets/united-hands.png')}/> */}
           </LinearGradient>
         </View>
       )
@@ -99,14 +116,17 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Poppins-SemiBold',
-    color: 'white'
+    color: 'white',
+    alignSelf: 'center',
+    textAlign: 'center'
   },
   button: {
     padding: 7,
     margin: 5,
     borderRadius: 10,
     justifyContent: 'center',
-    backgroundColor: '#143C5A'
+    backgroundColor: '#143C5A',
+    alignSelf: 'center'
   },
   buttonText: {
     fontFamily: "Poppins-SemiBold",

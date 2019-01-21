@@ -14,7 +14,7 @@ var GeneralActions = require('../../common/actions/generalActions')
 export default class WalletsOverviewScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: 'My Wallets',
-    titleStyle: {
+    headerTitleStyle: {
       fontFamily: 'Poppins-SemiBold'
     },
     headerLeft: (

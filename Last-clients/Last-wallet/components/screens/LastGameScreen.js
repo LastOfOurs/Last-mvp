@@ -6,14 +6,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 export default class LastGameScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Last Game',
-    headerTitle: 'Last Game',
+    headerTitleStyle: {
+      fontFamily: 'Poppins-SemiBold' }, 
   })
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Last Game Screen</Text>
+          <Text style={styles.title}>Hibernating...</Text>
           <Image style={styles.logo} source={require('../../assets/animals/giant-panda.png')}/>
           <Image style={styles.logo} source={require('../../assets/animals/black-rhino.png')}/>
         </View>

@@ -158,7 +158,7 @@ GameStack.navigationOptions = {
 const MainTabs = createBottomTabNavigator(
   {
     Wallet: MainStack,
-    Marketplace: MarketplaceStack,
+    Adopt: MarketplaceStack,
     LastGame: GameStack,
   },
   {

@@ -4,6 +4,8 @@ import { Provider } from 'mobx-react'
 import { colors } from './common/styles'
 import Router from './router'
 import * as stores from './common/stores/'
+import 'node-libs-react-native/globals'
+import './global.js'
 
 const STATUSBAR_CONFIG = {
     backgroundColor: colors.statusBar,

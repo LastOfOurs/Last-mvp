@@ -5,7 +5,7 @@ const { HDNode, providers, utils, Wallet } = ethers
 // const network = (process.env.NODE_ENV === 'production') ? 'mainnet' : 'rinkeby'
 // const PROVIDER = providers.getDefaultProvider(network)
 
-//Using local ganache as blockchain
+//Using local ganache blockchain
 const url = "http://localhost:8546"
 const PROVIDER = new ethers.providers.JsonRpcProvider(url)
 

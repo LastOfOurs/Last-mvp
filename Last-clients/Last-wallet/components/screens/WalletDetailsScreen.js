@@ -5,7 +5,10 @@ import { LinearGradient } from 'expo'
 import PropTypes from 'prop-types'
 
 export default class WalletDetailsScreen extends React.Component {
-  static navigationOptions = { title: 'My Wallet' }
+  static navigationOptions = { title: 'Wallet', 
+  headerTitleStyle: {
+    fontFamily: 'Poppins-SemiBold' }, 
+  }
   handleWalletSettingsPressed = () => {
     this.props.navigation.navigate("WalletSettings")
   }
@@ -37,25 +40,27 @@ export default class WalletDetailsScreen extends React.Component {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Send/Receive ETH or adopt animals</Text>
           <WalletBalance />
-          <TouchableOpacity style={styles.button}
-          onPress={this.handleSendPressed}>
-            <Text style={styles.title}>Send ETH</Text>
+          <TouchableOpacity style={styles.viewAnimalsButton}
+          onPress={this.handleNFTWalletPressed}>
+            <Text style={styles.viewAnimalsTitle}>My Animals</Text>
           </TouchableOpacity>
+          <View style={styles.buttonsRow}>
+            <TouchableOpacity style={styles.button}
+            onPress={this.handleSendPressed}>
+              <Text style={styles.title}>Send ETH</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}
+            onPress={this.handleReceivePressed}>
+              <Text style={styles.title}>Receive ETH</Text>
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity style={styles.button}
-          onPress={this.handleReceivePressed}>
-            <Text style={styles.title}>Receive ETH</Text>
+          onPress={this.handleMarketplacePressed}>
+            <Text style={styles.title}>Adopt an Animal</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleHistoryPressed}>
             <Text style={styles.title}>Wallet History</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}
-          onPress={this.handleMarketplacePressed}>
-            <Text style={styles.title}>Marketplace</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}
-          onPress={this.handleNFTWalletPressed}>
-            <Text style={styles.title}>View Animals</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}
           onPress={this.handleWalletSettingsPressed}>
@@ -88,6 +93,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     backgroundColor: '#143C5A'
+  },
+  buttonsRow: {
+    flexDirection: 'row',
+  },
+  viewAnimalsButton: {
+    padding: 7,
+    margin: 5,
+    borderRadius: 10,
+    justifyContent: 'center',
+    backgroundColor: '#50FAB4',
+  },
+  viewAnimalsTitle: {
+    fontFamily: 'Poppins-SemiBold',
+    color: '#143C5A' 
   },
   footerImage: {
     width: 100,

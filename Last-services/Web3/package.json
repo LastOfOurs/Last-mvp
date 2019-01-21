@@ -1,0 +1,14 @@
+{
+  "name": "web3-rn-helper",
+  "version": "1.0.0",
+  "description": "A temporary API to interact with the blockchain until web3 integration with React Native builds are ready.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.0.0-beta.37"
+  }
+}
