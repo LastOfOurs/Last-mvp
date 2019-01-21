@@ -13,7 +13,7 @@ export function getHistory(address) {
 //MetaTX
 export async function getEggs(address) {
   try {
-    await axios.post('http://10.1.10.20:3002/api/v1/egg-tx', {
+    await axios.post('http://10.1.10.12:3002/api/v1/egg-tx', {
       eggAddress: "0xf32235620ce7ae274c377a27cd1a2f087c23a104",
       proxyAddress: "0xddfc2e31eeca6ed9e39ed4b7ba30f7217b3032a3",
       functionName: "transfer",
@@ -28,7 +28,7 @@ export async function getEggs(address) {
 
   export async function getEggBalance(address) {
     try {
-      let balance = await axios.post('http://10.1.10.20:3003/api/v1/egg-balance', {
+      let balance = await axios.post('http://10.1.10.12:3003/api/v1/egg-balance', {
         userAddress: address
       })
       console.log('POST request to web3 service successful')
