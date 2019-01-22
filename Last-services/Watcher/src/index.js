@@ -9,12 +9,18 @@ const amqp = require('amqplib');
 const EggJson = fs.readFileSync('../../Last-contracts/build/contracts/Egg.json', 'utf8')
 const EggArtifacts = JSON.parse(EggJson)
 const EggToken = contract(EggArtifacts)
+
+const LastWalletJson = fs.readFileSync('../../Last-contracts/build/contracts/MultiSigWalletFactory.json', 'utf8')
+const LastWalletArtifacts = JSON.parse(LastWalletJson)
+const LastWalletContract = contract(LastWalletArtifacts)
+
 const provider = config.socketProvider
 const web3 = new Web3(new Web3.providers.WebsocketProvider(provider))
 const ownerAddr = config.lastOwnerAddr
 
 app.use(bodyParser.json()) 
 app.use(bodyParser.urlencoded({ extended: true })) 
+
 
 
 /**
@@ -56,6 +62,8 @@ app.post('/api/v1/mint', async (req, res) => {
 
 EggToken.setProvider(web3.currentProvider)
 
+LastWalletContract.setProvider(web3.currentProvider)
+
 //This will correctly set web3 provider
 //TODO: Find more elegant way to accept web3 provider
 if (typeof EggToken.currentProvider.sendAsync !== 'function') {
@@ -72,18 +80,61 @@ async function watchHatching() {
     const LastTokenContract = await EggToken.deployed()
     const event = LastTokenContract.Hatching()
     const conn = await amqp.connect({ 
-      protocol: 'amqp', 
-      hostname: 'last_rabbitmq', 
-      port: 5672, 
-      username: 'user', 
-      password: 'bitnami', 
-      vhost: '/' 
-    })
-
+    protocol: 'amqp', 
+    hostname: 'last_rabbitmq', 
+    port: 5672, 
+    username: 'user', 
+    password: 'bitnami', 
+    vhost: '/' 
+  })
     event.watch((error, res) => {
       if (error) throw new Error(error)
       else {
+        console.log('.....')
+        console.log(res)
+        console.log('.....')
         pushHatchEvent(conn, res.args.recipient)
+      }
+    })
+  } catch (err) {
+    throw new Error(err) 
+  }
+}
+
+
+async function pushLastWalletEvent(conn, recipient) {
+  const channel = await conn.createChannel()
+  let q = 'LastWallet'
+  let msgObj = {
+    recipient: recipient
+  }
+  await channel.assertQueue(q, {durable: true})
+  await channel.sendToQueue(q, Buffer.from(JSON.stringify(msgObj), {persistent: true}))
+  console.log(`published ${JSON.stringify(msgObj)} to queue`)
+}
+
+async function watchLastWallet() {
+  try {
+    console.log('1')
+    const lastWallet = await LastWalletContract.deployed()
+        console.log('2')
+    const event = lastWallet.ContractInstantiation()
+        console.log('3')
+    const conn = await amqp.connect({ 
+    protocol: 'amqp', 
+    hostname: 'last_rabbitmq', 
+    port: 5672, 
+    username: 'user', 
+    password: 'bitnami', 
+    vhost: '/' 
+  })
+    event.watch((error, res) => {
+      if (error) throw new Error(error)
+      else {
+        console.log('.....')
+        console.log(res)
+        console.log('.....')
+        pushLastWalletEvent(conn, res.args.instantiation)
       }
     })
   } catch (err) {
@@ -93,6 +144,7 @@ async function watchHatching() {
 
 setTimeout(function () {
   watchHatching()
+  watchLastWallet()
   app.listen(3001, () => {
     console.log('Running Watcher event listener on port 3001')
   })
