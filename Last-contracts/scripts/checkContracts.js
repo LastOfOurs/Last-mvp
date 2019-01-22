@@ -1,16 +1,23 @@
 const Last = artifacts.require('Last')
+const EggFactory = artifacts.require('EggFactory')
 const Egg = artifacts.require('Egg')
 
 module.exports = async () => {
   try {
-    let lastContract = await Last.deployed()
-    let eggContract = await Egg.deployed()
-    if (typeof(lastContract) !== "undefined" || typeof(eggContract) !== "undefined"){
-      console.log(`Last Contract deployed at ${lastContract.address}`)
-      console.log(`Egg Contract deployed at ${eggContract.address}`)
-    } else {
-      throw "Could not find deployed contract"
+    const contracts = {
+      Last: await Last.deployed(),
+      EggFactory: await EggFactory.deployed(),
+      Egg: await Egg.deployed(),
     }
+
+    Object.keys(contracts).forEach(key => {
+      const contract = contracts[key]
+      if (typeof (contract) !== 'undefined') {
+        console.log(`${key} Contract deployed at ${contract.address}`)
+      } else {
+        throw `Could not find deployed ${key} contract`
+      }
+    })
   } catch (err) {
     throw err
   }

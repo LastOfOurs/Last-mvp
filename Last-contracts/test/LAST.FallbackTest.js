@@ -1,6 +1,5 @@
 var Last = artifacts.require('./Last.sol')
 var assert = require('assert')
-var expectThrow = require('./helper.js')
 
 beforeEach(async function () {
   // generate new Last Contract for every test
