@@ -36,21 +36,19 @@ contract('Egg', async function (accounts) {
   it('should not allow hatching when balance is insufficient', async function () {
     await this.contract
       .hatch(Number.MAX_SAFE_INTEGER, { from: account })
-      .then(() => assert.fail())
-      .catch(() => assert.ok(1))
+      .then(assert.fail)
+      .catch(assert.ok)
   })
 
   it('should emit event with corresponding parameter', async function () {
     const amount = 25
     const promise = resolveEventToPromise(this.contract.Hatching())
 
-    this.contract.hatch(amount, {from: account})
-
+    await this.contract.hatch(amount, {from: account})
     await promise
       .then(res => {
         assert.strictEqual(res.args.recipient, account)
         assert.strictEqual(res.args.amount.toString(), amount.toString())
       })
-      .catch(err => assert.fail(err))
   })
 })

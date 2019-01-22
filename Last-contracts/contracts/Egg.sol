@@ -2,9 +2,14 @@ pragma solidity^0.4.18;
 import "openzeppelin-solidity/contracts/token/ERC20/MintableToken.sol";
 
 contract Egg is MintableToken {
-    string public constant name = "Basic Last Egg";
     string public constant symbol = "EGG";
     uint8 public constant decimals = 0;
+
+    string public name;
+
+    constructor (string _name) public {
+        name = _name;
+    }
 
     event Hatching(address recipient, uint256 timestamp, uint256 amount);
 
